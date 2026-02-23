@@ -4,15 +4,19 @@
 ## GIT FLOW
 
 > git status
+
 conferir se tem um arquivo pendente p commitar
 
 > git checkout develop
+
 todo branch novo deve ser criado a partir da develop
 
 > git pull origin develop
+
 trazer as ultimas mudancas do servidor pro local
 
 > git checkout -b ex/001-soma-de-arrays
+
 cria um branch novo pra trabalhar no exercicio 
 
 - copia a pasta template para dentro da pasta ex
@@ -21,16 +25,20 @@ cria um branch novo pra trabalhar no exercicio
 - terminou o exercicio
 
 > git status
+
 conferir se esta no branch certo ex/00#-nome
 NAO ALTERAR ARQUIVOS NA PASTA TEMPLATE!!!!!!!!
 
 > git add .
+
 adiciona os arquivos mudados no commit 
 
 > git commit -m "nome-do-commit"
+
 commitar
 
 > git push origin ex/00#-nome
+
 envia as novas mudancas e o novo branch pro servidor
 
 - acessar o github
