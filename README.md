@@ -22,6 +22,7 @@ cria um branch novo pra trabalhar no exercicio
 - copia a pasta template para dentro da pasta ex
 - renomeia a nova pasta para o mesmo numero e nome do branch
 - edita o readme com o link do index do exercicio, e um texto descritivo sobre o exercicio
+- edita o index main e coloca o link pro html do exercicio
 - terminou o exercicio
 
 > git status
