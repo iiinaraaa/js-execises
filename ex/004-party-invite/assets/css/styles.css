@@ -1,3 +1,31 @@
 body {
     background-color: rgb(255, 232, 236);
 }
+
+.partyInvite {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.partyInvite__title {
+    margin-bottom: 50px;
+}
+
+.partyInvite__ageContent {
+    margin-bottom: 50px;
+}
+
+.partyInvite__choiseContainer {
+    margin-top: 10px;
+    /* tive que por assim margin top pq por algum motivo, bottom nao funciona*/
+    margin-bottom: 50px;
+}
+
+.partyInvite__button {
+    margin-bottom: 30px;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+
