@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>party invite</title>
+    <link rel="icon" href="assets/img/favicon (4).ico" type="image/x-icon">
+</head>
+<body>
+    <h1>⋆✴︎˚｡⋆ Sistema de entrada ⋆✴︎˚｡⋆</h1>
+
+    <label>Idade:</label>
+    <input type="number" id="idade">
+
+    <br>
+    <br>
+
+    <label>Tem convite?</label>
+   
+    <div class="opcoes">
+        <input type="radio" name="convite" value="sim" id="sim">
+        <label for="sim" class="radio-botao">Sim</label>
+
+        <input type="radio" name="convite" value="nao" id="nao">
+        <label for="nao" class="radio-botao">Nao</label>
+    </div>
+
+    <br>
+    <br>
+    
+    <button onclick="verificarEntrada()">Verificar</button>
+
+    <h2 id="resultado"></h2>
+
+
+
+
+
+    <script src="main.js"></script>
+</body>
+</html>
