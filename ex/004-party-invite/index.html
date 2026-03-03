@@ -8,35 +8,31 @@
     <link rel="icon" href="assets/img/favicon (4).ico" type="image/x-icon">
 </head>
 <body>
-    <h1>⋆✴︎˚｡⋆ Sistema de entrada ⋆✴︎˚｡⋆</h1>
+    <div class="partyInvite">
+        <h1 class="partyInvite__title">⋆✴︎˚｡⋆ Sistema de entrada ⋆✴︎˚｡⋆</h1>
 
-    <label>Idade:</label>
-    <input type="number" id="idade">
+        <div class="partyInvite__ageContent">
+            <label class="partyInvite__ageContentTitle">Idade:</label>
+            <input class="partyInvite__ageContentNumber" type="number" id="idade">
+        </div>
 
-    <br>
-    <br>
-
-    <label>Tem convite?</label>
-   
-    <div class="opcoes">
-        <input type="radio" name="convite" value="sim" id="sim">
-        <label for="sim" class="radio-botao">Sim</label>
-
-        <input type="radio" name="convite" value="nao" id="nao">
-        <label for="nao" class="radio-botao">Nao</label>
-    </div>
-
-    <br>
-    <br>
+        <div class="partyInvite__choise">
+            <label partyInvite__choiseTitle>Tem convite?</label>
     
-    <button onclick="verificarEntrada()">Verificar</button>
+            <div class="opcoes partyInvite__choiseContainer">
+                <input class="partyInvite__choiseContainerRadio" type="radio" name="convite" value="sim" id="sim">
+                <label class="partyInvite__choiseContainerRadioButton" for="sim" class="radio-botao">Sim</label>
 
-    <h2 id="resultado"></h2>
+                <input class="partyInvite__choiseContainerRadio" type="radio" name="convite" value="nao" id="nao">
+                <label class="partyInvite__choiseContainerRadioButton" for="nao" class="radio-botao">Nao</label>
+            </div>
+        </div>
 
+        <button class="partyInvite__button" onclick="verificarEntrada()">Verificar</button>
 
-
-
-
+        <h2 class="partyInvite__result" id="resultado"></h2>
+    </div>
+    
     <script src="main.js"></script>
 </body>
 </html>
