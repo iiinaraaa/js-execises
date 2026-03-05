@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/styles.css">
+    <title>digital wallet</title>
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="wallet">
+        <h1 class="wallet__title">⛁ $ˎˊ˗ Carteira digital˗ˊˎ$ ⛁</h1>
+    
+        <div class="wallet__addMoney">
+            <p class="wallet__addMoneyBalance">saldo disponivel: R$ <span id="saldo">0</span></p>
+
+            <button class="wallet__addMoneyButton" onclick="adicionarDinheiro()">adicionar dinheiro</button>
+        </div>
+
+        <div class="wallet__allocateMoney">
+            <h2>Separar dinheiro</h2>
+
+            <button class="wallet__allocateMoneyButton" onclick="separar('lazer')">lazer</button>
+            <button class="wallet__allocateMoneyButton" onclick="separar('pet')">pet</button>
+            <button class="wallet__allocateMoneyButton" onclick="separar('faculdade')">faculdade</button>
+        </div>
+        
+        <div class="wallet__boxes">
+            <h3 class="wallet__boxesTitle">caixinhas</h3>
+
+            <div class="wallet__boxesValues">
+                <p class="wallet__boxesValuesItem">lazer: R$ <span id="lazer">0</span></p>
+                <p class="wallet__boxesValuesItem">pet: R$ <span id="pet">0</span></p>
+                <p class="wallet__boxesValuesItem">faculdade: R$ <span id="faculdade">0</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
