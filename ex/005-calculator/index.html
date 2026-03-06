@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/img/favicon (7).ico">
+    <title>calculator</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+    <div class="calculator">
+        <h1 class="calculator__title">⟡ ݁₊ . Calculadora ๋࣭ ⭑⚝</h1>
+
+        <input class="calculator__screenContainer" id="screen">
+
+        <div class="calculator__buttonContainer">
+            <button class="calculator__buttonContainerItem" onclick="add('1')">1</button>
+            <button class="calculator__buttonContainerItem" onclick="add('2')">2</button>
+            <button class="calculator__buttonContainerItem" onclick="add('3')">3</button>
+            <button class="calculator__buttonContainerItem" onclick="add('+')">+</button>
+        </div>
+    
+
+        <div class="calculator__buttonContainer">
+            <button class="calculator__buttonContainerItem" onclick="add('4')">4</button>
+            <button class="calculator__buttonContainerItem" onclick="add('5')">5</button>
+            <button class="calculator__buttonContainerItem" onclick="add('6')">6</button>
+            <button class="calculator__buttonContainerItem" onclick="add('-')">-</button>
+        </div>
+
+
+        <div class="calculator__buttonContainer">
+            <button class="calculator__buttonContainerItem" onclick="add('7')">7</button>
+            <button class="calculator__buttonContainerItem" onclick="add('8')">8</button>
+            <button class="calculator__buttonContainerItem" onclick="add('9')">9</button>
+            <button class="calculator__buttonContainerItem" onclick="add('*')">*</button>
+        </div>
+
+        <div class="calculator__buttonContainer">
+            <button class="calculator__buttonContainerItem" onclick="add('0')">0</button>
+            <button class="calculator__buttonContainerItem" onclick="add('.')">.</button>
+            <button class="calculator__buttonContainerItem" onclick="add('/')">/</button>
+        </div>
+
+        <div class="calculator__buttonContainer">
+            <button class="calculator__buttonContainerItem" onclick="calculate()">=</button>
+            <button class="calculator__buttonContainerItem" onclick="clearScreen()">C</button> 
+        </div>
+
+        <p class="container__resultText" id="result"></p>
+    </div>
+    
+
+    <script src="main.js"></script>
+</body>
+</html>
