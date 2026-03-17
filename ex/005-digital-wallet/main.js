@@ -9,6 +9,18 @@ function adicionarDinheiro() {
     saldo = saldo + valor
 
     document.getElementById("saldo").innerText = saldo
+
+    if (valor <= 0) {
+        alert("Adicione um valor que nao seja negativo")
+
+        document.getElementById("saldo").innerText = 0
+    }
+
+    if (valor !=Number) {
+        alert("Por favor, digite um valor")
+
+        document.getElementById("saldo").innerText = 0
+    }
 }
 
 function separar(caixinha) {
@@ -37,5 +49,15 @@ function separar(caixinha) {
     }
 
     document.getElementById("saldo").innerText = saldo
-
 }
+
+//if dinheiro < saldo = nao tem money ✅
+//if dinheiro <= zero = vc nao tem dinheiro suficiente, adicione mais dinheiro, e tbm n deixar numero negativo ✅
+// if dinheiro !number = adicione um valor, letras nao sao numeros... ✅
+
+
+// mas deixar escrever . ex: 15.50?????????????????????????
+//regex
+
+
+//fzr um botao que resgata dinheiro das caixinhas e devolve pro saldo
