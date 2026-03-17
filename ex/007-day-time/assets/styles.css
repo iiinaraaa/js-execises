@@ -9,16 +9,17 @@ body {
     font-family: "Jersey 10", sans-serif;
     font-weight: 400;
     font-style: normal;
-    margin: 6px 0px;
+    margin: 15px 0px;
     font-size: 36px;
     color: #e07d8d;
+    padding-top: 6px;
 }
 
 .calendarBorder {
     border: solid 2px #ffa3b3;
     border-radius: 15px;
-    width: 200px;
-    height: 215px;
+    width: 300px;
+    height: 300px;
     -webkit-box-shadow: 4px 4px 13px -8px #D6D6D6; 
     box-shadow: 4px 4px 13px -8px #D6D6D6;
     background-color: #ffc4ce3a;
@@ -32,12 +33,13 @@ body {
     border-radius: 10px;
     margin: 10px 10px 0px 10px;
     background-color: #ffffff62;
+    height: 230px;
 }
 
 .calendarImageContainer {
     display: flex;
     gap: 15px;
-    margin: 8px 58px;
+    margin: 8px 158px;
 }
 
 .calendarImageContainerItem {
