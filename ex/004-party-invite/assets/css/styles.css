@@ -22,6 +22,10 @@ body {
     margin-bottom: 50px;
 }
 
+.partyInvite__choise {
+    margin-bottom: 40px;
+}
+
 .partyInvite__button {
     margin-bottom: 30px;
     border-radius: 20px;

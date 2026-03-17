@@ -11,22 +11,22 @@
     <div class="partyInvite">
         <h1 class="partyInvite__title">⋆✴︎˚｡⋆ Sistema de entrada ⋆✴︎˚｡⋆</h1>
 
-        <div class="partyInvite__ageContent">
+        <form class="partyInvite__ageContent">
             <label class="partyInvite__ageContentTitle">Idade:</label>
             <input class="partyInvite__ageContentNumber" type="number" id="idade">
-        </div>
+        </form>
 
-        <div class="partyInvite__choise">
+        <form class="partyInvite__choise">
             <label partyInvite__choiseTitle>Tem convite?</label>
     
-            <div class="opcoes partyInvite__choiseContainer">
+            <label class="opcoes partyInvite__choiseContainer">
                 <input class="partyInvite__choiseContainerRadio" type="radio" name="convite" value="sim" id="sim">
                 <label class="partyInvite__choiseContainerRadioButton" for="sim" class="radio-botao">Sim</label>
 
                 <input class="partyInvite__choiseContainerRadio" type="radio" name="convite" value="nao" id="nao">
                 <label class="partyInvite__choiseContainerRadioButton" for="nao" class="radio-botao">Nao</label>
-            </div>
-        </div>
+            </label>
+        </form>
 
         <button class="partyInvite__button" onclick="verificarEntrada()">Verificar</button>
 
