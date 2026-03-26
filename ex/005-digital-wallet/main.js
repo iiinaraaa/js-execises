@@ -27,7 +27,6 @@ function ehNumeroNegativo(numero) {
         return true
     }
     return false
-
 }
 
 function separar(caixinha) {
@@ -63,25 +62,25 @@ function separar(caixinha) {
 }
 
 function render() {
-    let lazer = Number(document.getElementById("lazer").innerText)
-    let pet = Number(document.getElementById("pet").innerText)
-    let faculdade = Number(document.getElementById("faculdade").innerText)
+    if (lazer > 0) {
+        lazer = Number((lazer * 1.10).toFixed(2))
+        //manti dentro de number pra continuar sendo numero e n virar string com o tofixed
+    }
 
-    lazer = Number((lazer + lazer * 0.10).toFixed(2))
-    pet = Number((pet + pet * 0.10).toFixed(2))
-    faculdade = Number((faculdade + faculdade * 0.10).toFixed(2))
-    //esse toFixed transforma em STRING se n estiver dentro de NUMBER!!!!!!
-    //precisa estar dentro se n, n vai funcionar e vai quebrar
+    if (pet > 0) {
+        pet = Number((pet * 1.10).toFixed(2))
+    }
+
+    if (faculdade > 0) {
+        faculdade = Number((faculdade * 1.10).toFixed(2))
+    }
 
     document.getElementById("lazer").innerText = lazer
     document.getElementById("pet").innerText = pet
     document.getElementById("faculdade").innerText = faculdade
 
-    if (pet === 0 || faculdade === 0 || lazer === 0) {
-        alert("adicione dinheiro!")
-        //ah pq nao "" e sim 0? PQ TRANSFORMEI EM NUMEROOOOOOO!!!!!!!!! nao eh mais string!!!
-        //STRING = ""
-        //NUMBER = 0
+    if (lazer === 0 && pet === 0 && faculdade === 0) {
+        alert("saldo insuficiente para render, adicione mais dinheiro!")
     }
 }
 
@@ -121,10 +120,4 @@ function retirar(categoria) {
     document.getElementById("saldo").innerText = saldo
 
     alert("retirado com sucesso")
-
 }
-
-
-
-
-//ele tira mas o valor da caixinha continua o mesmo....
