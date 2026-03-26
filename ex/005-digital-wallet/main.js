@@ -115,13 +115,16 @@ function retirar(categoria) {
 
     saldo += valor
 
+    document.getElementById("lazer").innerText = lazer
+    document.getElementById("pet").innerText = pet
+    document.getElementById("faculdade").innerText = faculdade
+    document.getElementById("saldo").innerText = saldo
+
     alert("retirado com sucesso")
 
-
-    
 }
 
 
 
 
-//fzr um botao que resgata dinheiro das caixinhas e devolve pro saldo
+//ele tira mas o valor da caixinha continua o mesmo....
