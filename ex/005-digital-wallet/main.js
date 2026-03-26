@@ -6,25 +6,36 @@ let faculdade = 0
 function adicionarDinheiro() {
     let valor = Number(prompt("Qual valor voce deseja adicionar?"))
 
-    saldo = saldo + valor
+    if (ehNumeroValido(valor) && !ehNumeroNegativo(valor)) {
+        saldo = saldo + valor
+        document.getElementById("saldo").innerText = saldo
+    }
+}
 
-    document.getElementById("saldo").innerText = saldo
+function ehNumeroValido(numero) {
+    if (isNaN(numero)) {
+        alert("isso nao eh um numero valido")
+        
+        return false
+    } 
+    return true
+}
 
-    if (valor <= 0) {
+function ehNumeroNegativo(numero) {
+    if (numero <= 0) {
         alert("Adicione um valor que nao seja negativo")
-
-        document.getElementById("saldo").innerText = 0
+        return true
     }
+    return false
 
-    if (valor !=Number) {
-        alert("Por favor, digite um valor")
-
-        document.getElementById("saldo").innerText = 0
-    }
 }
 
 function separar(caixinha) {
     let valor = Number(prompt("quanto voce deseja separar?"))
+
+    if (!ehNumeroValido(valor) || ehNumeroNegativo(valor)) {
+        return
+    } 
 
     if (valor > saldo) {
         alert("voce nao tem dinheiro suficiente!")
@@ -51,13 +62,66 @@ function separar(caixinha) {
     document.getElementById("saldo").innerText = saldo
 }
 
-//if dinheiro < saldo = nao tem money ✅
-//if dinheiro <= zero = vc nao tem dinheiro suficiente, adicione mais dinheiro, e tbm n deixar numero negativo ✅
-// if dinheiro !number = adicione um valor, letras nao sao numeros... ✅
+function render() {
+    let lazer = Number(document.getElementById("lazer").innerText)
+    let pet = Number(document.getElementById("pet").innerText)
+    let faculdade = Number(document.getElementById("faculdade").innerText)
+
+    lazer = Number((lazer + lazer * 0.10).toFixed(2))
+    pet = Number((pet + pet * 0.10).toFixed(2))
+    faculdade = Number((faculdade + faculdade * 0.10).toFixed(2))
+    //esse toFixed transforma em STRING se n estiver dentro de NUMBER!!!!!!
+    //precisa estar dentro se n, n vai funcionar e vai quebrar
+
+    document.getElementById("lazer").innerText = lazer
+    document.getElementById("pet").innerText = pet
+    document.getElementById("faculdade").innerText = faculdade
+
+    if (pet === 0 || faculdade === 0 || lazer === 0) {
+        alert("adicione dinheiro!")
+        //ah pq nao "" e sim 0? PQ TRANSFORMEI EM NUMEROOOOOOO!!!!!!!!! nao eh mais string!!!
+        //STRING = ""
+        //NUMBER = 0
+    }
+}
+
+function mostrarOpcoes() {
+    document.getElementById("opcoes").style.display = "block"
+    //isso tbm podia fzr no css mas agr sou javascripter
+}
+
+function retirar(categoria) {
+    let valor = parseFloat(prompt("qual valor voce quer retirar?"))
+
+    if (isNaN(valor) || valor <= 0) {
+        alert("digite um valor valido")
+        return
+    }
+
+    if (categoria === "lazer") {
+        if (valor > lazer) return alert("saldo insuficiente!")
+        lazer -= valor
+    }
+
+    else if (categoria === "pet") {
+        if (valor > pet) return alert("saldo insuficiente!")
+        pet -= valor
+    }
+
+    else if (categoria === "faculdade") {
+        if (valor > faculdade) return alert("saldo insuficiente!")
+        faculdade -= valor
+    }
+
+    saldo += valor
+
+    alert("retirado com sucesso")
 
 
-// mas deixar escrever . ex: 15.50?????????????????????????
-//regex
+    
+}
+
+
 
 
 //fzr um botao que resgata dinheiro das caixinhas e devolve pro saldo

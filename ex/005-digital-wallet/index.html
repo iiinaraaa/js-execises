@@ -17,23 +17,36 @@
 
             <button class="wallet__addMoneyButton" onclick="adicionarDinheiro()">adicionar dinheiro</button>
         </div>
-
+        
         <div class="wallet__allocateMoney">
             <h2>Separar dinheiro</h2>
 
             <button class="wallet__allocateMoneyButton" onclick="separar('lazer')">lazer</button>
             <button class="wallet__allocateMoneyButton" onclick="separar('pet')">pet</button>
             <button class="wallet__allocateMoneyButton" onclick="separar('faculdade')">faculdade</button>
+            
         </div>
         
         <div class="wallet__boxes">
             <h3 class="wallet__boxesTitle">caixinhas</h3>
+
+            <button onclick="render(render)">Renda seu dinheiro clicando aqui!!!</button>
 
             <div class="wallet__boxesValues">
                 <p class="wallet__boxesValuesItem">lazer: R$ <span id="lazer">0</span></p>
                 <p class="wallet__boxesValuesItem">pet: R$ <span id="pet">0</span></p>
                 <p class="wallet__boxesValuesItem">faculdade: R$ <span id="faculdade">0</span></p>
             </div>
+        </div>
+
+        <button onclick="mostrarOpcoes()">Retirar dinheiro</button>
+
+        <div id="opcoes">
+            <p>De qual caixinha voce gostaria de retirar dinheiro?</p>
+
+            <button onclick="retirar('lazer')">lazer</button>
+            <button onclick="retirar('pet')">pet</button>
+            <button onclick="retirar('faculdade')">faculdade</button>
         </div>
     </div>
 

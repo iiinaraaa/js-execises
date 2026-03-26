@@ -8,3 +8,7 @@ body {
     
     flex-direction: column;
 }
+
+#opcoes {
+    display: none;
+}
