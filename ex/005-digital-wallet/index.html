@@ -11,9 +11,11 @@
 <body>
     <div class="wallet">
         <h1 class="wallet__title">⛁ $ˎˊ˗ Carteira digital˗ˊˎ$ ⛁</h1>
+
+        <div class="wallet__divisor"></div>
     
         <div class="wallet__addMoney">
-            <p class="wallet__addMoneyBalance">saldo disponivel: R$ <span id="saldo">0</span></p>
+            <h2 class="wallet__addMoneyBalance">saldo disponivel: R$ <span id="saldo">0</span></h2>
 
             <button class="wallet__addMoneyButton" onclick="adicionarDinheiro()">adicionar dinheiro</button>
         </div>
@@ -21,9 +23,13 @@
         <div class="wallet__allocateMoney">
             <h2>Separar dinheiro</h2>
 
-            <button class="wallet__allocateMoneyButton" onclick="separar('lazer')">lazer</button>
-            <button class="wallet__allocateMoneyButton" onclick="separar('pet')">pet</button>
-            <button class="wallet__allocateMoneyButton" onclick="separar('faculdade')">faculdade</button>
+            <div class="wallet__buttons">
+                <button class="wallet__buttonsItem" onclick="separar('lazer')">lazer</button>
+                <button class="wallet__buttonsItem" onclick="separar('pet')">pet</button>
+                <button class="wallet__buttonsItem" onclick="separar('faculdade')">faculdade</button>
+            </div>
+
+            
             
         </div>
         
@@ -39,14 +45,18 @@
             </div>
         </div>
 
-        <button onclick="mostrarOpcoes()">Retirar dinheiro</button>
+        <button class="wallet__withdraw" onclick="mostrarOpcoes()">Retirar dinheiro</button>
 
         <div id="opcoes">
-            <p>De qual caixinha voce gostaria de retirar dinheiro?</p>
+            <p class="opcoes__text">De qual caixinha voce gostaria de retirar dinheiro?</p>
 
-            <button onclick="retirar('lazer')">lazer</button>
-            <button onclick="retirar('pet')">pet</button>
-            <button onclick="retirar('faculdade')">faculdade</button>
+            <div class="wallet__buttons">
+                <button class="wallet__buttonsItem" onclick="retirar('lazer')">lazer</button>
+                <button class="wallet__buttonsItem" onclick="retirar('pet')">pet</button>
+                <button class="wallet__buttonsItem" onclick="retirar('faculdade')">faculdade</button>
+            </div>
+
+            
         </div>
     </div>
 

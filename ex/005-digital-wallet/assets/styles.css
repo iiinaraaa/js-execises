@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
 body {
-    background-color: rgb(219, 255, 219);
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    font-family: "DM Sans", sans-serif;
+    
 }
 
 .wallet {
@@ -7,8 +13,54 @@ body {
     align-items: center;
     
     flex-direction: column;
+    
+    border-radius: 10px;
+    width: 437px;
+    height: 584px;
+    border: solid 1px;
+    
+}
+
+.wallet__divisor {
+    border: solid 1px;
+    width: 436px;
+}
+
+.wallet__addMoney {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wallet__allocateMoney {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wallet__buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.wallet__boxes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #opcoes {
     display: none;
+    border: solid 1px;
+    padding: 5px;
+    border-radius: 10px;
 }
+
+.wallet__withdraw {
+    margin-bottom: 10px;
+}
+
+.opcoes__text {
+    margin: 0 5px 8px;
+}
+
