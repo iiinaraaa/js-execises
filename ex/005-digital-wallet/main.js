@@ -32,19 +32,23 @@ function separar(caixinha) {
 
     saldo = saldo - valor
 
-    if (caixinha === "lazer") {
-        lazer = lazer + valor
-        document.getElementById("lazer").innerText = lazer
-    }
+    //se usa switch quando tem varias coisas de uma mesma coisa! nesse caso a caixinha tem 3 coisas
+    //isso muda dependendo de algo? sim: switch, nao: fora/sem switch
+    switch (caixinha) {
+        case "lazer":
+            lazer += valor
+            document.getElementById("lazer").innerText = lazer
+            break
 
-    if (caixinha === "pet") {
-        pet = pet + valor
-        document.getElementById("pet").innerText = pet
-    }
+        case "pet":
+            pet += valor
+            document.getElementById("pet").innerText = pet
+            break
 
-    if (caixinha === "faculdade") {
-        faculdade = faculdade +  valor
-        document.getElementById("faculdade").innerText = faculdade
+        case "faculdade":
+            faculdade += valor
+            document.getElementById("faculdade").innerText = faculdade
+            break
     }
 
     document.getElementById("saldo").innerText = saldo
