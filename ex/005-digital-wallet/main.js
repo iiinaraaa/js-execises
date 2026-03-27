@@ -91,33 +91,38 @@ function mostrarOpcoes() {
 
 function retirar(categoria) {
     let valor = parseFloat(prompt("qual valor voce quer retirar?"))
+    //manter esse parsefloat pq ele que deixa ser numero e n string tipo 10 + 2 = 102
 
     if (isNaN(valor) || valor <= 0) {
         alert("digite um valor valido")
         return
     }
 
-    if (categoria === "lazer") {
-        if (valor > lazer) return alert("saldo insuficiente!")
-        lazer -= valor
-    }
+    //add switch deixa mais legivel e menos repetitivo com if else if else if elseee
+    switch (categoria) {
+        case "lazer":
+            if (valor > lazer) return alert("saldo insuficiente, adicione mais dinheiro!!")
+            lazer -= valor
+            document.getElementById("lazer").innerText = lazer
+            break
 
-    else if (categoria === "pet") {
-        if (valor > pet) return alert("saldo insuficiente!")
-        pet -= valor
-    }
+        case "pet":
+            if (valor > pet) return alert("saldo insuficiente, adicione mais dinheiro!!")
+            pet -= valor
+            document.getElementById("pet").innerText = pet
+            break
 
-    else if (categoria === "faculdade") {
-        if (valor > faculdade) return alert("saldo insuficiente!")
-        faculdade -= valor
+        case "faculdade":
+            if (valor > faculdade) return alert("saldo insuficiente, adicione mais dinheiro!!")
+            faculdade -= valor
+            document.getElementById("faculdade").innerText = faculdade
+            break
+            //guanabara disse pra sempre por break mesmo no final
     }
 
     saldo += valor
-
-    document.getElementById("lazer").innerText = lazer
-    document.getElementById("pet").innerText = pet
-    document.getElementById("faculdade").innerText = faculdade
+    //mesma coisa que saldo = saldo + valor!!!
     document.getElementById("saldo").innerText = saldo
 
-    alert("retirado com sucesso")
+    alert("dinheiro retirado com sucesso!!!")
 }
