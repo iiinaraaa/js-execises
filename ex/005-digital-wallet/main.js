@@ -3,38 +3,27 @@ let lazer = 0
 let pet = 0
 let faculdade = 0
 
-function adicionarDinheiro() {
-    let valor = Number(prompt("Qual valor voce deseja adicionar?"))
-
-    if (ehNumeroValido(valor) && !ehNumeroNegativo(valor)) {
-        saldo = saldo + valor
-        document.getElementById("saldo").innerText = saldo
-    }
-}
-
-function ehNumeroValido(numero) {
-    if (isNaN(numero)) {
-        alert("isso nao eh um numero valido")
-        
+function valorValido(valor) {
+    if (isNaN(valor) || valor <= 0) {
+        alert("digite um valor valido maior que 0!")
         return false
-    } 
+    }
     return true
 }
 
-function ehNumeroNegativo(numero) {
-    if (numero <= 0) {
-        alert("Adicione um valor que nao seja negativo")
-        return true
-    }
-    return false
+function adicionarDinheiro() {
+    let valor = Number(prompt("Qual valor voce deseja adicionar?"))
+
+    if (!valorValido(valor)) return
+
+    saldo += valor
+    document.getElementById("saldo").innerText = saldo
 }
 
 function separar(caixinha) {
     let valor = Number(prompt("quanto voce deseja separar?"))
 
-    if (!ehNumeroValido(valor) || ehNumeroNegativo(valor)) {
-        return
-    } 
+    if (!valorValido(valor)) return
 
     if (valor > saldo) {
         alert("voce nao tem dinheiro suficiente!")
@@ -93,10 +82,7 @@ function retirar(categoria) {
     let valor = parseFloat(prompt("qual valor voce quer retirar?"))
     //manter esse parsefloat pq ele que deixa ser numero e n string tipo 10 + 2 = 102
 
-    if (isNaN(valor) || valor <= 0) {
-        alert("digite um valor valido")
-        return
-    }
+    if (!valorValido(valor)) return
 
     //add switch deixa mais legivel e menos repetitivo com if else if else if elseee
     switch (categoria) {
