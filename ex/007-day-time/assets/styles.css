@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+
+body {
+    background-color: rgb(255, 240, 255);
+    
+}
+
+.calendarText {
+    font-family: "Jersey 10", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 15px 0px;
+    font-size: 36px;
+    color: #e07d8d;
+    padding-top: 6px;
+}
+
+.calendarBorder {
+    border: solid 2px #ffa3b3;
+    border-radius: 15px;
+    width: 300px;
+    height: 300px;
+    -webkit-box-shadow: 4px 4px 13px -8px #D6D6D6; 
+    box-shadow: 4px 4px 13px -8px #D6D6D6;
+    background-color: #ffc4ce3a;
+}
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 2px #ffa3b3;
+    border-radius: 10px;
+    margin: 10px 10px 0px 10px;
+    background-color: #ffffff62;
+    height: 230px;
+}
+
+.calendarImageContainer {
+    display: flex;
+    gap: 15px;
+    margin: 8px 158px;
+}
+
+.calendarImageContainerItem {
+    width: 20px;
+    border: solid 2px #ffa3b3;
+    border-radius: 7px;
+    padding: 5px;
+}
+
+.calendarImageContainerItem:hover {
+    background-color: #ffffff62;
+    cursor: pointer;
+}
+
