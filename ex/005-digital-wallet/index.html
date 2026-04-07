@@ -10,34 +10,51 @@
 </head>
 <body>
     <div class="wallet">
-        <h1 class="wallet__title">⛁ $ˎˊ˗ Carteira digital˗ˊˎ$ ⛁</h1>
+        <header class="wallet__header">
+            <div class="header__imageRadious">
+                <img class="header__image" src="assets/img/wallet-svgrepo-com (1).svg" alt="">
+            </div>
+            
+            <h1 class="wallet__title">Carteira digital</h1>
+        </header>
 
-        <div class="wallet__divisor"></div>
-    
-        <div class="wallet__addMoney">
-            <h2 class="wallet__addMoneyBalance">saldo disponivel: R$ <span id="conta_corrente">0</span></h2>
+
+
+        <div class="addMoneySection">
+            <div class="addMoneySection__value">
+                <p class="addMoneySection__valueTitle">Saldo disponivel:</p> 
+
+                <p class="addMoneySection__valueAvailable">
+                    R$ <span id="conta_corrente"> 0</span>
+                </p>
+            </div>
             
 
-            <button class="wallet__addMoneyButton" onclick="adicionarDinheiro()">adicionar dinheiro</button>
+            <div class="addMoneyContainer__options">
+                <div class="addMoney">
+                    <img class="addMoney__image" src="assets/img/unpublish-svgrepo-com.svg" alt="">
+                   <button class="addMoney__addMoneyButton" onclick="adicionarDinheiro()">Inserir</button> 
+                </div>
+
+                <div class="addMoney__earnButton">
+                    <img class="addMoney__image" src="assets/img/trend-upward-svgrepo-com.svg" alt="">
+                    <button class="" onclick="render(render)">Render</button>
+                </div>
+            </div>
         </div>
-        
-        <div class="wallet__allocateMoney">
-            <h2>Separar dinheiro</h2>
+
+        <div class="allocateSection">
+            <h2>Investir</h2>
 
             <div class="wallet__buttons">
                 <button class="wallet__buttonsItem" onclick="separar('lazer')">lazer</button>
                 <button class="wallet__buttonsItem" onclick="separar('pet')">pet</button>
                 <button class="wallet__buttonsItem" onclick="separar('faculdade')">faculdade</button>
             </div>
-
-            
-            
         </div>
-        
+                
         <div class="wallet__boxes">
-            <h3 class="wallet__boxesTitle">caixinhas</h3>
-
-            <button onclick="render(render)">Renda seu dinheiro clicando aqui!!!</button>
+            <h3 class="wallet__boxesTitle">Minhas caixinhas</h3>
 
             <div class="wallet__boxesValues">
                 <p class="wallet__boxesValuesItem">lazer: R$ <span id="lazer">0</span></p>
@@ -46,29 +63,36 @@
             </div>
         </div>
 
-        <button class="wallet__withdraw" onclick="mostrarOpcoes()">Retirar dinheiro</button>
 
-        <div id="opcoes">
-            <p class="opcoes__text">De qual caixinha voce gostaria de retirar dinheiro?</p>
+        <div class="withdrawSection">
+            <h2 class="withdraw__title">Retirar Dinheiro</h2>
 
-            <div class="wallet__buttons">
-                <button class="wallet__buttonsItem" onclick="retirar('lazer')">lazer</button>
-                <button class="wallet__buttonsItem" onclick="retirar('pet')">pet</button>
-                <button class="wallet__buttonsItem" onclick="retirar('faculdade')">faculdade</button>
+            <div class="withdraw__buttonsWrapper">
+                <button class="withdraw__buttons" onclick="retirar('lazer')">lazer</button>
+                <button class="withdraw__buttons" onclick="retirar('pet')">pet</button>
+                <button class="withdraw__buttons" onclick="retirar('faculdade')">faculdade</button>
             </div>
         </div>
 
+        <div class="statement">
+            <button onclick="mostrarHistorico()">ver Historico</button>
 
-        <button onclick="mostrarHistorico()">ver Historico</button>
-
-        <div id="tela_historico" style="display: none;">
-            <h2>Historico</h2>
-            <button onclick="fecharHistorico()">fechar</button>
-            <div id="lista_historico"></div>
+            <div id="tela_historico" style="display: none;">
+                <h2>Historico</h2>
+                <button onclick="fecharHistorico()">fechar</button>
+                <div id="lista_historico"></div>
+            </div>
         </div>
-
     </div>
 
     <script src="./main.js"></script>
 </body>
 </html>
+
+
+<!--
+TO-DO LIST
+
+- arrumar o nome das tags, divs e talssss (irei fazer por partes)
+
+-->

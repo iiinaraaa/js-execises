@@ -1,70 +1,92 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 body {
-    background-color: rgb(255, 255, 255);
+    height: 100vh;
+    margin: 0;
+    background: 
+        radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 40%),
+        linear-gradient(135deg, #2b1a47, #5a1e8a, #2b1a47);
+    color: white;
+
+
+
+
+
+
     display: flex;
     justify-content: center;
     font-family: "DM Sans", sans-serif;
     
 }
 
-.wallet {
+.wallet__header {
     display: flex;
     align-items: center;
-    
+    gap: 15px;
+}
+
+.header__image {
+    width: 17px;
+    padding: 10px;
+}
+
+.header__imageRadious {
+    background-image: linear-gradient(135deg, #9c19f3, #e2007b);
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+}
+
+.addMoneySection {
+    background-image: linear-gradient(135deg, #9c19f3, #e2007b);
+    width: 440px;
+    height: 200px;
+}
+
+.addMoneySection__valueTitle {
+    margin: 0;
+    font-size: 13px;
+}
+
+.addMoneySection__valueAvailable {
+    font-size: 35px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.addMoneyContainer__options {
+    display: flex;
+}
+
+.addMoney {
+    background-color: pink;
+    display: flex;
     flex-direction: column;
-    
-    border-radius: 10px;
-    width: 437px;
-    height: 584px;
-    border: solid 1px;
-    
+    align-items: center;
+
 }
 
-.wallet__divisor {
-    border: solid 1px;
-    width: 436px;
-}
-
-.wallet__addMoney {
+.addMoney__earnButton {
+    background-color: pink;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.wallet__allocateMoney {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+/* por a mesma class nesses 2 de cima, tem o mesmo design */
+
+.addMoney__image {
+    width: 20px;
 }
 
-.wallet__buttons {
-    display: flex;
-    gap: 5px;
-}
 
-.wallet__boxes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-#opcoes {
-    display: none;
-    border: solid 1px;
-    padding: 5px;
-    border-radius: 10px;
-}
 
-.wallet__withdraw {
-    margin-bottom: 10px;
-}
 
-.opcoes__text {
-    margin: 0 5px 8px;
-}
 
-.historico {
-    font-size: 10px;
-}
+
+
+
+
+
 

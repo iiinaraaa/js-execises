@@ -44,7 +44,6 @@ function adicionarDinheiro() {
 
     conta_do_banco.conta_corrente.saldo += valor
 
-
     adicionarHistorico("conta_corrente", "entrada", valor)
 
     document.getElementById("conta_corrente").innerText = conta_do_banco.conta_corrente.saldo
@@ -96,11 +95,6 @@ function render() {
     if (conta_do_banco.lazer.saldo === 0 && conta_do_banco.pet.saldo === 0 && conta_do_banco.faculdade.saldo === 0) {
         alert("saldo insuficiente para render, adicione mais dinheiro!")
     }
-}
-
-function mostrarOpcoes() {
-    document.getElementById("opcoes").style.display = "block"
-    //isso tbm podia fzr no css mas agr sou javascripter
 }
 
 function retirar(categoria) {
