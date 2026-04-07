@@ -21,10 +21,6 @@ let conta_do_banco = {
     },
 }
 
-console.log(">>>>>>>>>>>> conta_do_banco", conta_do_banco);
-// conta_do_banco["conta_corrente"].saldo += 10;
-console.log(">>>>>>>>>>>> conta_do_banco", conta_do_banco);
-
 function valorValido(valor) {
     if (isNaN(valor) || valor <= 0) {
         alert("digite um valor valido maior que 0!")
@@ -33,18 +29,29 @@ function valorValido(valor) {
     return true
 }
 
+function adicionarHistorico(conta, tipo, valor) {
+    conta_do_banco[conta].historico.push ({
+        tipo: tipo,
+        valor: valor,
+        data: new Date().toLocaleString()
+    })
+}
+
 function adicionarDinheiro() {
     let valor = Number(prompt("Qual valor voce deseja adicionar?"))
 
     if (!valorValido(valor)) return
 
     conta_do_banco.conta_corrente.saldo += valor
-    conta_do_banco.conta_corrente.historico.push(valor);
+
+
+    adicionarHistorico("conta_corrente", "entrada", valor)
+
     document.getElementById("conta_corrente").innerText = conta_do_banco.conta_corrente.saldo
 
     document.getElementById("conta_corrente_historico").innerHTML = ""    
     conta_do_banco.conta_corrente.historico.map((entrada) => {
-        document.getElementById("conta_corrente_historico").innerHTML = document.getElementById("conta_corrente_historico").innerHTML + ` <p class="historico">Entrada: ${entrada}</p>`
+        document.getElementById("conta_corrente_historico").innerHTML += `<p class="historico">Entrada: ${entrada.valor}</p>`
     })
 }
 
@@ -59,26 +66,12 @@ function separar(caixinha) {
     }
 
     conta_do_banco.conta_corrente.saldo -= valor
+    conta_do_banco[caixinha].saldo += valor
 
-    //se usa switch quando tem varias coisas de uma mesma coisa! nesse caso a caixinha tem 3 coisas
-    //isso muda dependendo de algo? sim: switch, nao: fora/sem switch
-    switch (caixinha) {
-        case "lazer":
-            conta_do_banco.lazer.saldo += valor
-            document.getElementById("lazer").innerText = conta_do_banco.lazer.saldo
-            break
+    adicionarHistorico("conta_corrente", "saida", valor)
+    adicionarHistorico(caixinha, "entrada", valor)
 
-        case "pet":
-            conta_do_banco.pet.saldo += valor
-            document.getElementById("pet").innerText = conta_do_banco.pet.saldo
-            break
-
-        case "faculdade":
-            conta_do_banco.faculdade.saldo += valor
-            document.getElementById("faculdade").innerText = conta_do_banco.faculdade.saldo
-            break
-    }
-
+    document.getElementById(caixinha).innerText = conta_do_banco[caixinha].saldo
     document.getElementById("conta_corrente").innerText = conta_do_banco.conta_corrente.saldo
 }
 
@@ -116,37 +109,30 @@ function retirar(categoria) {
 
     if (!valorValido(valor)) return
 
-    //add switch deixa mais legivel e menos repetitivo com if else if else if elseee
-    // switch (categoria) {
-    //     case "lazer":
-    //         if (valor > conta_do_banco.lazer.saldo) return alert("saldo insuficiente, adicione mais dinheiro!!")
-    //         conta_do_banco.lazer.saldo -= valor
-    //         document.getElementById("lazer").innerText = conta_do_banco.lazer.saldo
-    //         break
-
-    //     case "pet":
-    //         if (valor > conta_do_banco.pet.saldo) return alert("saldo insuficiente, adicione mais dinheiro!!")
-    //         conta_do_banco.pet.saldo -= valor
-    //         document.getElementById("pet").innerText = conta_do_banco.pet.saldo
-    //         break
-
-    //     case "faculdade":
-    //         if (valor > conta_do_banco.faculdade.saldo) return alert("saldo insuficiente, adicione mais dinheiro!!")
-    //         conta_do_banco.faculdade.saldo -= valor
-    //         document.getElementById("faculdade").innerText = conta_do_banco.faculdade.saldo
-    //         break
-    //         //guanabara disse pra sempre por break mesmo no final
-    // }
-
     if (valor > conta_do_banco[categoria].saldo) return alert("saldo insuficiente, adicione mais dinheiro!!")
     conta_do_banco[categoria].saldo -= valor
-    document.getElementById(categoria).innerText = conta_do_banco[categoria].saldo
-
-
-
     conta_do_banco.conta_corrente.saldo += valor
-    //mesma coisa que saldo = saldo + valor!!!
+
+    adicionarHistorico(categoria, "saida", valor)
+    adicionarHistorico("conta_corrente", "entrada", valor)
+
+    document.getElementById(categoria).innerText = conta_do_banco[categoria].saldo
     document.getElementById("conta_corrente").innerText = conta_do_banco.conta_corrente.saldo
 
-    alert("dinheiro retirado com sucesso!!!")
+    alert("dinheiro retirado com sucesso!!!")   
+}
+
+function mostrarHistorico() {
+    let div = document.getElementById("lista_historico")
+    div.innerHTML = ""
+
+    conta_do_banco.conta_corrente.historico.map((elemento, index) => {
+        div.innerHTML += `<p class=historico> ${elemento.tipo} - R$ ${elemento.valor} <br> ${elemento.data} </p>`
+    })
+
+    document.getElementById("tela_historico").style.display = "block"
+}
+
+function fecharHistorico() {
+    document.getElementById("tela_historico").style.display = "none"
 }

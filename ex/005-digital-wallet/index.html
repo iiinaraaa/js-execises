@@ -16,7 +16,7 @@
     
         <div class="wallet__addMoney">
             <h2 class="wallet__addMoneyBalance">saldo disponivel: R$ <span id="conta_corrente">0</span></h2>
-            <p>Historico: <span id="conta_corrente_historico"></span></p>
+            
 
             <button class="wallet__addMoneyButton" onclick="adicionarDinheiro()">adicionar dinheiro</button>
         </div>
@@ -56,12 +56,17 @@
                 <button class="wallet__buttonsItem" onclick="retirar('pet')">pet</button>
                 <button class="wallet__buttonsItem" onclick="retirar('faculdade')">faculdade</button>
             </div>
-
-            
         </div>
 
-        <h1>Playgroundo</h1>
-        <div id="playground"></div>
+
+        <button onclick="mostrarHistorico()">ver Historico</button>
+
+        <div id="tela_historico" style="display: none;">
+            <h2>Historico</h2>
+            <button onclick="fecharHistorico()">fechar</button>
+            <div id="lista_historico"></div>
+        </div>
+
     </div>
 
     <script src="./main.js"></script>

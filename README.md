@@ -51,4 +51,18 @@ envia as novas mudancas e o novo branch pro servidor
 - so mergear apos uma revisao
 
 
+#### Javascript objects
+
+https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Working_with_objects
+
+![alt text](image.png)
+
+## anotacao 
+
+- se eu ja criei 
+"historico": []
+e quero adicionar informacoes dentro dele, eu preciso por push!
+tipo, por data, e outras coisas
+
+
 
