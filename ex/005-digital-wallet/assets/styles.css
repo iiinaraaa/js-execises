@@ -1,22 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 body {
-    height: 100vh;
+    height: 100%;
     margin: 0;
     background: 
         radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 40%),
         linear-gradient(135deg, #2b1a47, #5a1e8a, #2b1a47);
     color: white;
-
-
-
-
-
-
     display: flex;
     justify-content: center;
     font-family: "DM Sans", sans-serif;
-    
 }
 
 .wallet__header {
@@ -40,7 +33,12 @@ body {
 .addMoneySection {
     background-image: linear-gradient(135deg, #9c19f3, #e2007b);
     width: 440px;
-    height: 200px;
+    height: 220px;
+    border-radius: 20px;
+}
+
+.addMoneySection__value {
+    padding: 23px 20px 0px;
 }
 
 .addMoneySection__valueTitle {
@@ -56,37 +54,157 @@ body {
 
 .addMoneyContainer__options {
     display: flex;
+    padding: 0px 8px;
 }
 
-.addMoney {
-    background-color: pink;
+.addMoney__addMoneyButton {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.47);
+    color: white;
+    font-weight: 600;
+    padding: 20px 40px;
+    margin: 10px 10px; 
+    gap: 10px;
+    transition: transform 0.3s ease;
 }
 
-.addMoney__earnButton {
-    background-color: pink;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.addMoney__addMoneyButton:hover {
+    transform: scale(1.04);
 }
 
-/* por a mesma class nesses 2 de cima, tem o mesmo design */
+.addMoney__addMoneyButton:active {
+    transform: scale(0.98);
+}
 
 .addMoney__image {
     width: 20px;
+    border: solid 2px;
+    border-radius: 20px;
+    padding: 7px;
 }
 
+.wallet__boxesTitle {
+    margin: 30px 3px 10px;
+}
 
+.wallet__boxesValues {
+    background-color: rgba(255, 255, 255, 0.216);
+    padding: 3px 10px;
+    border-radius: 20px;
+}
 
+.wallet__boxesValuesItem {
+    margin: 10px;
+    font-weight: 400;
+}
 
+.allocateSection {
+    background-color: rgba(255, 255, 255, 0.216);
+    padding: 3px 13px;
+    border-radius: 20px;
+    margin: 30px 0px;
+}
 
+.allocateSection__title {
+    margin: 10px 12px 0px;
+}
 
+.wallet__buttons {
+    display: flex;
+    padding-bottom: 7px;
+}
 
+.wallet__buttonsImage {
+    width: 30px;
+    padding-bottom: 9px;
+}
 
+.wallet__buttonsItem {
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.47);
+    color: white;
+    font-weight: 600;
+    padding: 20px 40px;
+    margin: 10px 10px; 
+    transition: transform 0.3s ease;
+}
 
+.wallet__buttonsItem:hover {
+    transform: scale(1.04);
+}
 
+.wallet__buttonsItem:active {
+    transform: scale(0.98);
+}
 
+.withdrawSection {
+    background-color: rgba(255, 255, 255, 0.216);
+    padding: 3px 13px;
+    border-radius: 20px;
+    margin: 30px 0px;
+}
 
+.withdraw__buttonsWrapper {
+    display: flex;
+    padding-bottom: 7px;
+}
+
+.withdraw__buttons {
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.104);
+    color: white;
+    font-weight: 600;
+    padding: 20px 40px;
+    margin: 10px 10px; 
+    transition: transform 0.3s ease;
+}
+
+.withdraw__buttons:hover {
+    transform: scale(1.04);
+}
+
+.withdraw__buttons:active {
+    transform: scale(0.98);
+}
+
+.history__button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    background-image: linear-gradient(135deg, #9c19f3, #e2007b);
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.history__buttonStyling {
+    align-items: center;
+    gap: 10px;
+
+}
+
+.history__closeButtonImage {
+    width: 15px;
+}
+
+.history__list {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.history__buttonImage {
+    width: 20px;
+}

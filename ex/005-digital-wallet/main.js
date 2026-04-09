@@ -124,7 +124,8 @@ function mostrarHistorico() {
         div.innerHTML += `<p class=historico> ${elemento.tipo} - R$ ${elemento.valor} <br> ${elemento.data} </p>`
     })
 
-    document.getElementById("tela_historico").style.display = "block"
+    document.getElementById("tela_historico").style.display = "flex"
+    
 }
 
 function fecharHistorico() {

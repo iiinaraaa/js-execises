@@ -18,8 +18,6 @@
             <h1 class="wallet__title">Carteira digital</h1>
         </header>
 
-
-
         <div class="addMoneySection">
             <div class="addMoneySection__value">
                 <p class="addMoneySection__valueTitle">Saldo disponivel:</p> 
@@ -29,58 +27,56 @@
                 </p>
             </div>
             
-
             <div class="addMoneyContainer__options">
-                <div class="addMoney">
-                    <img class="addMoney__image" src="assets/img/unpublish-svgrepo-com.svg" alt="">
-                   <button class="addMoney__addMoneyButton" onclick="adicionarDinheiro()">Inserir</button> 
+                <div class="addMoneyContainer__optionsContainer">
+                    
+                   <button class="addMoney__addMoneyButton" onclick="adicionarDinheiro()"><img class="addMoney__image" src="assets/img/unpublish-svgrepo-com.svg" alt=""> Inserir</button> 
                 </div>
 
-                <div class="addMoney__earnButton">
-                    <img class="addMoney__image" src="assets/img/trend-upward-svgrepo-com.svg" alt="">
-                    <button class="" onclick="render(render)">Render</button>
+                <div class="addMoneyContainer__optionsContainer">
+                    
+                    <button class="addMoney__addMoneyButton" onclick="render(render)"><img class="addMoney__image" src="assets/img/trend-upward-svgrepo-com.svg" alt=""> Render</button>
                 </div>
             </div>
         </div>
 
-        <div class="allocateSection">
-            <h2>Investir</h2>
-
-            <div class="wallet__buttons">
-                <button class="wallet__buttonsItem" onclick="separar('lazer')">lazer</button>
-                <button class="wallet__buttonsItem" onclick="separar('pet')">pet</button>
-                <button class="wallet__buttonsItem" onclick="separar('faculdade')">faculdade</button>
-            </div>
-        </div>
-                
         <div class="wallet__boxes">
             <h3 class="wallet__boxesTitle">Minhas caixinhas</h3>
 
             <div class="wallet__boxesValues">
-                <p class="wallet__boxesValuesItem">lazer: R$ <span id="lazer">0</span></p>
-                <p class="wallet__boxesValuesItem">pet: R$ <span id="pet">0</span></p>
-                <p class="wallet__boxesValuesItem">faculdade: R$ <span id="faculdade">0</span></p>
+                <p class="wallet__boxesValuesItem">Lazer: R$ <span id="lazer">0</span></p>
+                <p class="wallet__boxesValuesItem">Pet: R$ <span id="pet">0</span></p>
+                <p class="wallet__boxesValuesItem">Faculdade: R$ <span id="faculdade">0</span></p>
             </div>
         </div>
 
+        <div class="allocateSection">
+            <h3 class="allocateSection__title">Investir</h3>
+
+            <div class="wallet__buttons">
+                <button class="wallet__buttonsItem" onclick="separar('lazer')"> <img class="wallet__buttonsImage" src="assets/img/lazer.svg" alt="">Lazer</button>
+                <button class="wallet__buttonsItem" onclick="separar('pet')"> <img class="wallet__buttonsImage" src="assets/img/pet.svg" alt="">Pet</button>
+                <button class="wallet__buttonsItem" onclick="separar('faculdade')"> <img class="wallet__buttonsImage" src="assets/img/faculdade.svg" alt="">Faculdade</button>
+            </div>
+        </div>
 
         <div class="withdrawSection">
-            <h2 class="withdraw__title">Retirar Dinheiro</h2>
+            <h3 class="withdraw__title">Retirar Dinheiro</h3>
 
             <div class="withdraw__buttonsWrapper">
-                <button class="withdraw__buttons" onclick="retirar('lazer')">lazer</button>
-                <button class="withdraw__buttons" onclick="retirar('pet')">pet</button>
-                <button class="withdraw__buttons" onclick="retirar('faculdade')">faculdade</button>
+                <button class="withdraw__buttons" onclick="retirar('lazer')"><img class="wallet__buttonsImage" src="assets/img/lazer.svg" alt="">Lazer</button>
+                <button class="withdraw__buttons" onclick="retirar('pet')"><img class="wallet__buttonsImage" src="assets/img/pet.svg" alt="">Pet</button>
+                <button class="withdraw__buttons" onclick="retirar('faculdade')"><img class="wallet__buttonsImage" src="assets/img/faculdade.svg" alt="">Faculdade</button>
             </div>
         </div>
 
-        <div class="statement">
-            <button onclick="mostrarHistorico()">ver Historico</button>
+        <div class="history">
+            <button class="history__button" onclick="mostrarHistorico()"> <img class="history__buttonImage" src="assets/img/history.svg" alt="">Ver Historico</button>
 
-            <div id="tela_historico" style="display: none;">
+            <div class="history__buttonStyling" id="tela_historico" style="display: none;">
                 <h2>Historico</h2>
-                <button onclick="fecharHistorico()">fechar</button>
-                <div id="lista_historico"></div>
+                <button class="history__button" onclick="fecharHistorico()"><img class="history__closeButtonImage" src="assets/img/close.svg" alt="">fechar</button>
+                <div class="history__list" id="lista_historico"></div>
             </div>
         </div>
     </div>
@@ -88,11 +84,3 @@
     <script src="./main.js"></script>
 </body>
 </html>
-
-
-<!--
-TO-DO LIST
-
-- arrumar o nome das tags, divs e talssss (irei fazer por partes)
-
--->
