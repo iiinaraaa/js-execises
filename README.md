@@ -52,3 +52,25 @@ envia as novas mudancas e o novo branch pro servidor
 
 
 
+## why use eval is a problem? 
+Using eval() in JavaScript is generally considered bad practice because it introduces security, performance, and maintainability problems.
+
+Here’s why:
+
+1. Security Risks (Code Injection)
+eval() executes any string as JavaScript code.
+If that string contains user-provided input, attackers can inject malicious code.
+Example of a dangerous case:
+Javascript
+
+Copy code
+const userInput = "alert('Hacked!')";
+eval(userInput); // Executes arbitrary code
+This can lead to XSS (Cross-Site Scripting) attacks in browsers or remote code execution in Node.js.
+2. Performance Issues
+JavaScript engines cannot optimize code inside eval() effectively because the code is determined at runtime.
+This forces the engine to recompile and deoptimize execution, making it slower.
+3. Debugging and Maintainability Problems
+Code inside eval() is harder to read, debug, and maintain.
+Static analysis tools (like ESLint) can’t easily detect errors inside eval() strings.
+Refactoring becomes risky because the code is hidden inside strings.
