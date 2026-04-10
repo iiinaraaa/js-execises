@@ -97,6 +97,7 @@ function render() {
     }
 }
 
+//retirada de dinheiro da caixinha
 function retirar(categoria) {
     let valor = parseFloat(prompt("qual valor voce quer retirar?"))
     //manter esse parsefloat pq ele que deixa ser numero e n string tipo 10 + 2 = 102
