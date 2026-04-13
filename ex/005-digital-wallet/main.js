@@ -123,7 +123,6 @@ function mostrarHistorico() {
 
     conta_do_banco.conta_corrente.historico.map((elemento, index) => {
 
-        
         let status = elemento.tipo === "entrada" ? "entrada" : "saida"
 
         div.innerHTML += `
