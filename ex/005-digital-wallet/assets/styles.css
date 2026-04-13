@@ -225,3 +225,10 @@ body {
     }
 }
 
+.entrada {
+  color: #7bf7ae; /* verde */
+}
+
+.saida {
+  color: #f69494; /* vermelho */
+}

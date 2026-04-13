@@ -122,11 +122,19 @@ function mostrarHistorico() {
     div.innerHTML = ""
 
     conta_do_banco.conta_corrente.historico.map((elemento, index) => {
-        div.innerHTML += `<p class=historico> ${elemento.tipo} - R$ ${elemento.valor} <br> ${elemento.data} </p>`
+
+        
+        let status = elemento.tipo === "entrada" ? "entrada" : "saida"
+
+        div.innerHTML += `
+            <p class="historico ${status}">
+                ${elemento.tipo} - R$ ${elemento.valor} <br> 
+                ${elemento.data}
+            </p>
+        `
     })
 
     document.getElementById("tela_historico").style.display = "flex"
-    
 }
 
 function fecharHistorico() {
