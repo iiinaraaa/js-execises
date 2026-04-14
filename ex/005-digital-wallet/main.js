@@ -29,10 +29,12 @@ function valorValido(valor) {
     return true
 }
 
-function adicionarHistorico(conta, tipo, valor) {
+//isso adiciona historico, conta, tipo, valor e a descricao vai mandar o papo de onde que ta vindo
+function adicionarHistorico(conta, tipo, valor, descricao = "") {
     conta_do_banco[conta].historico.push ({
         tipo: tipo,
         valor: valor,
+        descricao: descricao,
         data: new Date().toLocaleString()
     })
 }
@@ -44,7 +46,7 @@ function adicionarDinheiro() {
 
     conta_do_banco.conta_corrente.saldo += valor
 
-    adicionarHistorico("conta_corrente", "entrada", valor)
+    adicionarHistorico("conta_corrente", "entrada", valor, "deposito na conta")
 
     document.getElementById("conta_corrente").innerText = conta_do_banco.conta_corrente.saldo
 
@@ -67,8 +69,8 @@ function separar(caixinha) {
     conta_do_banco.conta_corrente.saldo -= valor
     conta_do_banco[caixinha].saldo += valor
 
-    adicionarHistorico("conta_corrente", "saida", valor)
-    adicionarHistorico(caixinha, "entrada", valor)
+    adicionarHistorico("conta_corrente", "saida", valor, `transferido para ${caixinha}`)
+    adicionarHistorico(caixinha, "entrada", valor, `recebido da conta`)
 
     document.getElementById(caixinha).innerText = conta_do_banco[caixinha].saldo
     document.getElementById("conta_corrente").innerText = conta_do_banco.conta_corrente.saldo
@@ -80,7 +82,7 @@ function registrarRendimento(caixinha, valorRendido) {
     conta_do_banco.conta_corrente.historico.push ({
         tipo: "rendimento",
         valor: valorRendido,
-        //essa origem esta sendo usada na parte do historico!
+        descricao: `rendimento na caixinha ${caixinha}`,
         data: new Date().toLocaleString()
     })
 }
@@ -130,8 +132,8 @@ function retirar(categoria) {
     conta_do_banco[categoria].saldo -= valor
     conta_do_banco.conta_corrente.saldo += valor
 
-    adicionarHistorico(categoria, "saida", valor)
-    adicionarHistorico("conta_corrente", "entrada", valor)
+    adicionarHistorico(categoria, "saida", valor, `retirado da caixinha ${categoria}`)
+    adicionarHistorico("conta_corrente", "entrada", valor, `recebido da caixinha ${categoria}`)
 
     document.getElementById(categoria).innerText = conta_do_banco[categoria].saldo
     document.getElementById("conta_corrente").innerText = conta_do_banco.conta_corrente.saldo
@@ -150,15 +152,21 @@ function mostrarHistorico() {
         let texto = ""
 
         if (elemento.tipo === "entrada") {
-            div.innerHTML += `<p class="historico entrada"> Entrada: R$ ${elemento.valor} <br> ${elemento.data} </p>`
+            let texto = elemento.descricao || "Entrada"
+
+            div.innerHTML += `<p class="historico entrada"> ${texto}: R$ ${elemento.valor} <br> ${elemento.data} </p>`
         }
 
         if (elemento.tipo === "saida") {
-            div.innerHTML += `<p class="historico saida"> Saida: R$ ${elemento.valor} <br> ${elemento.data} </p>`
+            let texto = elemento.descricao || "Saida"
+
+            div.innerHTML += `<p class="historico saida"> ${texto}: R$ ${elemento.valor} <br> ${elemento.data} </p>`
         }
 
         if (elemento.tipo === "rendimento") {
-            div.innerHTML += `<p class="historico rendimento"> Rendimento: R$ ${elemento.valor} <br> ${elemento.data} </p>`
+            let texto = elemento.descricao || "Rendimento"
+
+            div.innerHTML += `<p class="historico rendimento"> ${texto}: R$ ${elemento.valor} <br> ${elemento.data} </p>`
         }
     })
 
