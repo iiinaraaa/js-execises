@@ -39,21 +39,37 @@ function adicionarHistorico(conta, tipo, valor, descricao = "") {
     })
 }
 
+//function de transacao de dinheiro
+function transacao_financeira(de_conta, para_conta, valor) {
+    //saida
+    if (de_conta) {
+        conta_do_banco[de_conta].saldo -= valor
+        adicionarHistorico(de_conta, "saida", valor, `enviado para ${para_conta || "fora do sistema"}`)
+    }
+
+    //entrada
+    if (para_conta) {
+        conta_do_banco[para_conta].saldo += valor
+        adicionarHistorico(para_conta, "entrada", `recebido de ${de_conta || "deposito"}`)
+    }
+
+    //atualizando a tela
+    if (de_conta) {
+        document.getElementById(de_conta).innerText = conta_do_banco[de_conta].saldo
+    }
+
+    if(para_conta) {
+        document.getElementById(para_conta).innerText = conta_do_banco[para_conta].saldo
+    }
+}
+
 function adicionarDinheiro() {
     let valor = Number(prompt("Qual valor voce deseja adicionar?"))
 
     if (!valorValido(valor)) return
 
-    conta_do_banco.conta_corrente.saldo += valor
-
-    adicionarHistorico("conta_corrente", "entrada", valor, "deposito na conta")
-
-    document.getElementById("conta_corrente").innerText = conta_do_banco.conta_corrente.saldo
-
-    document.getElementById("conta_corrente_historico").innerHTML = ""    
-    conta_do_banco.conta_corrente.historico.map((entrada) => {
-        document.getElementById("conta_corrente_historico").innerHTML += `<p class="historico">Entrada: ${entrada.valor}</p>`
-    })
+    //function que faz a transacao funcionar
+    transacao_financeira(null, "conta_corrente", valor)
 }
 
 function separar(caixinha) {
@@ -66,14 +82,8 @@ function separar(caixinha) {
         return
     }
 
-    conta_do_banco.conta_corrente.saldo -= valor
-    conta_do_banco[caixinha].saldo += valor
-
-    adicionarHistorico("conta_corrente", "saida", valor, `transferido para ${caixinha}`)
-    adicionarHistorico(caixinha, "entrada", valor, `recebido da conta`)
-
-    document.getElementById(caixinha).innerText = conta_do_banco[caixinha].saldo
-    document.getElementById("conta_corrente").innerText = conta_do_banco.conta_corrente.saldo
+    //function que faz a transacao funcionar
+    transacao_financeira("conta_corrente", caixinha, valor)
 }
 
 function registrarRendimento(caixinha, valorRendido) {
@@ -128,15 +138,13 @@ function retirar(categoria) {
 
     if (!valorValido(valor)) return
 
-    if (valor > conta_do_banco[categoria].saldo) return alert("saldo insuficiente, adicione mais dinheiro!!")
-    conta_do_banco[categoria].saldo -= valor
-    conta_do_banco.conta_corrente.saldo += valor
+    if (valor > conta_do_banco[categoria].saldo) {
+        alert("saldo insuficiente, adicione mais dinheiro!!")
+        return
+    }
 
-    adicionarHistorico(categoria, "saida", valor, `retirado da caixinha ${categoria}`)
-    adicionarHistorico("conta_corrente", "entrada", valor, `recebido da caixinha ${categoria}`)
-
-    document.getElementById(categoria).innerText = conta_do_banco[categoria].saldo
-    document.getElementById("conta_corrente").innerText = conta_do_banco.conta_corrente.saldo
+    //function que faz a transacao funcionar
+    transacao_financeira(categoria, "conta_corrente", valor)
 
     alert("dinheiro retirado com sucesso!!!")   
 }
