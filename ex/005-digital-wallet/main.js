@@ -41,15 +41,15 @@ function adicionarHistorico(conta, tipo, valor, descricao = "") {
 }
 
 function pegarIcone(descricao, tipo) {
-    if (tipo === "saida") return "assets/img/historyIcons/arrowTakeMoneyHistory.svg"
+    if (tipo === "saida") return ("assets/img/historyIcons/takeMoneyHistory.svg")
 
-    if (tipo === "rendimento") return "assets/img/historyIcons/renderHistory.svg"
+    if (tipo === "rendimento") return ("./assets/img/historyIcons/renderHistory.svg")
 
     if (tipo === "entrada") {
         //includes > se a descricao for recebido de lazer, acha a palavra lazer e retorna true :D
-        if (descricao.includes("lazer")) return "assets/img/historyIcons/lazerHistory.svg"
+        if (descricao.includes("lazer")) return ("./assets/img/historyIcons/lazerHistory.svg")
 
-        if (descricao.includes("pet")) return "assets/img/historyIcons/petHistory.svg"
+        if (descricao.includes("pet")) return ("./assets/img/historyIcons/petHistory.svg")
 
         if (descricao.includes("faculdade")) return "assets/img/historyIcons/faculdadeHistory.svg"
 
@@ -185,13 +185,12 @@ function mostrarHistorico() {
 
         <div class="historico-left">
 
-            <img class="historico-icon src="${icone}>
+            <img class="historico-icon" src="${icone}">
 
             <div class="historico-texto"> 
                 <span class="historico-descricao">${texto}</span>
                 <span class="historico-data">${elemento.data}</span>
             </div>
-            
         </div>
 
         <div class="historico-valor">
