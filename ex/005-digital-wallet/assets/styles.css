@@ -229,10 +229,41 @@ body {
     }
 }
 
-.entrada {
-  color: #7bf7ae; /* verde bebe */
+.historico-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px;
+    border-bottom: 1px solid #eee;
 }
 
-.saida {
-  color: #f69494; /* vermelho  bebe */
+.historico-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.historico-descricao {
+    font-size: 14px;
+}
+
+.historico-data {
+    font-size: 12px;
+    color: #888;
+}
+
+.historico-valor {
+    font-weight: bold;
+}
+
+.entrada .historico-valor {
+    color: #00c853; 
+}
+
+.saida .historico-valor {
+    color: #ff3b30; 
+}
+
+.rendimento .historico-valor {
+    color: #2979ff; 
 }

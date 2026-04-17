@@ -154,28 +154,25 @@ function mostrarHistorico() {
     let div = document.getElementById("lista_historico")
     div.innerHTML = ""
 
+    conta_do_banco.conta_corrente.historico.map((elemento) => {
 
-    //map its an for but its maaaagic, better then for
-    conta_do_banco.conta_corrente.historico.map((elemento, index) => {
-        let texto = ""
+    let texto = elemento.descricao || elemento.tipo
 
-        if (elemento.tipo === "entrada") {
-            let texto = elemento.descricao || "Entrada"
+    
+    div.innerHTML += `
+        <div class="historico-item ${elemento.tipo}">
 
-            div.innerHTML += `<p class="historico entrada"> ${texto}: R$ ${elemento.valor} <br> ${elemento.data} </p>`
-        }
+        <div class="historico-left">
+        <span class="historico-descricao">${texto}</span>
+        <span class="historico-data">${elemento.data}</span>
+        </div>
 
-        if (elemento.tipo === "saida") {
-            let texto = elemento.descricao || "Saida"
+        <div class="historico-valor">
+        R$ ${elemento.valor}
+        </div>
 
-            div.innerHTML += `<p class="historico saida"> ${texto}: R$ ${elemento.valor} <br> ${elemento.data} </p>`
-        }
-
-        if (elemento.tipo === "rendimento") {
-            let texto = elemento.descricao || "Rendimento"
-
-            div.innerHTML += `<p class="historico rendimento"> ${texto}: R$ ${elemento.valor} <br> ${elemento.data} </p>`
-        }
+        </div>
+        `
     })
 
     document.getElementById("tela_historico").style.display = "flex"
