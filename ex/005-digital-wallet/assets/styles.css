@@ -229,18 +229,21 @@ body {
     }
 }
 
+
+/* aplicar nesting nessa brincadeira aqui depois */
 .historico-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    gap: 12px;
     padding: 10px;
     border-bottom: 1px solid #eee;
 }
 
 .historico-left {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 .historico-descricao {
@@ -266,4 +269,14 @@ body {
 
 .rendimento .historico-valor {
     color: #2979ff; 
+}
+
+.historico-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.historico-texto {
+    display: flex;
+    flex-direction: column;
 }

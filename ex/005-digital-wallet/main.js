@@ -34,9 +34,28 @@ function adicionarHistorico(conta, tipo, valor, descricao = "") {
     conta_do_banco[conta].historico.push ({
         tipo: tipo,
         valor: valor,
-        descricao: descricao,
+        descricao,
+        conta,
         data: new Date().toLocaleString()
     })
+}
+
+function pegarIcone(descricao, tipo) {
+    if (tipo === "saida") return "assets/img/historyIcons/arrowTakeMoneyHistory.svg"
+
+    if (tipo === "rendimento") return "assets/img/historyIcons/renderHistory.svg"
+
+    if (tipo === "entrada") {
+        //includes > se a descricao for recebido de lazer, acha a palavra lazer e retorna true :D
+        if (descricao.includes("lazer")) return "assets/img/historyIcons/lazerHistory.svg"
+
+        if (descricao.includes("pet")) return "assets/img/historyIcons/petHistory.svg"
+
+        if (descricao.includes("faculdade")) return "assets/img/historyIcons/faculdadeHistory.svg"
+
+        return "assets/img/historyIcons/putMoneyHistory.svg"
+    }
+    return "assets/img/historyIcons/walletHistory.svg"
 }
 
 //function de transacao de dinheiro
@@ -50,7 +69,7 @@ function transacao_financeira(de_conta, para_conta, valor) {
     //entrada
     if (para_conta) {
         conta_do_banco[para_conta].saldo += valor
-        adicionarHistorico(para_conta, "entrada", `recebido de ${de_conta || "deposito"}`)
+        adicionarHistorico(para_conta, "entrada", valor, `recebido de ${de_conta || "deposito"}`)
     }
 
     //atualizando a tela
@@ -158,17 +177,25 @@ function mostrarHistorico() {
 
     let texto = elemento.descricao || elemento.tipo
 
+    let icone = pegarIcone(texto, elemento.tipo)
+
     
     div.innerHTML += `
         <div class="historico-item ${elemento.tipo}">
 
         <div class="historico-left">
-        <span class="historico-descricao">${texto}</span>
-        <span class="historico-data">${elemento.data}</span>
+
+            <img class="historico-icon src="${icone}>
+
+            <div class="historico-texto"> 
+                <span class="historico-descricao">${texto}</span>
+                <span class="historico-data">${elemento.data}</span>
+            </div>
+            
         </div>
 
         <div class="historico-valor">
-        R$ ${elemento.valor}
+            R$ ${elemento.valor}
         </div>
 
         </div>
