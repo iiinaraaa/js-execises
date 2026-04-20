@@ -28,19 +28,21 @@
             
             <div class="addMoneyContainer__options">
                 <div class="addMoneyContainer__optionsContainer">
-                    
+                    <!-- depositar dinheiro -->
                    <button class="addMoney__addMoneyButton" onclick="adicionarDinheiro()"><img class="addMoney__image" src="assets/img/unpublish-svgrepo-com.svg" alt=""> Depositar</button> 
-                </div>
 
-                <div class="addMoneyContainer__optionsContainer">
-                    
-                    <button class="addMoney__addMoneyButton" onclick="render()"><img class="addMoney__image" src="assets/img/trend-upward-svgrepo-com.svg" alt=""> Render</button>
+                   <!-- sacar dinheiro -->
+                   <button class="addMoney__addMoneyButton" onclick="sacarDinheiro()"><img class="addMoney__image" src="assets/img/historyIcons/takeMoneyHistory.svg" alt=""> Sacar</button> 
                 </div>
             </div>
         </div>
 
         <div class="wallet__boxes">
-            <h3 class="wallet__boxesTitle">Minhas caixinhas</h3>
+            <div class="wallet__boxesHeader">
+                <h3 class="wallet__boxesTitle">Minhas caixinhas</h3>
+                <button class="addMoney__earnButton" onclick="render()"><img class="addMoney__image" src="assets/img/trend-upward-svgrepo-com.svg" alt=""> Render</button>
+            </div>
+            
 
             <div class="wallet__boxesValues">
                 <div class="wallet__boxesItem">

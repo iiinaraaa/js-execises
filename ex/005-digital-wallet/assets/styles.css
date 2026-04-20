@@ -113,7 +113,7 @@ body {
         padding: 0px 8px;
     }
 
-    .addMoney__addMoneyButton {
+    .addMoney__addMoneyButton {  
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -295,6 +295,48 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+
+.wallet__boxesHeader {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.wallet__boxes {
+    background-image: linear-gradient(135deg, #9c19f3, #e2007b);
+    padding: 20px;
+    border-radius: 20px;
+    margin: 30px 0px;
+}
+
+.addMoney__earnButton {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.47);
+    color: white;
+    font-weight: 600;
+    padding: 12px 40px;
+    margin: 10px 10px;
+    gap: 10px;
+    transition: transform 0.3s ease;
+    width: 190px;
+
+    &:hover {
+        transform: scale(1.04);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+.addMoneyContainer__optionsContainer {
+    display: flex;
 }
 
 
