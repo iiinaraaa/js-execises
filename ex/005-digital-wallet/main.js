@@ -91,6 +91,21 @@ function adicionarDinheiro() {
     transacao_financeira(null, "conta_corrente", valor)
 }
 
+function sacarDinheiro() {
+    let valor = Number(prompt("Qual valor voce deseja sacar?"))
+
+    if (!valorValido(valor)) return
+
+    if (valor > conta_do_banco.conta_corrente.saldo) {
+        alert("saldo insuficiente")
+        return
+    }
+
+    transacao_financeira("conta_corrente", null, valor)
+
+    alert("dinheiro sacado com sucesso!")
+}
+
 function separar(caixinha) {
     let valor = Number(prompt("quanto voce deseja separar?"))
 
