@@ -43,29 +43,38 @@
             <h3 class="wallet__boxesTitle">Minhas caixinhas</h3>
 
             <div class="wallet__boxesValues">
-                <p class="wallet__boxesValuesItem">Lazer: R$ <span id="lazer">0</span></p>
-                <p class="wallet__boxesValuesItem">Pet: R$ <span id="pet">0</span></p>
-                <p class="wallet__boxesValuesItem">Faculdade: R$ <span id="faculdade">0</span></p>
-            </div>
-        </div>
+                <div class="wallet__boxesItem">
+                    <img class="wallet__boxesImage" src="assets/img/lazer.svg" alt="">
+                    <p class="wallet__boxesValuesItem">Lazer: R$ <span id="lazer">0</span></p>
 
-        <div class="allocateSection">
-            <h3 class="allocateSection__title">Investir</h3>
+                    <!-- colocar dinheiro -->
+                    <button class="wallet__buttonsItem" onclick="separar('lazer')"> <img class="wallet__buttonsImage" src="assets/img/historyIcons/putMoneyHistory.svg" alt=""></button>
 
-            <div class="wallet__buttons">
-                <button class="wallet__buttonsItem" onclick="separar('lazer')"> <img class="wallet__buttonsImage" src="assets/img/lazer.svg" alt="">Lazer</button>
-                <button class="wallet__buttonsItem" onclick="separar('pet')"> <img class="wallet__buttonsImage" src="assets/img/pet.svg" alt="">Pet</button>
-                <button class="wallet__buttonsItem" onclick="separar('faculdade')"> <img class="wallet__buttonsImage" src="assets/img/faculdade.svg" alt="">Faculdade</button>
-            </div>
-        </div>
+                    <!-- tirar dinheiro -->
+                    <button class="wallet__buttonsItem" onclick="retirar('lazer')"><img class="wallet__buttonsImage" src="assets/img/historyIcons/takeMoneyHistory.svg" alt=""></button>
+                </div>
 
-        <div class="withdrawSection">
-            <h3 class="withdraw__title">Retirar Dinheiro</h3>
+                <div class="wallet__boxesItem">
+                    <img class="wallet__boxesImage" src="assets/img/pet.svg" alt="">
+                    <p class="wallet__boxesValuesItem">Pet: R$ <span id="pet">0</span></p>
 
-            <div class="withdraw__buttonsWrapper">
-                <button class="withdraw__buttons" onclick="retirar('lazer')"><img class="wallet__buttonsImage" src="assets/img/lazer.svg" alt="">Lazer</button>
-                <button class="withdraw__buttons" onclick="retirar('pet')"><img class="wallet__buttonsImage" src="assets/img/pet.svg" alt="">Pet</button>
-                <button class="withdraw__buttons" onclick="retirar('faculdade')"><img class="wallet__buttonsImage" src="assets/img/faculdade.svg" alt="">Faculdade</button>
+                    <!-- colocar dinheiro -->
+                    <button class="wallet__buttonsItem" onclick="separar('pet')"> <img class="wallet__buttonsImage" src="assets/img/historyIcons/putMoneyHistory.svg" alt=""></button>
+
+                    <!-- tirar dinheiro -->
+                    <button class="wallet__buttonsItem" onclick="retirar('pet')"><img class="wallet__buttonsImage" src="assets/img/historyIcons/takeMoneyHistory.svg" alt=""></button>
+                </div>
+
+                <div class="wallet__boxesItem">
+                    <img class="wallet__boxesImage" src="assets/img/faculdade.svg" alt="">
+                    <p class="wallet__boxesValuesItem">Faculdade: R$ <span id="faculdade">0</span></p>
+                    
+                    <!-- colocar dinheiro -->
+                    <button class="wallet__buttonsItem" onclick="separar('faculdade')"> <img class="wallet__buttonsImage" src="assets/img/historyIcons/putMoneyHistory.svg" alt=""></button>
+
+                    <!-- tirar dinheiro -->
+                    <button class="wallet__buttonsItem" onclick="retirar('faculdade')"><img class="wallet__buttonsImage" src="assets/img/historyIcons/takeMoneyHistory.svg" alt=""></button>
+                </div>
             </div>
         </div>
 
