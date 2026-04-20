@@ -70,11 +70,12 @@
         </div>
 
         <div class="history">
-            <button class="history__button" onclick="mostrarHistorico()"> <img class="history__buttonImage" src="assets/img/history.svg" alt="">Ver Historico</button>
+            <button class="history__button" id="btnHistorico" onclick="toggleHistorico()">
+                <img class="history__buttonImage" id="iconHistorico" src="assets/img/close.svg" alt="">
+                <span id="textoHistorico">Ver historico</span>
+            </button>
 
             <div class="history__buttonStyling" id="tela_historico" style="display: none;">
-                
-                <button class="history__button" onclick="fecharHistorico()"><img class="history__closeButtonImage" src="assets/img/close.svg" alt="">fechar</button>
                 <div class="history__list" id="lista_historico"></div>
             </div>
         </div>

@@ -168,42 +168,59 @@ function retirar(categoria) {
     alert("dinheiro retirado com sucesso!!!")   
 }
 
-//parte que mostra o historico, e tudo que nele funciona
-function mostrarHistorico() {
-    let div = document.getElementById("lista_historico")
+//false == fechado
+//true == aberto
+//tipo um interruptor
+let historicoAberto = false
+
+//essa funcao acontece quando se clica no botao
+//toggle == alterar em ingles (palavra nova)
+function toggleHistorico() {
+    let tela = document.getElementById("tela_historico")
+    let texto = document.getElementById("textoHistorico")
+    let icone = document.getElementById("iconHistorico")
+
+    historicoAberto = !historicoAberto
+    //se era false, vira true
+    //se era true vira false (muito legal isso)
+
+    if (historicoAberto) {
+
+    //aqui ele apaga antes de mostrar novos dados, se nao duplica informacao
+    let div = document.getElementById("lista_historico");
     div.innerHTML = ""
 
     conta_do_banco.conta_corrente.historico.map((elemento) => {
+    //aqui ele pega cada item do historico
 
-    let texto = elemento.descricao || elemento.tipo
+    let textoDesc = elemento.descricao || elemento.tipo
+    let iconeItem = pegarIcone(textoDesc, elemento.tipo)
 
-    let icone = pegarIcone(texto, elemento.tipo)
-
-    
     div.innerHTML += `
-        <div class="historico-item ${elemento.tipo}">
+            <div class="historico-item ${elemento.tipo}">
+                <div class="historico-left">
+                    <img class="historico-icon" src="${iconeItem}">
+                    <div class="historico-texto">
+                        <span class="historico-descricao">${textoDesc}</span>
+                        <span class="historico-data">${elemento.data}</span>
+                    </div>
+                </div>
 
-        <div class="historico-left">
-
-            <img class="historico-icon" src="${icone}">
-
-            <div class="historico-texto"> 
-                <span class="historico-descricao">${texto}</span>
-                <span class="historico-data">${elemento.data}</span>
+                <div class="historico-valor">
+                    R$ ${elemento.valor}
+                </div>
             </div>
-        </div>
+            `
+        })
 
-        <div class="historico-valor">
-            R$ ${elemento.valor}
-        </div>
+    tela.style.display = "flex"
+    texto.textContent = "Fechar histórico"
+    icone.src = "assets/img/close.svg"
 
-        </div>
-        `
-    })
-
-    document.getElementById("tela_historico").style.display = "flex"
-}
-
-function fecharHistorico() {
-    document.getElementById("tela_historico").style.display = "none"
+    } else {
+        //se fechar o historico >>>>
+        tela.style.display = "none"
+        texto.textContent = "Ver Historico"
+        icone.src = "assets/img/history.svg"
+    }
 }
