@@ -19,7 +19,29 @@ body {
         gap: 15px;
     }
 
-    .wallet__boxes{
+    .wallet__boxes {
+        background-image: linear-gradient(135deg, #9c19f3, #e2007b);
+        padding: 20px;
+        border-radius: 20px;
+        margin: 30px 0px;
+
+        .wallet__boxesHeader {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .wallet__boxesImage {
+            width: 35px;
+        }
+
+        .wallet__boxesItem {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
         .wallet__boxesTitle {
             margin: 30px 3px 10px;
         }
@@ -113,10 +135,15 @@ body {
         padding: 0px 8px;
     }
 
-    .addMoney__addMoneyButton {  
+    .addMoneyContainer__optionsContainer {
         display: flex;
-        flex-direction: column;
+    }
+
+    .addMoney__addMoneyButton,
+    .addMoney__earnButton {
+        display: flex;
         align-items: center;
+        flex-direction: column;
         cursor: pointer;
         border-radius: 15px;
         border: none;
@@ -195,7 +222,7 @@ body {
         }
     }
 
-    /* parte do historico */
+    /* histórico */
     .history {
         .history__button {
             display: flex;
@@ -210,11 +237,6 @@ body {
             cursor: pointer;
         }
 
-        .history__buttonStyling {
-            align-items: center;
-            gap: 10px;
-        }
-
         .history__list {
             display: flex;
             flex-direction: column;
@@ -227,116 +249,56 @@ body {
         .history__closeButtonImage {
             width: 15px;
         }
+
+        /* itens do histórico */
+        .historico-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+
+            .historico-left {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .historico-texto {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .historico-descricao {
+                font-size: 14px;
+            }
+
+            .historico-data {
+                font-size: 12px;
+                color: #888;
+            }
+
+            .historico-valor {
+                font-weight: bold;
+            }
+
+            .historico-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            &.entrada .historico-valor {
+                color: #00c853;
+            }
+
+            &.saida .historico-valor {
+                color: #ff3b30;
+            }
+
+            &.rendimento .historico-valor {
+                color: #2979ff;
+            }
+        }
     }
 }
-
-
-/* aplicar nesting nessa brincadeira aqui depois */
-.historico-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.historico-left {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.historico-descricao {
-    font-size: 14px;
-}
-
-.historico-data {
-    font-size: 12px;
-    color: #888;
-}
-
-.historico-valor {
-    font-weight: bold;
-}
-
-.entrada .historico-valor {
-    color: #00c853; 
-}
-
-.saida .historico-valor {
-    color: #ff3b30; 
-}
-
-.rendimento .historico-valor {
-    color: #2979ff; 
-}
-
-.historico-icon {
-    width: 28px;
-    height: 28px;
-}
-
-.historico-texto {
-    display: flex;
-    flex-direction: column;
-}
-
-
-
-
-/* arrumar isso em nesting  css >so um teste agr< */
-
-.wallet__boxesImage {
-    width: 35px;
-}
-
-.wallet__boxesItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.wallet__boxesHeader {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.wallet__boxes {
-    background-image: linear-gradient(135deg, #9c19f3, #e2007b);
-    padding: 20px;
-    border-radius: 20px;
-    margin: 30px 0px;
-}
-
-.addMoney__earnButton {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 15px;
-    border: none;
-    background-color: rgba(255, 255, 255, 0.47);
-    color: white;
-    font-weight: 600;
-    padding: 12px 40px;
-    margin: 10px 10px;
-    gap: 10px;
-    transition: transform 0.3s ease;
-    width: 190px;
-
-    &:hover {
-        transform: scale(1.04);
-    }
-
-    &:active {
-        transform: scale(0.98);
-    }
-}
-
-.addMoneyContainer__optionsContainer {
-    display: flex;
-}
-
-
