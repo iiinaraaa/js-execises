@@ -63,7 +63,7 @@ function transacao_financeira(de_conta, para_conta, valor) {
     //saida
     if (de_conta) {
         conta_do_banco[de_conta].saldo -= valor
-        adicionarHistorico(de_conta, "saida", valor, `enviado para ${para_conta || "fora do sistema"}`)
+        adicionarHistorico(de_conta, "saida", valor, `dinheiro ${para_conta || "sacado"}`)
     }
 
     //entrada

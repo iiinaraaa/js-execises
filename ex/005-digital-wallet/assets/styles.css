@@ -19,11 +19,19 @@ body {
         gap: 15px;
     }
 
+    .header__imageRadious {
+        border: solid 2px;
+        width: 37px;
+        height: 37px;
+        border-radius: 20px;
+    }
+
     .wallet__boxes {
         background-image: linear-gradient(135deg, #9c19f3, #e2007b);
         padding: 20px;
         border-radius: 20px;
         margin: 30px 0px;
+        width: 339px;
 
         .wallet__boxesHeader {
             display: flex;
@@ -39,18 +47,18 @@ body {
         .wallet__boxesItem {
             display: flex;
             align-items: center;
-            justify-content: space-evenly;
+            justify-content: center;
         }
 
         .wallet__boxesTitle {
             margin: 30px 3px 10px;
+            text-align: center;
         }
 
         .wallet__boxesValues {
             background-color: rgba(255, 255, 255, 0.216);
             padding: 3px 10px;
             border-radius: 20px;
-            margin-bottom: 30px;
 
             .wallet__boxesValuesItem {
                 margin: 10px;
@@ -110,8 +118,8 @@ body {
     /* adicionar dinheiro */
     .addMoneySection {
         background-image: linear-gradient(135deg, #9c19f3, #e2007b);
-        width: 440px;
-        height: 220px;
+        width: 378px;
+        height: 208px;
         border-radius: 20px;
         
         .addMoneySection__value {
@@ -154,7 +162,7 @@ body {
         margin: 10px 10px;
         gap: 10px;
         transition: transform 0.3s ease;
-        width: 190px;
+        width: 160px;
 
         &:hover {
             transform: scale(1.04);
@@ -169,7 +177,7 @@ body {
         width: 20px;
         border: solid 2px;
         border-radius: 20px;
-        padding: 7px;
+        padding: 5px;
     }
 
     /* por nas caixinhas */
