@@ -38,6 +38,8 @@ function adicionarHistorico(conta, tipo, valor, descricao = "") {
         conta,
         data: new Date().toLocaleString()
     })
+
+    atualizarHistorico()
 }
 
 function pegarIcone(descricao, tipo) {
@@ -58,32 +60,104 @@ function pegarIcone(descricao, tipo) {
     return "assets/img/historyIcons/walletHistory.svg"
 }
 
+//historico 
+function atualizarHistorico() {
+    if (!historicoAberto) return
+
+    let div = document.getElementById("lista_historico")
+    div.innerHTML = ""
+
+    //isso pega TODAS as chaves do objeto, coisa nova!!
+    Object.keys(conta_do_banco).map((conta) => {
+
+        conta_do_banco[conta].historico.map((elemento) => {
+
+            // mesma coisa que esse map:
+            // let chaves = Object.keys(conta_do_banco)
+
+            // for (let i = 0; i < chaves.length; i++) {
+            //     let conta = chaves[i]
+            // }
+
+            let textoDesc = elemento.descricao || elemento.tipo
+            let iconeItem = pegarIcone(textoDesc, elemento.tipo)
+
+            div.innerHTML += `
+                <div class="historico-item ${elemento.tipo}">
+                    <div class="historico-left">
+                        <img class="historico-icon" src="${iconeItem}">
+                        <div class="historico-texto">
+                            <span class="historico-descricao">
+                                ${textoDesc}
+                            </span>
+                            <span class="historico-data">${elemento.data}</span>
+                        </div>
+                    </div>
+
+                    <div class="historico-valor">
+                        R$ ${elemento.valor}
+                    </div>
+                </div>
+            `
+        })
+    })
+}
+
 //function de transacao de dinheiro
 function transacao_financeira(de_conta, para_conta, valor) {
+
     //saida
     if (de_conta) {
         conta_do_banco[de_conta].saldo -= valor
-        adicionarHistorico(de_conta, "saida", valor, `dinheiro ${para_conta || "sacado"}`)
+
+        let descricaoSaida = ""
+
+        if (!para_conta) {
+            // saque da conta
+            descricaoSaida = "saque"
+        } else if (de_conta === "conta_corrente") {
+            // mandando pra caixinha
+            descricaoSaida = `deposito em caixinha ${para_conta}`
+        } else {
+            // retirando da caixinha
+            descricaoSaida = `retirado da caixinha ${de_conta}`
+        }
+
+        adicionarHistorico(de_conta, "saida", valor, descricaoSaida)
     }
 
     //entrada
     if (para_conta) {
         conta_do_banco[para_conta].saldo += valor
-        adicionarHistorico(para_conta, "entrada", valor, `recebido de ${de_conta || "deposito"}`)
+
+        let descricaoEntrada = ""
+
+        if (!de_conta) {
+            // dinheiro vindo de fora
+            descricaoEntrada = "recebido na conta"
+        } else if (para_conta === "conta_corrente") {
+            // veio da caixinha
+            descricaoEntrada = `recebido da caixinha ${de_conta}`
+        } else {
+            // entrou na caixinha
+            descricaoEntrada = `deposito em caixinha ${para_conta}`
+        }
+
+        adicionarHistorico(para_conta, "entrada", valor, descricaoEntrada)
     }
 
     //atualizando a tela
     if (de_conta) {
-        document.getElementById(de_conta).innerText = conta_do_banco[de_conta].saldo
+        document.getElementById(de_conta).innerText = conta_do_banco[de_conta].saldo.toFixed(2)
     }
 
     if(para_conta) {
-        document.getElementById(para_conta).innerText = conta_do_banco[para_conta].saldo
+        document.getElementById(para_conta).innerText = conta_do_banco[para_conta].saldo.toFixed(2)
     }
 }
 
 function adicionarDinheiro() {
-    let valor = Number(prompt("Qual valor voce deseja adicionar?"))
+    let valor = parseFloat(prompt("Qual valor voce deseja adicionar?"))
 
     if (!valorValido(valor)) return
 
@@ -92,7 +166,7 @@ function adicionarDinheiro() {
 }
 
 function sacarDinheiro() {
-    let valor = Number(prompt("Qual valor voce deseja sacar?"))
+    let valor = parseFloat(prompt("Qual valor voce deseja sacar?"))
 
     if (!valorValido(valor)) return
 
@@ -107,7 +181,7 @@ function sacarDinheiro() {
 }
 
 function separar(caixinha) {
-    let valor = Number(prompt("quanto voce deseja separar?"))
+    let valor = parseFloat(prompt("quanto voce deseja separar?"))
 
     if (!valorValido(valor)) return
 
@@ -123,12 +197,14 @@ function separar(caixinha) {
 function registrarRendimento(caixinha, valorRendido) {
     if (valorRendido <= 0) return
 
-    conta_do_banco.conta_corrente.historico.push ({
-        tipo: "rendimento",
-        valor: valorRendido,
-        descricao: `rendimento na caixinha ${caixinha}`,
-        data: new Date().toLocaleString()
-    })
+    conta_do_banco[caixinha].saldo += valorRendido
+
+    adicionarHistorico(
+        caixinha,
+        "rendimento",
+        valorRendido,
+        `rendimento na caixinha ${caixinha}`
+    )
 }
 
 //parte de render
@@ -140,10 +216,7 @@ function render() {
         
         if (saldoAntes <= 0) return
 
-        let saldoDepois = Number((saldoAntes * 1.10).toFixed(2))
-        let rendimento = Number((saldoDepois - saldoAntes).toFixed(2))
-
-        conta_do_banco[caixinha].saldo = saldoDepois
+        let rendimento = parseFloat((saldoAntes * 0.10).toFixed(2))
 
         //essa parte eh responsavel pra mandar pro historico
         registrarRendimento(caixinha, rendimento) 
@@ -155,9 +228,9 @@ function render() {
     aplicarRendimento("faculdade")
 
     //aqui so atualiza :)
-    document.getElementById("lazer").innerText = conta_do_banco.lazer.saldo
-    document.getElementById("pet").innerText = conta_do_banco.pet.saldo
-    document.getElementById("faculdade").innerText = conta_do_banco.faculdade.saldo
+    document.getElementById("lazer").innerText = conta_do_banco.lazer.saldo.toFixed(2)
+    document.getElementById("pet").innerText = conta_do_banco.pet.saldo.toFixed(2)
+    document.getElementById("faculdade").innerText = conta_do_banco.faculdade.saldo.toFixed(2)
 
     //obviamente se for zero alerta
     if (conta_do_banco.lazer.saldo === 0 && conta_do_banco.pet.saldo === 0 && conta_do_banco.faculdade.saldo === 0) {
@@ -167,7 +240,7 @@ function render() {
 
 //retirada de dinheiro da caixinha
 function retirar(categoria) {
-    let valor = parseFloat(prompt("qual valor voce quer retirar?"))
+    let valor = parseFloat(prompt("qual valor voce quer retirar?")) 
     //manter esse parsefloat pq ele que deixa ser numero e n string tipo 10 + 2 = 102
 
     if (!valorValido(valor)) return
@@ -176,6 +249,9 @@ function retirar(categoria) {
         alert("saldo insuficiente, adicione mais dinheiro!!")
         return
     }
+
+    //isso faz com que o valor nao quebre quando for retirado da caixinha
+    valor = parseFloat(valor.toFixed(2))
 
     //function que faz a transacao funcionar
     transacao_financeira(categoria, "conta_corrente", valor)
@@ -201,36 +277,11 @@ function toggleHistorico() {
 
     if (historicoAberto) {
 
-    //aqui ele apaga antes de mostrar novos dados, se nao duplica informacao
-    let div = document.getElementById("lista_historico");
-    div.innerHTML = ""
+        atualizarHistorico()
 
-    conta_do_banco.conta_corrente.historico.map((elemento) => {
-    //aqui ele pega cada item do historico
-
-    let textoDesc = elemento.descricao || elemento.tipo
-    let iconeItem = pegarIcone(textoDesc, elemento.tipo)
-
-    div.innerHTML += `
-            <div class="historico-item ${elemento.tipo}">
-                <div class="historico-left">
-                    <img class="historico-icon" src="${iconeItem}">
-                    <div class="historico-texto">
-                        <span class="historico-descricao">${textoDesc}</span>
-                        <span class="historico-data">${elemento.data}</span>
-                    </div>
-                </div>
-
-                <div class="historico-valor">
-                    R$ ${elemento.valor}
-                </div>
-            </div>
-            `
-        })
-
-    tela.style.display = "flex"
-    texto.textContent = "Fechar histórico"
-    icone.src = "assets/img/close.svg"
+        tela.style.display = "flex"
+        texto.textContent = "Fechar histórico"
+        icone.src = "assets/img/close.svg"
 
     } else {
         //se fechar o historico >>>>
