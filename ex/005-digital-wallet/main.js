@@ -3,6 +3,16 @@ function salvarDados() {
     localStorage.setItem("carteira", JSON.stringify(conta_do_banco));
 }
 
+//controle de rendimento, o json transforma objeto em texto
+let controleRendimento = JSON.parse(localStorage.getItem("controleRendimento")) || {
+    data: new Date().toDateString(),
+    cliques: 0
+}
+
+function salvarControleRendimento() {
+    localStorage.setItem("controleRendimento", JSON.stringify(controleRendimento))
+}
+
 let conta_do_banco = {
     "conta_corrente" : {
         "nome": "Conta Corrente",
@@ -204,8 +214,47 @@ function registrarRendimento(caixinha, valorRendido) {
     salvarDados() //salva rendimento
 }
 
+//reset do rendimento todo dia
+function verificarResetDiario() {
+    let hoje = new Date().toDateString()
+
+    if (controleRendimento.data !== hoje) {
+        controleRendimento.data = hoje
+        controleRendimento.cliques = 0
+        salvarControleRendimento()
+        atualizarBotaoRendimento()
+    }
+}
+
+// botao de render
+function atualizarBotaoRendimento() {
+    let botao = document.getElementById("botaoRendimento")
+
+    if (!botao) return
+
+    if (controleRendimento.cliques >= 5) {
+        botao.disabled = true
+        botao.style.opacity = "0.5"
+        botao.style.cursor = "not-allowed"
+    } else {
+        botao.disabled = false
+        botao.style.opacity = "1"
+        botao.style.cursor = "pointer"
+    }
+}
+
 //parte de render
 function render() {
+
+    verificarResetDiario() 
+
+    if (controleRendimento.cliques >= 5) { 
+        alert("limite diario de rendimento atingido!")
+        return
+    }
+
+    controleRendimento.cliques++ 
+    salvarControleRendimento()   
 
     function aplicarRendimento(caixinha) {
         let saldoAntes = conta_do_banco[caixinha].saldo
@@ -224,6 +273,8 @@ function render() {
     document.getElementById("lazer").innerText = conta_do_banco.lazer.saldo.toFixed(2)
     document.getElementById("pet").innerText = conta_do_banco.pet.saldo.toFixed(2)
     document.getElementById("faculdade").innerText = conta_do_banco.faculdade.saldo.toFixed(2)
+
+    atualizarBotaoRendimento() 
 
     if (conta_do_banco.lazer.saldo === 0 && conta_do_banco.pet.saldo === 0 && conta_do_banco.faculdade.saldo === 0) {
         alert("saldo insuficiente para render, adicione mais dinheiro!")
@@ -282,3 +333,6 @@ function atualizarTela() {
 
 //roda quando abre o site
 atualizarTela()
+
+verificarResetDiario()      
+atualizarBotaoRendimento() 
