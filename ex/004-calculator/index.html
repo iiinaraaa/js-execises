@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>calculator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+
+  <link rel="icon" href="assets/img/calculator-2-svgrepo-com.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-    
+  <div class="calculator">
+    <div class="calculator__top">
+      <img src="assets/img/hamburger-menu-svgrepo-com.svg" alt="menu" class="calculator__menu-img">
+    </div>
+
+    <div class="calculator__display">
+      <p class="calculator__display-history"></p>
+      <p class="calculator__display-result">0</p>
+    </div>
+
+    <div class="calculator__buttons">
+      <button class="calculator__btn btn-action">AC</button>
+      <button class="calculator__btn btn-action">+/-</button>
+      <button class="calculator__btn btn-action">%</button>
+      <button class="calculator__btn btn-operator">÷</button>
+
+      <button class="calculator__btn btn-number">7</button>
+      <button class="calculator__btn btn-number">8</button>
+      <button class="calculator__btn btn-number">9</button>
+      <button class="calculator__btn btn-operator">×</button>
+
+      <button class="calculator__btn btn-number">4</button>
+      <button class="calculator__btn btn-number">5</button>
+      <button class="calculator__btn btn-number">6</button>
+      <button class="calculator__btn btn-operator">−</button>
+
+      <button class="calculator__btn btn-number">1</button>
+      <button class="calculator__btn btn-number">2</button>
+      <button class="calculator__btn btn-number">3</button>
+      <button class="calculator__btn btn-operator">+</button>
+
+      <button class="calculator__btn btn-number calculator__btn--wide">0</button>
+      <button class="calculator__btn btn-number">.</button>
+      <button class="calculator__btn btn-equals">=</button>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
 </body>
 </html>
