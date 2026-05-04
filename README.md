@@ -1,7 +1,9 @@
 # exercicios
 - [001-alert](/ex/001-alert/index.html) popup-alert
 - [002-interactive-system](ex/002-interactive-system/index.html) interactive-system
+- [004-calculator](ex/004-calculator/index.html) calculator
 - [005-digital-wallet](ex/005-digital-wallet/index.html) digital-wallet
+
 - [003-adding-values](ex/003-adding-values/index.html) adding-values
 
 ## GIT FLOW
