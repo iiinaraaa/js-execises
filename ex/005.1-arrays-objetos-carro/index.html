@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="./" target="_blank">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="./assets/styles.css"> -->
+    <title>digital wallet</title>
+    <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="wallet">
+        <h1 class="wallet__title">⛁ $ˎˊ˗ LEIA O CONSOLE - Carteira digital˗ˊˎ$ ⛁</h1>
+
+        <div class="wallet__divisor"></div>
+    
+        <div class="wallet__addMoney">
+            <h2 class="wallet__addMoneyBalance">saldo disponivel: R$ <span id="conta_corrente">0</span></h2>
+            <p>Historico: <span id="conta_corrente_historico"></span></p>
+
+            <button class="wallet__addMoneyButton" onclick="adicionarDinheiro()">adicionar dinheiro</button>
+        </div>
+        
+        <div class="wallet__allocateMoney">
+            <h2>Separar dinheiro</h2>
+
+            <div class="wallet__buttons">
+                <button class="wallet__buttonsItem" onclick="separar('lazer')">lazer</button>
+                <button class="wallet__buttonsItem" onclick="separar('pet')">pet</button>
+                <button class="wallet__buttonsItem" onclick="separar('faculdade')">faculdade</button>
+            </div>
+
+            
+            
+        </div>
+        
+        <div class="wallet__boxes">
+            <h3 class="wallet__boxesTitle">caixinhas</h3>
+
+            <button onclick="render(render)">Renda seu dinheiro clicando aqui!!!</button>
+
+            <div class="wallet__boxesValues">
+                <p class="wallet__boxesValuesItem">lazer: R$ <span id="lazer">0</span></p>
+                <p class="wallet__boxesValuesItem">pet: R$ <span id="pet">0</span></p>
+                <p class="wallet__boxesValuesItem">faculdade: R$ <span id="faculdade">0</span></p>
+            </div>
+        </div>
+
+        <button class="wallet__withdraw" onclick="mostrarOpcoes()">Retirar dinheiro</button>
+
+        <div id="opcoes">
+            <p class="opcoes__text">De qual caixinha voce gostaria de retirar dinheiro?</p>
+
+            <div class="wallet__buttons">
+                <button class="wallet__buttonsItem" onclick="retirar('lazer')">lazer</button>
+                <button class="wallet__buttonsItem" onclick="retirar('pet')">pet</button>
+                <button class="wallet__buttonsItem" onclick="retirar('faculdade')">faculdade</button>
+            </div>
+
+            
+        </div>
+
+        <h1>Playgroundo</h1>
+        <div id="playground"></div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+</html>
