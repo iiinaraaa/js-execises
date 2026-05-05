@@ -20,6 +20,9 @@ body {
   flex-direction: column;
   gap: 20px;
 
+  /* APAGAR, isso eh so pra eu ver o tamanho */
+  border: solid red;
+
   .calculator__top {
     display: flex;
     justify-content: flex-start;

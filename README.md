@@ -66,6 +66,37 @@ https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Working_with_objec
 e quero adicionar informacoes dentro dele, eu preciso por push!
 tipo, por data, e outras coisas
 
+| Tipo           | Dura quanto?     |
+| -------------- | ---------------- |
+| Array normal   | até recarregar   |
+| sessionStorage | até fechar a aba |
+| localStorage   | permanente       |
+
+# const x let
+
+| Conceito        | const            | let              |
+|-----------------|------------------|------------------|
+| Reatribuir      | ❌ não pode      | ✔ pode           |
+| Mudar conteúdo  | ✔ pode (array)   | ✔ pode           |
+| Uso             | valor fixo       | valor que muda   |
+| Boa prática     | usar por padrão  | usar se precisar |
+
+# =>
+essa bonitinha se chama ARROW FUNCTION
+
+
+function soma(a, b) {
+  return a + b
+}
+
+pode ser escrito assim:
+
+const soma = (a, b) => {
+  return a + b
+}
+
+so eh uma forma mais curta pra nao usar function toda hora.....
+
 
 
 ## why use eval is a problem? 
