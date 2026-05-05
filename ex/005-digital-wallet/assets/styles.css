@@ -1,66 +1,319 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 
 body {
-    background-color: rgb(255, 255, 255);
+    height: 100%;
+    margin: 0;
+    background:
+        radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 40%),
+        linear-gradient(135deg, #2b1a47, #5a1e8a, #2b1a47);
+    color: white;
     display: flex;
     justify-content: center;
     font-family: "DM Sans", sans-serif;
-    
 }
 
 .wallet {
-    display: flex;
-    align-items: center;
-    
-    flex-direction: column;
-    
-    border-radius: 10px;
-    width: 437px;
-    height: 584px;
-    border: solid 1px;
-    
-}
+    .wallet__header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
 
-.wallet__divisor {
-    border: solid 1px;
-    width: 436px;
-}
+    .header__imageRadious {
+        border: solid 2px;
+        width: 37px;
+        height: 37px;
+        border-radius: 20px;
+    }
 
-.wallet__addMoney {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    .wallet__boxes {
+        background-image: linear-gradient(135deg, #9c19f3, #e2007b);
+        padding: 20px;
+        border-radius: 20px;
+        margin: 30px 0px;
+        width: 354px;
 
-.wallet__allocateMoney {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .wallet__boxesHeader {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
 
-.wallet__buttons {
-    display: flex;
-    gap: 5px;
-}
+        .wallet__boxesImage {
+            width: 24px;
+            padding: 3px;
+        }
 
-.wallet__boxes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .wallet__boxesImageBorder {
+            border: solid 2px;
+            height: 30px;
+            border-radius: 20px;
+        }
 
-#opcoes {
-    display: none;
-    border: solid 1px;
-    padding: 5px;
-    border-radius: 10px;
-}
+        .wallet__boxesItem {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-.wallet__withdraw {
-    margin-bottom: 10px;
-}
+        .wallet__boxesTitle {
+            margin: 30px 3px 10px;
+            text-align: center;
+        }
 
-.opcoes__text {
-    margin: 0 5px 8px;
-}
+        .wallet__boxesValues {
+            background-color: rgba(255, 255, 255, 0.216);
+            padding: 3px 9px;
+            border-radius: 20px;
 
+            .wallet__boxesValuesItem {
+                margin: 10px;
+                font-weight: 400;
+            }
+        }
+    }
+
+    .wallet__buttons {
+        display: flex;
+        padding-bottom: 7px;
+        justify-content: space-around;
+    }
+
+    .wallet__buttonsImage {
+        width: 30px;
+        padding-bottom: 9px;
+    }
+
+    .wallet__buttonsItem {
+        cursor: pointer;
+        border-radius: 15px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.47);
+        color: white;
+        font-weight: 600;
+        padding: 20px 40px;
+        margin: 10px 10px;
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 71px;
+        height: 69px;
+
+        &:hover {
+            transform: scale(1.04);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    .header__image {
+        width: 17px;
+        padding: 10px;
+
+        .header__imageRadious {
+            background-image: linear-gradient(135deg, #9c19f3, #e2007b);
+            width: 37px;
+            height: 37px;
+            border-radius: 50%;
+        }
+    }
+
+    /* adicionar dinheiro */
+    .addMoneySection {
+        background-image: linear-gradient(135deg, #9c19f3, #e2007b);
+        width: 390px;
+        height: 208px;
+        border-radius: 20px;
+        
+        .addMoneySection__value {
+            padding: 23px 20px 0px;
+
+            .addMoneySection__valueTitle {
+                margin: 0;
+                font-size: 13px;
+            }
+
+            .addMoneySection__valueAvailable {
+                font-size: 35px;
+                margin: 0;
+                font-weight: bold;
+            }
+        }
+    }
+
+    .addMoneyContainer__options {
+        display: flex;
+        padding: 0px 8px;
+    }
+
+    .addMoneyContainer__optionsContainer {
+        display: flex;
+    }
+
+    .addMoney__addMoneyButton,
+    .addMoney__earnButton {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        cursor: pointer;
+        border-radius: 15px;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.47);
+        color: white;
+        font-weight: 600;
+        padding: 20px 40px;
+        margin: 10px 10px;
+        gap: 10px;
+        transition: transform 0.3s ease;
+        width: 166px;
+
+        &:hover {
+            transform: scale(1.04);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    .addMoney__image {
+        width: 20px;
+        border: solid 2px;
+        border-radius: 20px;
+        padding: 5px;
+    }
+
+    /* por nas caixinhas */
+    .allocateSection {
+        background-color: rgba(255, 255, 255, 0.216);
+        padding: 3px 13px;
+        border-radius: 20px;
+        margin: 30px 0px;
+
+        .allocateSection__title {
+            margin: 10px 12px 0px;
+        }
+    }
+
+    /* retirar dinheiro */
+    .withdrawSection {
+        background-color: rgba(255, 255, 255, 0.216);
+        padding: 3px 13px;
+        border-radius: 20px;
+        margin: 30px 0px;
+
+        .withdraw__buttonsWrapper {
+            display: flex;
+            padding-bottom: 7px;
+        }
+
+        .withdraw__buttons {
+            cursor: pointer;
+            border-radius: 15px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.104);
+            color: white;
+            font-weight: 600;
+            padding: 20px 40px;
+            margin: 10px 10px;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 133px;
+            height: 100px;
+
+            &:hover {
+                transform: scale(1.04);
+            }
+
+            &:active {
+                transform: scale(0.98);
+            }
+        }
+    }
+
+    /* histórico */
+    .history {
+        .history__button {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 20px;
+            background-image: linear-gradient(135deg, #9c19f3, #e2007b);
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .history__list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .history__buttonImage {
+            width: 20px;
+        }
+
+        .history__closeButtonImage {
+            width: 15px;
+        }
+
+        /* itens do histórico */
+        .historico-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+
+            .historico-left {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .historico-texto {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .historico-descricao {
+                font-size: 14px;
+            }
+
+            .historico-data {
+                font-size: 12px;
+                color: #888;
+            }
+
+            .historico-valor {
+                font-weight: bold;
+            }
+
+            .historico-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            &.entrada .historico-valor {
+                color: #00c853;
+            }
+
+            &.saida .historico-valor {
+                color: #ff3b30;
+            }
+
+            &.rendimento .historico-valor {
+                color: #2979ff;
+            }
+        }
+    }
+}

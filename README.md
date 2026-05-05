@@ -1,7 +1,9 @@
 # exercicios
 - [001-alert](/ex/001-alert/index.html) popup-alert
 - [002-interactive-system](ex/002-interactive-system/index.html) interactive-system
+- [004-calculator](ex/004-calculator/index.html) calculator
 - [005-digital-wallet](ex/005-digital-wallet/index.html) digital-wallet
+
 - [003-adding-values](ex/003-adding-values/index.html) adding-values
 
 ## GIT FLOW
@@ -49,6 +51,20 @@ envia as novas mudancas e o novo branch pro servidor
 - abrir um novo pull request da branch pra DEVELOP
 - colocar os mentores como reviws
 - so mergear apos uma revisao
+
+
+#### Javascript objects
+
+https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Working_with_objects
+
+![alt text](image.png)
+
+## anotacao 
+
+- se eu ja criei 
+"historico": []
+e quero adicionar informacoes dentro dele, eu preciso por push!
+tipo, por data, e outras coisas
 
 
 
