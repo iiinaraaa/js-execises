@@ -130,16 +130,6 @@ numberButtons.forEach(btn => {
 
 
 
-
-
-
-
-
-
-
-
-
-
 //essa parte eh a mesma coisa de cima, mas eh com os operadores
 operatorButtons.forEach(btn => {
   btn.addEventListener("click", () => {
