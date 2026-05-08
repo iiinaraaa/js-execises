@@ -20,9 +20,6 @@ body {
   flex-direction: column;
   gap: 20px;
 
-  /* APAGAR, isso eh so pra eu ver o tamanho */
-  border: solid red;
-
   .calculator__top {
     display: flex;
     justify-content: flex-start;
@@ -40,16 +37,46 @@ body {
     text-align: right;
     color: #fff;
     min-height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
 
     .calculator__display-history {
       color: #888;
-      font-size: 16px;
+      font-size: 14px;
       min-height: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      width: 100%;
+      max-height: 120px;
+      overflow-y: auto;
+
+      /* faz o texto quebrar quando ele eh grande demais */
+      word-break: break-word;
+      margin-bottom: 10px;
+    }
+
+    .history-item {
+      text-align: right;
+      width: 100%;
     }
 
     .calculator__display-result {
       font-size: 48px;
       font-weight: 300;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      /* isso aqui n deixa quebrar linha */
+      white-space: nowrap;
+    }
+
+    .calculator__display-result::-webkit-scrollbar {
+      display: none;
     }
   }
 

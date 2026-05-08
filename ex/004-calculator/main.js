@@ -12,12 +12,25 @@ let previousValue = null
 let currentValue = "0"
 let operator = null
 let history = []
+
+// essa parte guarda a conta visual que aparece conforme vai digitando
+let expression = ""
+
+// controla quando a tela vai ser resetada, tipo quando der 10 ai vc vai colocar 8, deve ficar so o 8, e nao 108
 let shouldResetScreen = false
 
 //funcao que limpa a tela pra fzr novas continhas
 function updateDisplay() {
-  resultElement.innerText = currentValue
-  historyElement.innerText = history
+  //mostra a conta inteira enquanto digita
+  // || usa o da esquerda se existir
+  resultElement.innerText = expression || currentValue
+
+  //historico em colunas
+  historyElement.innerHTML = history
+    //map aqui vai percorrer por cada item do array, tipo 1 + 1 = 2
+    .map(item => `<div class="history-item">${item}</div>`)
+    //join junta tudo numa string so
+    .join("")
 }
 
 //isso aqui traduz os operadores pra algo que o JS entenda
@@ -26,6 +39,15 @@ function mapOperator(op) {
   if (op === "÷") return "/"
   if (op === "×") return "*"
   if (op === "−") return "-"
+  return op
+}
+
+//mesma coisa que o de cima mas ao contrario, o de cima traduz pro js, esse aqui traduz pra gente
+function formatOperator(op) {
+  if (op === "*") return "×"
+  if (op === "/") return "÷"
+  if (op === "-") return "−"
+
   return op
 }
 
@@ -52,9 +74,20 @@ function calculateResult() {
   )
 
   //obviamente parte que puxa pro historico
-  history.push(`${previousValue} ${operator} ${currentValue} = ${result}`)
+  // unshift eh um metodo de array que adiciona um item no comeco, pop eh pra tirar
+  history.unshift(
+    `${previousValue} ${formatOperator(operator)} ${currentValue} = ${result}`
+  )
+
+  //mantem no maximo 2 historicos
+  if (history.length > 2) {
+    history.pop()
+  }
 
   currentValue = String(result)
+
+  expression = currentValue
+
   previousValue = null
   operator = null
   shouldResetScreen = true
@@ -69,6 +102,7 @@ numberButtons.forEach(btn => {
 
     if (shouldResetScreen) {
       currentValue = value
+      expression = value
       shouldResetScreen = false
     } else {
         //nao deixa zero na frente
@@ -79,9 +113,19 @@ numberButtons.forEach(btn => {
       }
     }
 
+    //monta a conta visualmente enquanto digita
+    if (previousValue !== null && operator !== null) {
+      // expression eh oq guarda visualmente o numero, ai nesse caso ele printa essas coisas aqui
+      expression = `${previousValue} ${formatOperator(operator)} ${currentValue}`
+    } else {
+      expression = currentValue
+    }
+
     updateDisplay()
   })
 })
+
+
 
 
 
@@ -114,13 +158,26 @@ operatorButtons.forEach(btn => {
       currentValue = String(result)
 
       //essa parte manda pro history
-      history.push(`${previousValue} ${operator} ${btn.innerText} ${currentValue} = ${result}`)
+      history.unshift(
+        `${previousValue} ${formatOperator(operator)} ${currentValue} = ${result}`
+      )
+
+      //mantem no maximo 2 historicos
+      if (history.length > 2) {
+        history.pop()
+      }
     }
 
     //guarda o primeiro numero e o operador, e prepara a tela pra digitar o segundo numero
     previousValue = currentValue
     operator = op
+
+    //mantem aparecendo a conta
+    expression = `${previousValue} ${btn.innerText}`
+
     shouldResetScreen = true
+
+    updateDisplay()
   })
 })
 
@@ -138,6 +195,7 @@ actionButtons.forEach(btn => {
       currentValue = "0"
       operator = null
       history = []
+      expression = ""
       shouldResetScreen = false
       updateDisplay()
     }
