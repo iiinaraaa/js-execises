@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --desktop: 1200px;
+    
+    --font-primary: "Inter", sans-serif;
+}
+
+body {
+    background-color: rgb(208, 160, 0);
+}
+
+.weather {
+    font-family: var(--font-primary);
+    color: white;
+    
+
+    .weather__header {
+        display: flex;
+        justify-content: space-between;
+        
+
+    }
+
+    .weather__location {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    @media (min-width: 1200px) {
+        .weather__headerProfile {
+            display: none;
+        }
+    }
+
+
+}
+

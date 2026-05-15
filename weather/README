@@ -1,0 +1,15 @@
+## elementos
+weather (pega todo mundo)
+
+weather__header (pega a parte com input do local)
+
+weather__hero (pega so a parte onde mostra o tempo o icone)
+
+weather__main (pega toda a parte onde vai o grid com as infos do tempo mais detalhadas mobile com as coisas display none, desktop display grid pra aparecer)
+
+
+## Imagens do BG
+
+elas mudam em cada clima e horario?????
+
+
