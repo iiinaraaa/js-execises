@@ -19,10 +19,91 @@
         </header>
 
         <div class="weather__main">
-            <div class="weather__hero">
 
+            <!-- parte que fica o hero de vdd -->
+             <!-- aqui provavelmente vai mudar com o js, mas por hora vou deixar igual o layout e dps mudar -->
+            <div class="weather__hero">
+                <p class="weather__status">Cloudy</p>
+
+                <img 
+                    class="weather__icon"
+                    src="assets/img/icons/weatherIcons/cloudy.svg" 
+                    alt=""
+                >
+
+                <p class="weather__temperature">26 °C</p>
+
+                
+                <p class="weather__date">Sunday | 12 Dec 2023</p>
+                
             </div>
+
+            <!-- carrossel da semana -->
+                <div class="weather__carousel">
+                    <img class="weather__carouselArrow" src="assets/img/icons/leftArrow.svg" alt="">
+
+                    <!-- aqui eu vou ter que adicionar todos os dias da semana, acredito que com a api vou poder determinar qual imagem vai aparecer -->
+                    <div class="weather__carouselItem">
+                        <p class="weather__carouselDay">FRI</p>
+
+                        <img 
+                            class="weather__carouselIcon"
+                            src="assets/img/icons/weatherIcons/rainCloud.svg" 
+                            alt=""
+                        >
+                    </div>
+
+                    <div class="weather__carouselItem">
+                        <p class="weather__carouselDay">SAT</p>
+
+                        <img 
+                            class="weather__carouselIcon"
+                            src="assets/img/icons/weatherIcons/sun.svg" 
+                            alt=""
+                        >
+                    </div>
+
+                    <div class="weather__carouselItem">
+                        <p class="weather__carouselDay">SUN</p>
+
+                        <img 
+                            class="weather__carouselIcon"
+                            src="assets/img/icons/weatherIcons/cloudy.svg" 
+                            alt=""
+                        >
+                    </div>
+
+                    <div class="weather__carouselItem">
+                        <p class="weather__carouselDay">MON</p>
+
+                        <img 
+                            class="weather__carouselIcon"
+                            src="assets/img/icons/weatherIcons/rainyCloudyDay.svg" 
+                            alt=""
+                        >
+                    </div>
+
+                    <div class="weather__carouselItem">
+                        <p class="weather__carouselDay">TUES</p>
+
+                        <img 
+                            class="weather__carouselIcon"
+                            src="assets/img/icons/weatherIcons/thunderCloud.svg" 
+                            alt=""
+                        >
+                    </div>
+
+                    <img class="weather__carouselArrow" src="assets/img/icons/rightArrow.svg" alt="">
+                </div>
         </div>
+
+        <!-- forecast - previsao do tempo (palavra novaaa) -->
+        <div class="weather__forecast">
+            <!-- aqui vai ficar vazio por enquanto -->
+            aqui vai a previsao - grafico
+        </div>
+
+
 
     </div>
     

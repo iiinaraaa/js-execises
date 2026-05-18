@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: rgb(208, 160, 0);
+    background-color: #d69e36;
 }
 
 .weather {
@@ -15,11 +15,12 @@ body {
     color: white;
     
 
+    /* header  */
     .weather__header {
         display: flex;
         justify-content: space-between;
-        
-
+        /* de acordo com o figma esse margin feio */
+        margin: 38px 32px 0px 33px; 
     }
 
     .weather__location {
@@ -33,6 +34,79 @@ body {
             display: none;
         }
     }
+    /* fim do header  */
+
+
+
+
+    /* inicio do hero */
+    .weather__hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .weather__status {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 31.67px;
+    }
+
+    .weather__icon {
+        width: 200px;
+        height: 158.33px;
+    }
+
+    .weather__temperature {
+        font-weight: 500;
+        font-size: 64px;
+        margin: 27px 0 10px 0;
+    }
+
+    .weather__date {
+        font-size: 18px;
+        font-weight: 400;
+        margin: 0;
+    }
+
+
+    /* fim do hero */
+
+
+
+    /* inicio do carousel  */
+    .weather__carousel {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 32px 0 32px 0;
+
+        .weather__carouselArrow{
+            cursor: pointer;
+        }
+
+        .weather__carouselItem {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .weather__carouselDay {
+            margin: 0 0 5px;
+        }
+    }
+    /* fim do carousel */
+
+    /* inicio forecast  */
+
+    .weather__forecast {
+        display: flex;
+        justify-content: center;
+        border-radius: 10px;
+        background-color: rgba(223, 174, 83, 0.8);
+        
+    }
+    /* fim forecast */
 
 
 }
