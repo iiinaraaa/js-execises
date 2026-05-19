@@ -97,12 +97,226 @@
                 </div>
         </div>
 
-        <!-- forecast - previsao do tempo (palavra novaaa) -->
-        <div class="weather__forecast">
-            <!-- aqui vai ficar vazio por enquanto -->
-            aqui vai a previsao - grafico
-        </div>
+        
 
+
+        <!-- side bar inicio -->
+        <div class="weather__mainWrapper">
+            <div class="weather__sideBar">
+            <div class="weather__profile">
+                <img class="weather__profileImage" src="assets/img/profile.svg" alt="">
+            </div>
+
+            <div class="weather__profileIcons">
+                <img class="weather__sideBarIcon" src="assets/img/icons/weather.svg" alt="">
+                <img class="weather__sideBarIcon" src="assets/img/icons/explore.svg" alt="">
+                <img class="weather__sideBarIcon" src="assets/img/icons/localization.svg" alt="">
+                <img class="weather__sideBarIcon" src="assets/img/icons/settings.svg" alt="">
+            </div>
+
+            
+            </div>
+            <!-- side bar final -->
+
+            <!-- locations inicio -->
+            <div class="weather__locations">
+                <p class="weather__locationsTitle">
+                    <img class="weather__locationsTitleIcon" src="assets/img/icons/heart.svg" alt="">
+                    Activities in your area
+                </p>
+
+                <div class="weather__locationsCards">
+                    <div class="weather__locationsCard">
+                        <img class="weather__locationsImage" src="assets/img/places/park.svg" alt="">
+                        <p class="weather__locationsDistance">2km away</p>
+                    </div>
+
+                    <div class="weather__locationsCard">
+                        <img class="weather__locationsImage" src="assets/img/places/fallPark.svg" alt="">
+                        <p class="weather__locationsDistance">1.5km away</p>
+                    </div>
+
+                    <div class="weather__locationsCard">
+                        <img class="weather__locationsImage" src="assets/img/places/waterPark.svg" alt="">
+                        <p class="weather__locationsDistance">3km away</p>
+                    </div>
+
+                    <div class="weather__locationsCard">
+                        <img class="weather__locationsImage" src="assets/img/places/beach.svg" alt="">
+                        <p class="weather__locationsDistance">500m away</p>
+                    </div>
+                </div>
+            </div>
+            <!-- locations final -->
+
+            <!-- weeklyForecast inicio  -->
+            <div class="weather__weeklyForecast">
+
+                <div class="weather__weeklyForecastCarousel">
+                    <img 
+                        class="weather__weeklyForecastCarouselArrow" 
+                        src="assets/img/icons/leftArrow.svg" 
+                        alt=""
+                    >
+
+                    <!-- aqui eu vou ter que adicionar todos os dias da semana, acredito que com a api vou poder determinar qual imagem vai aparecer -->
+                    <div class="weather__weeklyForecastCarouselItem">
+                        <p class="weather__weeklyForecastCarouselDay">
+                            FRI
+                        </p>
+
+                        <img 
+                            class="weather__weeklyForecastCarouselIcon"
+                            src="assets/img/icons/weatherIcons/rainCloud.svg" 
+                            alt=""
+                        >
+                    </div>
+
+                    <div class="weather__weeklyForecastCarouselItem">
+                            <p class="weather__weeklyForecastCarouselDay">
+                                SAT
+                            </p>
+
+                            <img 
+                                class="weather__weeklyForecastCarouselIcon"
+                                src="assets/img/icons/weatherIcons/sun.svg" 
+                                alt=""
+                            >
+                    </div>
+
+                    <div class="weather__weeklyForecastCarouselItem">
+                            <p class="weather__weeklyForecastCarouselDay">
+                                SUN
+                            </p>
+
+                            <img 
+                                class="weather__weeklyForecastCarouselIcon"
+                                src="assets/img/icons/weatherIcons/cloudy.svg" 
+                                alt=""
+                            >
+                    </div>
+
+                    <div class="weather__weeklyForecastCarouselItem">
+                            <p class="weather__weeklyForecastCarouselDay">
+                                MON
+                            </p>
+
+                            <img 
+                                class="weather__weeklyForecastCarouselIcon"
+                                src="assets/img/icons/weatherIcons/rainyCloudyDay.svg" 
+                                alt=""
+                            >
+                    </div>
+
+                    <div class="weather__weeklyForecastCarouselItem">
+                            <p class="weather__weeklyForecastCarouselDay">
+                                TUES
+                            </p>
+
+                            <img 
+                                class="weather__weeklyForecastCarouselIcon"
+                                src="assets/img/icons/weatherIcons/thunderCloud.svg" 
+                                alt=""
+                            >
+                    </div>
+
+                    <img 
+                        class="weather__weeklyForecastCarouselArrow" 
+                        src="assets/img/icons/rightArrow.svg" 
+                        alt=""
+                    >
+                </div>
+
+                <p class="weather__weeklyForecastTime">
+                        <img 
+                            class="weather__weeklyForecastTimeIcon"
+                            src="assets/img/icons/hour.svg" 
+                            alt=""
+                        >
+                        8:00PM GMT
+                </p>
+
+                <div class="weather__weeklyForecastAirConditions">
+                    <p class="weather__weeklyForecastAirConditionsTitle">
+                        AIR CONDITIONS
+                    </p>
+
+                    <div class="weather__weeklyForecastAirCondition">
+                        <img 
+                            class="weather__weeklyForecastAirConditionIcon"
+                            src="assets/img/icons/thermometer.svg" 
+                            alt=""
+                        >
+
+                        <div class="weather__weeklyForecastAirConditionInfo">
+                            <p class="weather__weeklyForecastAirConditionTitle">
+                                Real Feel
+                            </p>
+
+                            <p class="weather__weeklyForecastAirConditionValue">
+                                30°
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="weather__weeklyForecastAirCondition">
+                        <img 
+                            class="weather__weeklyForecastAirConditionIcon"
+                            src="assets/img/icons/wind.svg" 
+                            alt=""
+                        >
+
+                        <div class="weather__weeklyForecastAirConditionInfo">
+                            <p class="weather__weeklyForecastAirConditionTitle">
+                                Wind
+                            </p>
+
+                            <p class="weather__weeklyForecastAirConditionValue">
+                                0.8 km/hr
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="weather__weeklyForecastAirCondition">
+                        <img 
+                            class="weather__weeklyForecastAirConditionIcon"
+                            src="assets/img/icons/rain.svg" 
+                            alt=""
+                        >
+
+                        <div class="weather__weeklyForecastAirConditionInfo">
+                            <p class="weather__weeklyForecastAirConditionTitle">
+                                Chance of rain
+                            </p>
+
+                            <p class="weather__weeklyForecastAirConditionValue">
+                                2%
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="weather__weeklyForecastAirCondition">
+                        <img 
+                            class="weather__weeklyForecastAirConditionIcon"
+                            src="assets/img/icons/sun.svg" 
+                            alt=""
+                        >
+
+                        <div class="weather__weeklyForecastAirConditionInfo">
+                            <p class="weather__weeklyForecastAirConditionTitle">
+                                UV Index
+                            </p>
+
+                            <p class="weather__weeklyForecastAirConditionValue">
+                                4
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- weeklyForecast final  -->
 
 
     </div>

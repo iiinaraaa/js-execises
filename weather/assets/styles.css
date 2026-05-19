@@ -36,9 +36,6 @@ body {
     }
     /* fim do header  */
 
-
-
-
     /* inicio do hero */
     .weather__hero {
         display: flex;
@@ -69,10 +66,44 @@ body {
         margin: 0;
     }
 
+    @media (min-width: 1200px) {
+        .weather__hero {
+            
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-areas: 
+                "status icon"
+                "temp   icon"
+                "date   icon";
+            align-items: center;
+            justify-content: start;
+            gap: 0 40px; 
+            max-width: 600px;
+            margin: 0 auto;
+        }
 
+        .weather__status {
+            grid-area: status;
+            margin-bottom: 0; 
+        }
+
+        .weather__temperature {
+            grid-area: temp;
+            margin: 10px 0;  
+        }
+
+        .weather__date {
+            grid-area: date;
+        }
+
+        .weather__icon {
+            grid-area: icon;
+            justify-self: end;
+            width: 180px;      
+            height: auto;
+        }
+    }
     /* fim do hero */
-
-
 
     /* inicio do carousel  */
     .weather__carousel {
@@ -80,34 +111,192 @@ body {
         justify-content: space-around;
         align-items: center;
         margin: 32px 0 32px 0;
+    }
 
-        .weather__carouselArrow{
-            cursor: pointer;
-        }
+    .weather__carousel .weather__carouselArrow {
+        cursor: pointer;
+    }
 
-        .weather__carouselItem {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .weather__carousel .weather__carouselItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        .weather__carouselDay {
-            margin: 0 0 5px;
+    .weather__carousel .weather__carouselDay {
+        margin: 0 0 5px;
+    }
+
+    @media (min-width: 1200px) {
+        .weather__carousel {
+            display: none;
         }
     }
     /* fim do carousel */
 
-    /* inicio forecast  */
-
-    .weather__forecast {
-        display: flex;
-        justify-content: center;
-        border-radius: 10px;
-        background-color: rgba(223, 174, 83, 0.8);
-        
+    /* inicio side bar */
+    .weather__sideBar {
+        flex-direction: column;
+        align-items: center;
+        width: 100px;
+        height: 573px;
+        border-radius: 40px;
+        justify-content: space-around;
+        background-color: rgba(222, 171, 77, 1);
     }
-    /* fim forecast */
+
+    .weather__profileImage {
+        width: 60px;
+        height: 60px;
+    }
+
+    .weather__profileIcons {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        cursor: pointer;
+    }
+
+    /* final side bar */
+
+    /* locations inicio */
+    .weather__locations {
+        background-color: rgba(222, 171, 77, 1);
+        width: 884px;
+        height: 244px;
+        border-radius: 40px;
+        padding: 20px 54.72px 34px 35px;
+
+    }
+
+    .weather__locationsTitle {
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .weather__locationsImage {
+        width: 178.85px;
+        height: 108px;
+    }
+
+    .weather__locationsDistance {
+        color: rgba(43, 38, 29, 1);
+        font-size: 12px;
+        margin: 0;
+    }
+
+    .weather__locationsCards {
+        display: flex;
+        gap: 21.29px;
+    }
+    /* locations final */  
+
+    /* weeklyForecast inicio */
+    .weather__weeklyForecastCarousel {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        border-radius: 24px;
+        padding-top: 15px;
+    }
+
+    .weather__weeklyForecastCarouselArrow {
+        width: 12px;
+        cursor: pointer;
+    }
+
+    .weather__weeklyForecastCarouselItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .weather__weeklyForecastCarouselDay {
+        font-size: 13px;
+    }
+
+    .weather__weeklyForecastCarouselIcon {
+        width: 24px;
+    }
+
+    .weather__weeklyForecast {
+        flex-direction: column;
+        width: 324px;
+        height: 537px;
+        border-radius: 40px;
+        background-color: rgba(222, 171, 77, 1);
+    }
+
+    .weather__weeklyForecastTime {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .weather__weeklyForecastAirConditions {
+        padding: 0 0 0 16px;
+    }
+
+    .weather__weeklyForecastAirCondition {
+        display: flex;
+        gap: 15px;
+    }
+
+    .weather__weeklyForecastAirConditionIcon {
+        width: 25px;
+    }
+
+    /* weeklyForecast final */
 
 
+    .weather__mainWrapper {
+        display: none;
+    }
+
+    @media (min-width: 1200px) {
+
+        .weather__sideBar,
+        .weather__locations,
+        .weather__weeklyForecast {
+            display: flex;
+            margin-top: 70px;
+        }
+
+        .weather__locations {
+            display: block;
+        }
+
+        .weather__weeklyForecast {
+            display: flex;
+        }
+
+        .weather__mainWrapper {
+            display: grid;
+            grid-template-columns: 90px 1fr 1.4fr;
+            grid-template-rows: 1fr 1fr;
+            grid-template-areas:
+                "sidebar locations weekly"
+                "sidebar empty     weekly";
+            height: 100vh;
+            gap: 20px;
+        }
+
+        .weather__sideBar {
+            grid-area: sidebar;
+        }
+
+        .weather__locations {
+            grid-area: locations;
+        }
+
+        .weather__weeklyForecast {
+            grid-area: weekly;
+        }
+
+        .weather__mainWrapper::after {
+            content: "";
+            grid-area: empty;
+        }
+    }
 }
-
