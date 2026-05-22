@@ -300,3 +300,12 @@ body {
         }
     }
 }
+
+#city {
+    background-color: #d69e36;
+    border: none;
+    color: white;
+    font-family: var(--font-primary);
+    font-size: 15px;
+    cursor: pointer;
+}

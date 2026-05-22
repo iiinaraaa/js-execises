@@ -13,3 +13,55 @@ weather__main (pega toda a parte onde vai o grid com as infos do tempo mais deta
 elas mudam em cada clima e horario?????
 
 
+## API
+
+# O que é fetch API?
+
+fetch() é uma função nativa do JavaScript pra fazer requisições HTTP.
+
+# Template String
+
+const cidade = "Florianopolis"
+
+const url = `
+https://api.com?q=${cidade}
+
+# DOM + API
+
+A API só busca dados.
+
+Quem mostra na tela é o DOM.
+
+document.querySelector("#temp").innerHTML = dados.main.temp
+
+# Async/Await 
+
+espera internet responder
+
+# Separação de responsabilidades
+
+buscar dados → função 1
+mostrar dados → função 2
+mostrar erro → função 3
+
+# SOBRE CHAMAR A API:
+
+chama a API UMA vez
+recebe TODOS os dados
+distribui esses dados no DOM
+
+--------------------------------------------------------------
+
+Usuário digita cidade
+↓
+JavaScript pega valor do input
+↓
+fetch() faz requisição pra API
+↓
+Servidor recebe pedido
+↓
+Servidor responde JSON
+↓
+JavaScript lê JSON
+↓
+Você mostra na tela

@@ -11,7 +11,16 @@
     <div class="weather">
         <header class="weather__header">
             <div class="weather__location">
-                <img src="assets/img/icons/localization.svg" alt=""> <p>New York </p><img src="assets/img/icons/downArroy.svg" alt="">
+                <img src="assets/img/icons/localization.svg" alt=""> 
+                
+                <select id="city">
+                    <option value="Florianopolis">Florianopolis</option>
+                    <option value="Palhoca">Palhoca</option>
+                    <option value="Sao Paulo">Sao Paulo</option>
+                    <option value="Rio de Janeiro">Rio de Janeiro</option>
+                    <option value="Curitiba">Curitiba</option>
+                    <option value="Tokyo">Tokyo</option>
+                </select>
             </div>
             
 
@@ -23,23 +32,42 @@
             <!-- parte que fica o hero de vdd -->
              <!-- aqui provavelmente vai mudar com o js, mas por hora vou deixar igual o layout e dps mudar -->
             <div class="weather__hero">
-                <p class="weather__status">Cloudy</p>
+                <p 
+                    class="weather__status"
+                    id="status"
+                >
+                    Cloudy
+                </p>
 
                 <img 
                     class="weather__icon"
+                    id="mainIcon"
                     src="assets/img/icons/weatherIcons/cloudy.svg" 
                     alt=""
                 >
 
-                <p class="weather__temperature">26 °C</p>
+                <p 
+                    class="weather__temperature"
+                    id="temperature"
+                >
+                    26 °C
+                </p>
 
                 
-                <p class="weather__date">Sunday | 12 Dec 2023</p>
+                <p 
+                    class="weather__date"
+                    id="date"
+                >
+                    Sunday | 12 Dec 2023
+                </p>
                 
             </div>
 
             <!-- carrossel da semana -->
-                <div class="weather__carousel">
+                <div 
+                    class="weather__carousel"
+                    id="mobileForecast"
+                >
                     <img class="weather__carouselArrow" src="assets/img/icons/leftArrow.svg" alt="">
 
                     <!-- aqui eu vou ter que adicionar todos os dias da semana, acredito que com a api vou poder determinar qual imagem vai aparecer -->
@@ -152,7 +180,10 @@
             <!-- weeklyForecast inicio  -->
             <div class="weather__weeklyForecast">
 
-                <div class="weather__weeklyForecastCarousel">
+                <div 
+                    class="weather__weeklyForecastCarousel"
+                    id="forecast"
+                >
                     <img 
                         class="weather__weeklyForecastCarouselArrow" 
                         src="assets/img/icons/leftArrow.svg" 
@@ -227,7 +258,10 @@
                     >
                 </div>
 
-                <p class="weather__weeklyForecastTime">
+                <p 
+                    class="weather__weeklyForecastTime"
+                    id="time"
+                >
                         <img 
                             class="weather__weeklyForecastTimeIcon"
                             src="assets/img/icons/hour.svg" 
@@ -253,7 +287,10 @@
                                 Real Feel
                             </p>
 
-                            <p class="weather__weeklyForecastAirConditionValue">
+                            <p 
+                                class="weather__weeklyForecastAirConditionValue"
+                                id="feelsLike"
+                            >
                                 30°
                             </p>
                         </div>
@@ -271,7 +308,10 @@
                                 Wind
                             </p>
 
-                            <p class="weather__weeklyForecastAirConditionValue">
+                            <p 
+                                class="weather__weeklyForecastAirConditionValue"
+                                id="wind"
+                            >
                                 0.8 km/hr
                             </p>
                         </div>
@@ -286,10 +326,13 @@
 
                         <div class="weather__weeklyForecastAirConditionInfo">
                             <p class="weather__weeklyForecastAirConditionTitle">
-                                Chance of rain
+                                Humidity
                             </p>
 
-                            <p class="weather__weeklyForecastAirConditionValue">
+                            <p 
+                                class="weather__weeklyForecastAirConditionValue"
+                                id="humidity"
+                            >
                                 2%
                             </p>
                         </div>
@@ -307,7 +350,10 @@
                                 UV Index
                             </p>
 
-                            <p class="weather__weeklyForecastAirConditionValue">
+                            <p 
+                                class="weather__weeklyForecastAirConditionValue"
+                                id="uv"
+                            >
                                 4
                             </p>
                         </div>
