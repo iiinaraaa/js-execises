@@ -301,11 +301,66 @@ body {
     }
 }
 
-#city {
+/* custom dropdown inicio */
+
+.weather__customSelect {
+    position: relative;
+    width: 180px;
+}
+
+.weather__selected {
     background-color: #d69e36;
-    border: none;
     color: white;
+    padding: 10px 14px;
+    border-radius: 14px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.2s ease;
+    user-select: none;
     font-family: var(--font-primary);
     font-size: 15px;
-    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
+
+.weather__selected:hover {
+    background-color: rgb(223, 175, 87);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.weather__selectedArrow {
+    width: 12px;
+}
+
+.weather__options {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background-color: #9b6b1b;
+    border-radius: 16px;
+    overflow: hidden;
+    display: none;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    z-index: 100;
+}
+
+.weather__options.active {
+    display: block;
+}
+
+.weather__option {
+    padding: 12px 14px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-family: var(--font-primary);
+}
+
+.weather__option:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* custom dropdown final */

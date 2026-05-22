@@ -13,14 +13,31 @@
             <div class="weather__location">
                 <img src="assets/img/icons/localization.svg" alt=""> 
                 
-                <select id="city">
-                    <option value="Florianopolis">Florianopolis</option>
-                    <option value="Palhoca">Palhoca</option>
-                    <option value="Sao Paulo">Sao Paulo</option>
-                    <option value="Rio de Janeiro">Rio de Janeiro</option>
-                    <option value="Curitiba">Curitiba</option>
-                    <option value="Tokyo">Tokyo</option>
-                </select>
+                <div class="weather__customSelect">
+
+                    <div class="weather__selected" id="selectedCity">
+
+                        <span class="weather__selectedText">
+                            Florianopolis
+                        </span>
+
+                        <img 
+                            class="weather__selectedArrow"
+                            src="assets/img/icons/downArroy.svg" 
+                            alt=""
+                        >
+
+                    </div>
+
+                    <div class="weather__options" id="cityOptions">
+                        <div class="weather__option" data-city="Florianopolis">Florianopolis</div>
+                        <div class="weather__option" data-city="Palhoca">Palhoca</div>
+                        <div class="weather__option" data-city="Sao Paulo">Sao Paulo</div>
+                        <div class="weather__option" data-city="Rio de Janeiro">Rio de Janeiro</div>
+                        <div class="weather__option" data-city="Curitiba">Curitiba</div>
+                        <div class="weather__option" data-city="Tokyo">Tokyo</div>
+                    </div>
+                </div>
             </div>
             
 
@@ -125,9 +142,6 @@
                 </div>
         </div>
 
-        
-
-
         <!-- side bar inicio -->
         <div class="weather__mainWrapper">
             <div class="weather__sideBar">
@@ -142,7 +156,6 @@
                 <img class="weather__sideBarIcon" src="assets/img/icons/settings.svg" alt="">
             </div>
 
-            
             </div>
             <!-- side bar final -->
 
@@ -362,13 +375,9 @@
             </div>
         </div>
         
-        <!-- weeklyForecast final  -->
-
-
+        <!-- weeklyForecast final -->
     </div>
     
-
-
     <script src="main.js"></script>
 </body>
 
