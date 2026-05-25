@@ -9,11 +9,76 @@ const wind = document.getElementById("wind");
 const humidity = document.getElementById("humidity");
 const uv = document.getElementById("uv");
 const time = document.getElementById("time");
+const mainIcon = document.getElementById("mainIcon");
 
 // custom dropdown
 const selectedCity = document.getElementById("selectedCity");
 const cityOptions = document.getElementById("cityOptions");
 const options = document.querySelectorAll(".weather__option");
+
+// codigos oficiais da weather api!!!!!!!
+// cada codigo vira um icon diferente
+const weatherIcons = {
+
+    day: {
+
+        // ceu limpo
+        1000: "sun.svg",
+
+        // nublado
+        1003: "cloudy.svg",
+        1006: "cloudy.svg",
+        1009: "cloudy.svg",
+
+        // chuva leve
+        1063: "rainyCloudyDay.svg",
+
+        // chuva
+        1180: "rainCloud.svg",
+        1183: "rainCloud.svg",
+        1186: "rainCloud.svg",
+        1189: "rainCloud.svg",
+
+        // neve
+        1210: "snow.svg",
+        1213: "snow.svg",
+
+        // tempestade
+        1273: "thunderCloud.svg",
+        1276: "thunderCloud.svg"
+
+    },
+
+    night: {
+
+        // ceu limpo
+        1000: "moonStars.svg",
+
+        // nublado
+        1003: "cloudMoonStars.svg",
+        1006: "cloudMoonStars.svg",
+        1009: "cloudMoonStars.svg",
+
+        // chuva leve
+        1063: "rainyCloudyDay.svg",
+
+        // chuva
+        1180: "rainCloud.svg",
+        1183: "rainCloud.svg",
+        1186: "rainCloud.svg",
+        1189: "rainCloud.svg",
+
+        // neve
+        1210: "snow.svg",
+        1213: "snow.svg",
+
+        // tempestade
+        1273: "thunderCloud.svg",
+        1276: "thunderCloud.svg"
+
+    }
+
+};
 
 // function principal recebe o nome da cidade ai mostra os dados
 // async significa “essa função vai esperar informações da internet”
@@ -44,8 +109,21 @@ function updateWeather(data) {
 
     uv.textContent = data.current.uv;
 
-    // pega data e hora do computador em tempo real
-    // nao deveria ser assim entao, tem que arrumar, pq se vai p tokyo continua com horario do br
+    // pega codigo oficial da weather api
+    const conditionCode = data.current.condition.code;
+
+    // verifica se eh dia ou noite
+    const isDay = data.current.is_day;
+
+    // escolhe qual grupo usar
+    const period = isDay ? "day" : "night";
+
+    // pega o icon correto
+    const icon = weatherIcons[period][conditionCode];
+
+    // troca o icon principal automaticamente
+    // se nao encontrar nenhum icon usa cloudy
+    mainIcon.src = `assets/img/icons/weatherIcons/${icon || "cloudy.svg"}`;
 
     // pega data e hora da cidade pesquisada pela api
     const localTime = new Date(data.location.localtime);
@@ -53,9 +131,11 @@ function updateWeather(data) {
     const formattedDate = localTime.toLocaleDateString("pt-BR");
 
     const formattedTime = localTime.toLocaleTimeString("pt-BR", {
+
         //isso aq faz ter dois digitos, tipo 5, vai ficar 05
         hour: "2-digit",
         minute: "2-digit"
+
     });
 
     date.textContent = `${formattedDate} ${formattedTime}`;
