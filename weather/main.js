@@ -46,11 +46,14 @@ function updateWeather(data) {
 
     // pega data e hora do computador em tempo real
     // nao deveria ser assim entao, tem que arrumar, pq se vai p tokyo continua com horario do br
-    const now = new Date();
 
-    const formattedDate = now.toLocaleDateString("pt-BR");
+    // pega data e hora da cidade pesquisada pela api
+    const localTime = new Date(data.location.localtime);
 
-    const formattedTime = now.toLocaleTimeString("pt-BR", {
+    const formattedDate = localTime.toLocaleDateString("pt-BR");
+
+    const formattedTime = localTime.toLocaleTimeString("pt-BR", {
+        //isso aq faz ter dois digitos, tipo 5, vai ficar 05
         hour: "2-digit",
         minute: "2-digit"
     });
