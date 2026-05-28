@@ -8,47 +8,35 @@
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-    <div class="weather">
+    <div class="weather" id="weatherBackground">
         <header class="weather__header">
             <div class="weather__location">
+
                 <img src="assets/img/icons/localization.svg" alt=""> 
-                
-                <div class="weather__customSelect">
 
-                    <div class="weather__selected" id="selectedCity">
+                <!-- searchbar -->
+                <div class="weather__searchWrapper">
+                    <input 
+                        type="text"
+                        id="citySearch"
+                        class="weather__searchInput"
+                        placeholder="Search city..."
+                    >
 
-                        <span class="weather__selectedText">
-                            Florianopolis
-                        </span>
-
-                        <img 
-                            class="weather__selectedArrow"
-                            src="assets/img/icons/downArroy.svg" 
-                            alt=""
-                        >
-
-                    </div>
-
-                    <div class="weather__options" id="cityOptions">
-                        <div class="weather__option" data-city="Florianopolis">Florianopolis</div>
-                        <div class="weather__option" data-city="Palhoca">Palhoca</div>
-                        <div class="weather__option" data-city="Sao Paulo">Sao Paulo</div>
-                        <div class="weather__option" data-city="Rio de Janeiro">Rio de Janeiro</div>
-                        <div class="weather__option" data-city="Curitiba">Curitiba</div>
-                        <div class="weather__option" data-city="Tokyo">Tokyo</div>
-                    </div>
+                    <div 
+                        class="weather__suggestions"
+                        id="suggestions"
+                    ></div>
                 </div>
             </div>
-            
 
             <img class="weather__headerProfile" src="assets/img/profile.svg" alt="">
         </header>
 
         <div class="weather__main">
-
             <!-- parte que fica o hero de vdd -->
-             <!-- aqui provavelmente vai mudar com o js, mas por hora vou deixar igual o layout e dps mudar -->
             <div class="weather__hero">
+
                 <p 
                     class="weather__status"
                     id="status"
@@ -70,92 +58,89 @@
                     26 °C
                 </p>
 
-                
                 <p 
                     class="weather__date"
                     id="date"
                 >
                     Sunday | 12 Dec 2023
                 </p>
-                
             </div>
 
             <!-- carrossel da semana -->
-                <div 
-                    class="weather__carousel"
-                    id="mobileForecast"
-                >
-                    <img class="weather__carouselArrow" src="assets/img/icons/leftArrow.svg" alt="">
+            <div 
+                class="weather__carousel"
+                id="mobileForecast"
+            >
+                <img class="weather__carouselArrow" src="assets/img/icons/leftArrow.svg" alt="">
 
-                    <!-- aqui eu vou ter que adicionar todos os dias da semana, acredito que com a api vou poder determinar qual imagem vai aparecer -->
-                    <div class="weather__carouselItem">
-                        <p class="weather__carouselDay">FRI</p>
+                <div class="weather__carouselItem">
+                    <p class="weather__carouselDay">FRI</p>
 
-                        <img 
-                            class="weather__carouselIcon"
-                            src="assets/img/icons/weatherIcons/rainCloud.svg" 
-                            alt=""
-                        >
-                    </div>
-
-                    <div class="weather__carouselItem">
-                        <p class="weather__carouselDay">SAT</p>
-
-                        <img 
-                            class="weather__carouselIcon"
-                            src="assets/img/icons/weatherIcons/sun.svg" 
-                            alt=""
-                        >
-                    </div>
-
-                    <div class="weather__carouselItem">
-                        <p class="weather__carouselDay">SUN</p>
-
-                        <img 
-                            class="weather__carouselIcon"
-                            src="assets/img/icons/weatherIcons/cloudy.svg" 
-                            alt=""
-                        >
-                    </div>
-
-                    <div class="weather__carouselItem">
-                        <p class="weather__carouselDay">MON</p>
-
-                        <img 
-                            class="weather__carouselIcon"
-                            src="assets/img/icons/weatherIcons/rainyCloudyDay.svg" 
-                            alt=""
-                        >
-                    </div>
-
-                    <div class="weather__carouselItem">
-                        <p class="weather__carouselDay">TUES</p>
-
-                        <img 
-                            class="weather__carouselIcon"
-                            src="assets/img/icons/weatherIcons/thunderCloud.svg" 
-                            alt=""
-                        >
-                    </div>
-
-                    <img class="weather__carouselArrow" src="assets/img/icons/rightArrow.svg" alt="">
+                    <img 
+                        class="weather__carouselIcon"
+                        src="assets/img/icons/weatherIcons/rainCloud.svg" 
+                        alt=""
+                    >
                 </div>
+
+                <div class="weather__carouselItem">
+                    <p class="weather__carouselDay">SAT</p>
+
+                    <img 
+                        class="weather__carouselIcon"
+                        src="assets/img/icons/weatherIcons/sun.svg" 
+                        alt=""
+                    >
+                </div>
+
+                <div class="weather__carouselItem">
+                    <p class="weather__carouselDay">SUN</p>
+
+                    <img 
+                        class="weather__carouselIcon"
+                        src="assets/img/icons/weatherIcons/cloudy.svg" 
+                        alt=""
+                    >
+                </div>
+
+                <div class="weather__carouselItem">
+                    <p class="weather__carouselDay">MON</p>
+
+                    <img 
+                        class="weather__carouselIcon"
+                        src="assets/img/icons/weatherIcons/rainyCloudyDay.svg" 
+                        alt=""
+                    >
+                </div>
+
+                <div class="weather__carouselItem">
+                    <p class="weather__carouselDay">TUES</p>
+
+                    <img 
+                        class="weather__carouselIcon"
+                        src="assets/img/icons/weatherIcons/thunderCloud.svg" 
+                        alt=""
+                    >
+                </div>
+
+                <img class="weather__carouselArrow" src="assets/img/icons/rightArrow.svg" alt="">
+            </div>
         </div>
 
         <!-- side bar inicio -->
         <div class="weather__mainWrapper">
             <div class="weather__sideBar">
-            <div class="weather__profile">
-                <img class="weather__profileImage" src="assets/img/profile.svg" alt="">
-            </div>
+                <div class="weather__profile">
 
-            <div class="weather__profileIcons">
-                <img class="weather__sideBarIcon" src="assets/img/icons/weather.svg" alt="">
-                <img class="weather__sideBarIcon" src="assets/img/icons/explore.svg" alt="">
-                <img class="weather__sideBarIcon" src="assets/img/icons/localization.svg" alt="">
-                <img class="weather__sideBarIcon" src="assets/img/icons/settings.svg" alt="">
-            </div>
+                    <img class="weather__profileImage" src="assets/img/profile.svg" alt="">
+                </div>
 
+                <div class="weather__profileIcons">
+                    <img class="weather__sideBarIcon" src="assets/img/icons/weather.svg" alt="">
+                    <img class="weather__sideBarIcon" src="assets/img/icons/explore.svg" alt="">
+                    <img class="weather__sideBarIcon" src="assets/img/icons/localization.svg" alt="">
+                    <img class="weather__sideBarIcon" src="assets/img/icons/settings.svg" alt="">
+                </div>
             </div>
             <!-- side bar final -->
 
@@ -190,20 +175,19 @@
             </div>
             <!-- locations final -->
 
-            <!-- weeklyForecast inicio  -->
+            <!-- weeklyForecast inicio -->
             <div class="weather__weeklyForecast">
-
                 <div 
                     class="weather__weeklyForecastCarousel"
                     id="forecast"
                 >
+
                     <img 
                         class="weather__weeklyForecastCarouselArrow" 
                         src="assets/img/icons/leftArrow.svg" 
                         alt=""
                     >
 
-                    <!-- aqui eu vou ter que adicionar todos os dias da semana, acredito que com a api vou poder determinar qual imagem vai aparecer -->
                     <div class="weather__weeklyForecastCarouselItem">
                         <p class="weather__weeklyForecastCarouselDay">
                             FRI
@@ -217,51 +201,51 @@
                     </div>
 
                     <div class="weather__weeklyForecastCarouselItem">
-                            <p class="weather__weeklyForecastCarouselDay">
-                                SAT
-                            </p>
+                        <p class="weather__weeklyForecastCarouselDay">
+                            SAT
+                        </p>
 
-                            <img 
-                                class="weather__weeklyForecastCarouselIcon"
-                                src="assets/img/icons/weatherIcons/sun.svg" 
-                                alt=""
-                            >
+                        <img 
+                            class="weather__weeklyForecastCarouselIcon"
+                            src="assets/img/icons/weatherIcons/sun.svg" 
+                            alt=""
+                        >
                     </div>
 
                     <div class="weather__weeklyForecastCarouselItem">
-                            <p class="weather__weeklyForecastCarouselDay">
-                                SUN
-                            </p>
+                        <p class="weather__weeklyForecastCarouselDay">
+                            SUN
+                        </p>
 
-                            <img 
-                                class="weather__weeklyForecastCarouselIcon"
-                                src="assets/img/icons/weatherIcons/cloudy.svg" 
-                                alt=""
-                            >
+                        <img 
+                            class="weather__weeklyForecastCarouselIcon"
+                            src="assets/img/icons/weatherIcons/cloudy.svg" 
+                            alt=""
+                        >
                     </div>
 
                     <div class="weather__weeklyForecastCarouselItem">
-                            <p class="weather__weeklyForecastCarouselDay">
-                                MON
-                            </p>
+                        <p class="weather__weeklyForecastCarouselDay">
+                            MON
+                        </p>
 
-                            <img 
-                                class="weather__weeklyForecastCarouselIcon"
-                                src="assets/img/icons/weatherIcons/rainyCloudyDay.svg" 
-                                alt=""
-                            >
+                        <img 
+                            class="weather__weeklyForecastCarouselIcon"
+                            src="assets/img/icons/weatherIcons/rainyCloudyDay.svg" 
+                            alt=""
+                        >
                     </div>
 
                     <div class="weather__weeklyForecastCarouselItem">
-                            <p class="weather__weeklyForecastCarouselDay">
-                                TUES
-                            </p>
+                        <p class="weather__weeklyForecastCarouselDay">
+                            TUES
+                        </p>
 
-                            <img 
-                                class="weather__weeklyForecastCarouselIcon"
-                                src="assets/img/icons/weatherIcons/thunderCloud.svg" 
-                                alt=""
-                            >
+                        <img 
+                            class="weather__weeklyForecastCarouselIcon"
+                            src="assets/img/icons/weatherIcons/thunderCloud.svg" 
+                            alt=""
+                        >
                     </div>
 
                     <img 
@@ -275,12 +259,13 @@
                     class="weather__weeklyForecastTime"
                     id="time"
                 >
-                        <img 
-                            class="weather__weeklyForecastTimeIcon"
-                            src="assets/img/icons/hour.svg" 
-                            alt=""
-                        >
-                        8:00PM GMT
+                    <img 
+                        class="weather__weeklyForecastTimeIcon"
+                        src="assets/img/icons/hour.svg" 
+                        alt=""
+                    >
+
+                    8:00PM GMT
                 </p>
 
                 <div class="weather__weeklyForecastAirConditions">
@@ -307,6 +292,7 @@
                                 30°
                             </p>
                         </div>
+
                     </div>
 
                     <div class="weather__weeklyForecastAirCondition">
@@ -374,11 +360,9 @@
                 </div>
             </div>
         </div>
-        
         <!-- weeklyForecast final -->
     </div>
-    
+
     <script src="main.js"></script>
 </body>
-
 </html>
