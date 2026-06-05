@@ -65,3 +65,41 @@ Servidor responde JSON
 JavaScript lê JSON
 ↓
 Você mostra na tela
+
+----------------------------------------------------------
+
+## try e catch são tipo um plano A / plano B
+
+try {
+   tenta fazer isso
+}
+catch {
+   se der erro, faz isso
+}
+
+# exemplo
+
+async function getWeather()
+
+→ "vou buscar clima"
+
+try
+→ tenta pegar da API
+
+await fetch()
+→ espera chegar
+
+await response.json()
+→ transforma resposta em objeto
+
+updateWeather()
+→ mostra na tela
+
+catch
+→ se internet cair, API falhar ou explodir:
+   mostra erro
+
+---------------------------------------------------------
+
+if / else → decide baseado num valor que tu já tem
+try / catch → pega um erro que interromperia o código (tipo API)

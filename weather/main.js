@@ -9,231 +9,186 @@ const humidity = document.getElementById("humidity");
 const uv = document.getElementById("uv");
 const time = document.getElementById("time");
 const mainIcon = document.getElementById("mainIcon");
-
 const weatherBackground = document.getElementById("weatherBackground");
-
 const citySearch = document.getElementById("citySearch");
 const suggestions = document.getElementById("suggestions");
 
+const forecastContainers = [
+    document.getElementById("forecast"),
+    document.getElementById("mobileForecast")
+];
+
+const mobileLeft = document.getElementById("mobileLeft");
+const mobileRight = document.getElementById("mobileRight");
+const desktopLeft = document.getElementById("desktopLeft");
+const desktopRight = document.getElementById("desktopRight");
+
 let currentCity = "Florianopolis";
+let currentForecastIndex = 0;
+let forecastDays = [];
 
 const weatherIcons = {
-    day: {
-        1000: "sun.svg",
-        1003: "cloudy.svg",
-        1006: "cloudy.svg",
-        1009: "cloudy.svg",
-        1063: "rainyCloudyDay.svg",
-        1180: "rainCloud.svg",
-        1183: "rainCloud.svg",
-        1186: "rainCloud.svg",
-        1189: "rainCloud.svg",
-        1210: "snow.svg",
-        1213: "snow.svg",
-        1273: "thunderCloud.svg",
-        1276: "thunderCloud.svg"
-    },
-
-    night: {
-        1000: "moonStars.svg",
-        1003: "cloudMoonStars.svg",
-        1006: "cloudMoonStars.svg",
-        1009: "cloudMoonStars.svg",
-        1063: "rainyCloudyDay.svg",
-        1180: "rainCloud.svg",
-        1183: "rainCloud.svg",
-        1186: "rainCloud.svg",
-        1189: "rainCloud.svg",
-        1210: "snow.svg",
-        1213: "snow.svg",
-        1273: "thunderCloud.svg",
-        1276: "thunderCloud.svg"
-    }
+    day: { 1000: "sun.svg", 1003: "cloudy.svg", 1006: "cloudy.svg", 1009: "cloudy.svg", 1030: "cloudy.svg", 1063: "rainyCloudyDay.svg", 1180: "rainCloud.svg", 1183: "rainCloud.svg", 1186: "rainCloud.svg", 1189: "rainCloud.svg", 1192: "rainCloud.svg", 1195: "rainCloud.svg", 1210: "snow.svg", 1213: "snow.svg", 1273: "thunderCloud.svg", 1276: "thunderCloud.svg" },
+    night: { 1000: "moonStars.svg", 1003: "cloudMoonStars.svg", 1006: "cloudMoonStars.svg", 1009: "cloudMoonStars.svg", 1030: "cloudMoonStars.svg", 1063: "rainyCloudyDay.svg", 1180: "rainCloud.svg", 1183: "rainCloud.svg", 1186: "rainCloud.svg", 1189: "rainCloud.svg", 1192: "rainCloud.svg", 1195: "rainCloud.svg", 1210: "snow.svg", 1213: "snow.svg", 1273: "thunderCloud.svg", 1276: "thunderCloud.svg" }
 };
 
 const weatherBackgrounds = {
-
-    day: {
-        1000: "sunnyDay.jpg",
-        1003: "cloudy.jpg",
-        1006: "cloudy.jpg",
-        1009: "cloudy.jpg",
-        1063: "rainDay.jpg",
-        1180: "rainDay.jpg",
-        1183: "rainDay.jpg",
-        1186: "rainDay.jpg",
-        1189: "rainDay.jpg",
-        1210: "rainDay.jpg",
-        1213: "rainDay.jpg",
-        1273: "rainDay.jpg",
-        1276: "rainDay.jpg"
-    },
-
-    night: {
-        1000: "night.jpg",
-        1003: "night.jpg",
-        1006: "night.jpg",
-        1009: "night.jpg",
-        1063: "rainNight.jpg",
-        1180: "rainNight.jpg",
-        1183: "rainNight.jpg",
-        1186: "rainNight.jpg",
-        1189: "rainNight.jpg",
-        1210: "rainNight.jpg",
-        1213: "rainNight.jpg",
-        1273: "rainNight.jpg",
-        1276: "rainNight.jpg"
-    }
-
+    day: { 1000: "sunnyDay.jpg", 1003: "cloudy.jpg", 1006: "cloudy.jpg", 1009: "cloudy.jpg", 1030: "cloudy.jpg", 1063: "rainDay.jpg", 1180: "rainDay.jpg", 1183: "rainDay.jpg", 1186: "rainDay.jpg", 1189: "rainDay.jpg", 1192: "rainDay.jpg", 1195: "rainDay.jpg", 1210: "rainDay.jpg", 1213: "rainDay.jpg", 1273: "rainDay.jpg", 1276: "rainDay.jpg" },
+    night: { 1000: "night.jpg", 1003: "night.jpg", 1006: "night.jpg", 1009: "night.jpg", 1030: "night.jpg", 1063: "rainNight.jpg", 1180: "rainNight.jpg", 1183: "rainNight.jpg", 1186: "rainNight.jpg", 1189: "rainNight.jpg", 1192: "rainNight.jpg", 1195: "rainNight.jpg", 1210: "rainNight.jpg", 1213: "rainNight.jpg", 1273: "rainNight.jpg", 1276: "rainNight.jpg" }
 };
 
 async function getWeather(cityName) {
-
-    const response = await fetch(
-        `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${cityName}&aqi=no`
-    );
-
-    const data = await response.json();
-
-    updateWeather(data);
+    try {
+        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityName}&days=5&aqi=no`);
+        const data = await response.json();
+        if (data.error) return console.error(data.error.message);
+        updateWeather(data);
+    } catch (error) {
+        console.error("Erro ao buscar clima:", error);
+    }
 }
 
 function updateWeather(data) {
     status.textContent = data.current.condition.text;
-
-    temperature.textContent = `${data.current.temp_c.toFixed(0)} °C`;
-
-    feelsLike.textContent = `${data.current.feelslike_c.toFixed(0)} °`;
-
-    wind.textContent = `${data.current.wind_kph} km/hr`;
-
+    temperature.textContent = `${Math.round(data.current.temp_c)} °C`;
+    feelsLike.textContent = `${Math.round(data.current.feelslike_c)} °`;
+    wind.textContent = `${Math.round(data.current.wind_kph)} km/hr`;
     humidity.textContent = `${data.current.humidity}%`;
+    uv.textContent = Number(data.current.uv).toFixed(1);
 
-    uv.textContent = data.current.uv;
+    const period = data.current.is_day ? "day" : "night";
+    const code = data.current.condition.code;
 
-    const conditionCode = data.current.condition.code;
-
-    const isDay = data.current.is_day;
-
-    const period = isDay ? "day" : "night";
-
-    const icon = weatherIcons[period][conditionCode];
-
-    mainIcon.src = `assets/img/icons/weatherIcons/${icon || "cloudy.svg"}`;
-
-    const bgImage = weatherBackgrounds[period][conditionCode];
-
-    const selectedBg = bgImage || (isDay ? "sunnyDay.jpg" : "night.jpg");
-
-    weatherBackground.style.backgroundImage = `url('assets/img/bg/${selectedBg}')`;
+    mainIcon.src = `assets/img/icons/weatherIcons/${weatherIcons[period][code] || "cloudy.svg"}`;
+    const bg = weatherBackgrounds[period][code] || (data.current.is_day ? "sunnyDay.jpg" : "night.jpg");
+    weatherBackground.style.backgroundImage = `url('assets/img/bg/${bg}')`;
 
     const localTime = new Date(data.location.localtime);
+    const dateStr = localTime.toLocaleDateString("pt-BR");
+    const timeStr = localTime.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
 
-    const formattedDate = localTime.toLocaleDateString("pt-BR");
+    date.textContent = `${dateStr} ${timeStr}`;
+    time.innerHTML = `<img class="weather__weeklyForecastTimeIcon" src="assets/img/icons/hour.svg" alt=""> ${dateStr} ${timeStr}`;
 
-    const formattedTime = localTime.toLocaleTimeString("pt-BR", {
-        hour: "2-digit",
-        minute: "2-digit"
+    forecastDays = data.forecast?.forecastday || [];
+    renderForecast();
+}
+
+function renderForecast() {
+    if (forecastDays.length === 0) return;
+
+    const shiftedDays = forecastDays.slice(currentForecastIndex).concat(forecastDays.slice(0, currentForecastIndex));
+
+    const html = shiftedDays.map(function (day, index) {
+        const dayName = new Date(day.date).toLocaleDateString("en-US", { weekday: "short" }).toUpperCase();
+        const icon = weatherIcons.day[day.day.condition.code] || "cloudy.svg";
+        const activeClass = index === 2 ? "active" : "";
+
+        return `
+            <div class="weather__carouselItem ${activeClass}">
+                <p class="weather__carouselDay">${dayName}</p>
+                <img class="weather__carouselIcon" src="assets/img/icons/weatherIcons/${icon}" alt="">
+            </div>`;
+    }).join("");
+
+    forecastContainers.forEach(function (container) {
+        container.innerHTML = html;
+        animateCarousel(container);
+    });
+}
+
+function animateCarousel(track) {
+    track.style.transform = "translateX(-30px)";
+    setTimeout(function () {
+        track.style.transform = "translateX(0)";
+    }, 200);
+}
+
+function nextForecast() {
+    if (forecastDays.length === 0) return;
+    currentForecastIndex = (currentForecastIndex + 1) % forecastDays.length;
+    renderForecast();
+}
+
+function prevForecast() {
+    if (forecastDays.length === 0) return;
+    currentForecastIndex = (currentForecastIndex - 1 + forecastDays.length) % forecastDays.length;
+    renderForecast();
+}
+
+function configurarBotoes() {
+    const botoesDireita = [mobileRight, desktopRight];
+    const botoesEsquerda = [mobileLeft, desktopLeft];
+
+    botoesDireita.forEach(function (btn) {
+        if (btn) btn.addEventListener("click", nextForecast);
     });
 
-    date.textContent = `${formattedDate} ${formattedTime}`;
-
-    time.innerHTML = `
-        <img 
-            class="weather__weeklyForecastTimeIcon"
-            src="assets/img/icons/hour.svg" 
-            alt=""
-        >
-        ${formattedDate} ${formattedTime}
-    `;
+    botoesEsquerda.forEach(function (btn) {
+        if (btn) btn.addEventListener("click", prevForecast);
+    });
 }
+
+configurarBotoes();
 
 async function searchCities(query) {
     if (query.length < 2) {
-
-        suggestions.innerHTML = "";
         suggestions.classList.remove("active");
-
         return;
     }
+    try {
+        const response = await fetch(`https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${query}`);
+        const data = await response.json();
+        suggestions.innerHTML = "";
+        suggestions.classList.add("active");
 
-    const response = await fetch(
-        `https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${query}`
-    );
-
-    const data = await response.json();
-
-    suggestions.innerHTML = "";
-
-    suggestions.classList.add("active");
-
-    data.forEach(city => {
-        const div = document.createElement("div");
-
-        div.classList.add("weather__option");
-
-        div.textContent = `${city.name}, ${city.country}`;
-
-        div.addEventListener("click", () => {
-            currentCity = city.name;
-
-            citySearch.value = city.name;
-
-            getWeather(city.name);
-
-            suggestions.innerHTML = "";
-
-            suggestions.classList.remove("active");
+        data.forEach(function (city) {
+            const div = document.createElement("div");
+            div.className = "weather__option";
+            div.textContent = `${city.name}, ${city.country}`;
+            div.addEventListener("click", function () {
+                currentCity = city.name;
+                citySearch.value = city.name;
+                getWeather(city.name);
+                suggestions.classList.remove("active");
+            });
+            suggestions.appendChild(div);
         });
-
-        suggestions.appendChild(div);
-    });
-
+    } catch (error) {
+        console.error("Erro na busca de cidades:", error);
+    }
 }
 
-citySearch.addEventListener("input", () => {
+citySearch.addEventListener("input", function () {
     searchCities(citySearch.value);
 });
 
-citySearch.addEventListener("keydown", (event) => {
+citySearch.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
-
-        currentCity = citySearch.value;
-
         getWeather(citySearch.value);
-
-        suggestions.classList.remove("active");
     }
 });
 
-citySearch.addEventListener("focus", () => {
+citySearch.addEventListener("focus", function () {
     if (citySearch.value === currentCity) {
-
         citySearch.value = "";
-
     }
 });
 
-citySearch.addEventListener("blur", () => {
+citySearch.addEventListener("blur", function () {
     if (citySearch.value.trim() === "") {
-
         citySearch.value = currentCity;
-
     }
 });
 
-window.addEventListener("click", (event) => {
+window.addEventListener("click", function (event) {
     if (!event.target.closest(".weather__searchWrapper")) {
-
         suggestions.classList.remove("active");
-
     }
 });
 
 citySearch.value = currentCity;
-
 getWeather(currentCity);
-
-setInterval(() => {
+setInterval(function () {
     getWeather(currentCity);
 }, 60000);
