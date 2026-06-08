@@ -187,6 +187,18 @@ body {
     .weather__carouselItem.active .weather__carouselIcon { transform: scale(1.1); }
     .weather__carouselDay { margin: 0 0 8px; transition: 0.35s ease; }
 
+    .weather__carouselTrack {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+
+    min-width: 180px;
+
+    transition: transform .65s cubic-bezier(.22,.61,.36,1);
+}
+
     @media (min-width: 1200px) { .weather__carousel { display: none; } }
 
     .weather__sideBar {
