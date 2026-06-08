@@ -74,10 +74,38 @@ function updateWeather(data) {
     renderForecast();
 }
 
+function updateAirConditions(dayData) {
+    feelsLike.textContent = `${Math.round(dayData.day.avgtemp_c)} °`;
+    wind.textContent = `${Math.round(dayData.day.maxwind_kph)} km/hr`;
+    humidity.textContent = `${Math.round(dayData.day.avghumidity)}%`;
+    uv.textContent = Number(dayData.day.uv).toFixed(1);
+
+    const selectedDate = new Date(dayData.date);
+
+    const dateText = selectedDate.toLocaleDateString("en", {
+        weekday: "long",
+        day: "2-digit",
+        month: "2-digit"
+    });
+
+    time.innerHTML = `
+        <img class="weather__weeklyForecastTimeIcon"
+             src="assets/img/icons/hour.svg" alt="">
+        ${dateText}
+    `;
+}
+
+
 function renderForecast() {
     if (forecastDays.length === 0) return;
 
     const shiftedDays = forecastDays.slice(currentForecastIndex).concat(forecastDays.slice(0, currentForecastIndex));
+
+    const activeDay = shiftedDays[2];
+
+    if (activeDay) {
+        updateAirConditions(activeDay);
+    }
 
     const html = shiftedDays.map(function (day, index) {
         const dayName = new Date(day.date).toLocaleDateString("en-US", { weekday: "short" }).toUpperCase();
