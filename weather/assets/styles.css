@@ -175,29 +175,45 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        opacity: .25;
-        transform: scale(.82) translateY(10px);
-        filter: blur(2px);
-        transition: transform .55s cubic-bezier(.22,.61,.36,1), opacity .55s ease, filter .55s ease;
+        opacity: .50;
+        transform: scale(.92);
+        transition:
+        opacity .35s ease,
+        transform .35s ease;
     }
 
-    .weather__carouselItem.active { opacity: 1; transform: scale(1.18); filter: blur(0); }
-    .weather__carouselItem.active .weather__carouselDay { color: white; }
-    .weather__carouselIcon { width: 36px; transition: 0.35s ease; }
-    .weather__carouselItem.active .weather__carouselIcon { transform: scale(1.1); }
-    .weather__carouselDay { margin: 0 0 8px; transition: 0.35s ease; }
+    .weather__carouselItem.active {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+
+    .weather__carouselItem.active .weather__carouselDay {
+        color: white;
+    }
+
+    .weather__carouselIcon {
+        width: 36px;
+        transition: transform .35s ease;
+    }
+
+    .weather__carouselItem.active .weather__carouselIcon {
+        transform: scale(1.05);
+    }
+
+    .weather__carouselDay {
+        margin: 0 0 8px;
+        transition: opacity .35s ease;
+    }
 
     .weather__carouselTrack {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-
-    min-width: 180px;
-
-    transition: transform .65s cubic-bezier(.22,.61,.36,1);
-}
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 24px;
+        min-width: 180px;
+        transition: transform .65s cubic-bezier(.30,.74,.36,0.25);
+    }
 
     @media (min-width: 1200px) { .weather__carousel { display: none; } }
 

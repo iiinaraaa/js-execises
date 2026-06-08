@@ -98,10 +98,10 @@ function renderForecast() {
 }
 
 function animateCarousel(track) {
-    track.style.transform = "translateX(-30px)";
+    track.style.transform = "translateX(-9px)";
     setTimeout(function () {
         track.style.transform = "translateX(0)";
-    }, 200);
+    }, 250);
 }
 
 function nextForecast() {
