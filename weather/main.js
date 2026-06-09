@@ -61,6 +61,12 @@ function updateWeather(data) {
 
     mainIcon.src = `assets/img/icons/weatherIcons/${weatherIcons[period][code] || "cloudy.svg"}`;
     const bg = weatherBackgrounds[period][code] || (data.current.is_day ? "sunnyDay.jpg" : "night.jpg");
+    //     const bg =
+    //     procura o background correspondente ao clima;
+    //     se não encontrar,
+    //     usa sunnyDay.jpg se for dia;
+    //     usa night.jpg se for noite;
+
     weatherBackground.style.backgroundImage = `url('assets/img/bg/${bg}')`;
 
     const localTime = new Date(data.location.localtime);
@@ -90,7 +96,7 @@ function updateAirConditions(dayData) {
 
     time.innerHTML = `
         <img class="weather__weeklyForecastTimeIcon"
-             src="assets/img/icons/hour.svg" alt="">
+             src="assets/img/icons/hour.svg" alt=""> 
         ${dateText}
     `;
 }
@@ -141,6 +147,7 @@ function nextForecast() {
 function prevForecast() {
     if (forecastDays.length === 0) return;
     currentForecastIndex = (currentForecastIndex - 1 + forecastDays.length) % forecastDays.length;
+    // % faz o loop infinito
     renderForecast();
 }
 
@@ -157,6 +164,7 @@ function configurarBotoes() {
     });
 }
 
+// em javaScript, definir uma função não significa executá-la, por isso tem q por ela aqui fora
 configurarBotoes();
 
 async function searchCities(query) {
