@@ -1,4 +1,5 @@
 const API_KEY = "04dbd215797f4ee6b7c190852262105";
+const MAPILLARY_TOKEN = "MLY|26317801207892727|b0711aa8ae65ceae77d33fc6281530bb";
 
 const status = document.getElementById("status");
 const temperature = document.getElementById("temperature");
@@ -228,3 +229,5 @@ getWeather(currentCity);
 setInterval(function () {
     getWeather(currentCity);
 }, 60000);
+
+console.log(MAPILLARY_TOKEN);
