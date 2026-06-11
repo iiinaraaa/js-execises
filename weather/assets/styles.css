@@ -244,7 +244,7 @@ body {
     }
 
     .weather__locationsTitle { font-size: 24px; font-weight: 500; }
-    .weather__locationsImage { width: 178.85px; height: 108px; }
+    .weather__locationsImage { width: 178.85px; height: 108px; border-radius: 15px; object-fit: cover;}
     .weather__locationsDistance { color: rgba(255, 255, 255, 0.8); font-size: 12px; margin: 0; }
     .weather__locationsCards { display: flex; gap: 21.29px; }
 

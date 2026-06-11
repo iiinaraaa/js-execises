@@ -1,5 +1,5 @@
 const API_KEY = "04dbd215797f4ee6b7c190852262105";
-const MAPILLARY_TOKEN = "MLY|26317801207892727|b0711aa8ae65ceae77d33fc6281530bb";
+const UNSPLASH_KEY = "5QtORhahnGsVXz-nzeKHCMKr4hXUp6cXZP4PmFsCGxs";
 
 const status = document.getElementById("status");
 const temperature = document.getElementById("temperature");
@@ -13,6 +13,11 @@ const mainIcon = document.getElementById("mainIcon");
 const weatherBackground = document.getElementById("weatherBackground");
 const citySearch = document.getElementById("citySearch");
 const suggestions = document.getElementById("suggestions");
+
+const placeImg1 = document.getElementById("placeImg1");
+const placeImg2 = document.getElementById("placeImg2");
+const placeImg3 = document.getElementById("placeImg3");
+const placeImg4 = document.getElementById("placeImg4");
 
 const forecastContainers = [
     document.getElementById("forecast"),
@@ -38,14 +43,42 @@ const weatherBackgrounds = {
     night: { 1000: "night.jpg", 1003: "night.jpg", 1006: "night.jpg", 1009: "night.jpg", 1030: "night.jpg", 1063: "rainNight.jpg", 1180: "rainNight.jpg", 1183: "rainNight.jpg", 1186: "rainNight.jpg", 1189: "rainNight.jpg", 1192: "rainNight.jpg", 1195: "rainNight.jpg", 1210: "rainNight.jpg", 1213: "rainNight.jpg", 1273: "rainNight.jpg", 1276: "rainNight.jpg" }
 };
 
-async function getWeather(cityName) {
+async function getWeather(latLon) {
     try {
-        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${cityName}&days=5&aqi=no`);
+        const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${latLon}&days=5&aqi=no`);
         const data = await response.json();
         if (data.error) return console.error(data.error.message);
         updateWeather(data);
     } catch (error) {
         console.error("Erro ao buscar clima:", error);
+    }
+}
+
+async function updateCityImages(cityName) {
+    try {
+        const response = await fetch(
+            `https://api.unsplash.com/search/photos?query=${encodeURIComponent(cityName + " city")}&per_page=4&orientation=landscape&client_id=${UNSPLASH_KEY}`
+        );
+
+        const data = await response.json();
+
+        if (!data.results || data.results.length < 4) {
+            return;
+        }
+
+        const imageElements = [
+            placeImg1,
+            placeImg2,
+            placeImg3,
+            placeImg4
+        ];
+
+        data.results.slice(0, 4).forEach(function (photo, index) {
+            imageElements[index].src = photo.urls.regular;
+        });
+
+    } catch (error) {
+        console.error("Erro ao buscar imagens:", error);
     }
 }
 
@@ -183,14 +216,22 @@ async function searchCities(query) {
             const div = document.createElement("div");
             div.className = "weather__option";
             div.textContent = `${city.name}, ${city.country}`;
+
             div.addEventListener("click", function () {
                 currentCity = city.name;
                 citySearch.value = city.name;
-                getWeather(city.name);
+
+                console.log("aqui eu cliquei numa cidade", city);
+
+                getWeather(`${city.lat},${city.lon}`);
+                updateCityImages(city.name);
+
                 suggestions.classList.remove("active");
             });
+
             suggestions.appendChild(div);
         });
+
     } catch (error) {
         console.error("Erro na busca de cidades:", error);
     }
@@ -225,9 +266,10 @@ window.addEventListener("click", function (event) {
 });
 
 citySearch.value = currentCity;
+
 getWeather(currentCity);
+updateCityImages(currentCity);
+
 setInterval(function () {
     getWeather(currentCity);
 }, 60000);
-
-console.log(MAPILLARY_TOKEN);
