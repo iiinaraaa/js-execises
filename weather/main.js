@@ -54,10 +54,10 @@ async function getWeather(latLon) {
     }
 }
 
-async function updateCityImages(cityName) {
+async function updateCityImages(latLon) {
     try {
         const response = await fetch(
-            `https://api.unsplash.com/search/photos?query=${encodeURIComponent(cityName + " city")}&per_page=4&orientation=landscape&client_id=${UNSPLASH_KEY}`
+            `https://api.unsplash.com/search/photos?query=${encodeURIComponent(latLon + " city")}&per_page=4&orientation=landscape&client_id=${UNSPLASH_KEY}`
         );
 
         const data = await response.json();
@@ -95,11 +95,6 @@ function updateWeather(data) {
 
     mainIcon.src = `assets/img/icons/weatherIcons/${weatherIcons[period][code] || "cloudy.svg"}`;
     const bg = weatherBackgrounds[period][code] || (data.current.is_day ? "sunnyDay.jpg" : "night.jpg");
-    //     const bg =
-    //     procura o background correspondente ao clima;
-    //     se não encontrar,
-    //     usa sunnyDay.jpg se for dia;
-    //     usa night.jpg se for noite;
 
     weatherBackground.style.backgroundImage = `url('assets/img/bg/${bg}')`;
 
