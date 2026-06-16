@@ -18,7 +18,23 @@ let expression = ""
 // controla quando a tela vai ser resetada, tipo quando der 10 ai vc vai colocar 8, deve ficar so o 8, e nao 108
 let shouldResetScreen = false
 
-//funcao que limpa a tela pra fzr novas continhas
+// os operadores que o JS entende (o que vai pra conta)
+const Operator = Object.freeze({
+    ADD: "+",
+    SUBTRACT: "-",
+    MULTIPLY: "*",
+    DIVIDE: "/"
+})
+
+// os simbolos que aparecem pra gente na calculadora
+const OperatorSymbol = Object.freeze({
+    ADD: "+",
+    SUBTRACT: "−",
+    MULTIPLY: "×",
+    DIVIDE: "÷"
+})
+
+//funcao que atualiza a tela pra fzr novas continhas
 function updateDisplay() {
     //mostra a conta inteira enquanto digita
     // || usa o da esquerda se existir
@@ -32,30 +48,43 @@ function updateDisplay() {
         .join("")
 }
 
-//isso aqui traduz os operadores pra algo que o JS entenda
-//mapOperator pra pegar o operador e traduzir ele
+//isso aqui traduz os simbolos da tela pra algo que o JS entenda
 function mapOperator(op) {
-    if (op === "÷") return "/"
-    if (op === "×") return "*"
-    if (op === "−") return "-"
+    if (op === OperatorSymbol.ADD) return Operator.ADD
+    if (op === OperatorSymbol.DIVIDE) return Operator.DIVIDE
+    if (op === OperatorSymbol.MULTIPLY) return Operator.MULTIPLY
+    if (op === OperatorSymbol.SUBTRACT) return Operator.SUBTRACT
 }
 
-//mesma coisa que o de cima mas ao contrario, o de cima traduz pro js, esse aqui traduz pra gente
+//mesma coisa que o de cima mas ao contrario, esse aqui traduz pra gente
 function formatOperator(op) {
-    if (op === "*") return "×"
-    if (op === "/") return "÷"
-    if (op === "-") return "−"
+    if (op === Operator.MULTIPLY) return OperatorSymbol.MULTIPLY
+    if (op === Operator.DIVIDE) return OperatorSymbol.DIVIDE
+    if (op === Operator.SUBTRACT) return OperatorSymbol.SUBTRACT
 
     return op
 }
 
-//parte que calcula
-function calculate(a, b, operator) {
-    if (operator === "+") return a + b
-    if (operator === "-") return a - b
-    if (operator === "*") return a * b
+//joga a conta feita pro historico
+// unshift adiciona no comeco, pop tira do final
+function addToHistory(previousValue, operator, currentValue, result) {
+    history.unshift(
+        `${previousValue} ${formatOperator(operator)} ${currentValue} = ${result}`
+    )
 
-    if (operator === "/") {
+    //mantem no maximo 2 historicos
+    if (history.length > 2) {
+        history.pop()
+    }
+}
+
+//parte que calcula
+function calculate(a, operator, b) {
+    if (operator === Operator.ADD) return a + b
+    if (operator === Operator.SUBTRACT) return a - b
+    if (operator === Operator.MULTIPLY) return a * b
+
+    if (operator === Operator.DIVIDE) {
         if (b === 0) return "Erro"
         return a / b
     }
@@ -67,20 +96,11 @@ function calculateResult() {
 
     const result = calculate(
         Number(previousValue),
-        Number(currentValue),
-        operator
+        operator,
+        Number(currentValue)
     )
 
-    //obviamente parte que puxa pro historico
-    // unshift eh um metodo de array que adiciona um item no comeco, pop eh pra tirar
-    history.unshift(
-        `${previousValue} ${formatOperator(operator)} ${currentValue} = ${result}`
-    )
-
-    //mantem no maximo 2 historicos
-    if (history.length > 2) {
-        history.pop()
-    }
+    addToHistory(previousValue, operator, currentValue, result)
 
     currentValue = String(result)
 
@@ -93,7 +113,7 @@ function calculateResult() {
     updateDisplay()
 }
 
-//nao sei como posso explicar isso, mas ele atualiza o valor dependendo do numero que tu clica na calculadora
+//atualiza o valor dependendo do numero que tu clica na calculadora
 numberButtons.forEach(btn => {
     btn.addEventListener("click", () => {
         const value = btn.innerText
@@ -123,11 +143,6 @@ numberButtons.forEach(btn => {
     })
 })
 
-
-
-
-
-
 //essa parte eh a mesma coisa de cima, mas eh com os operadores
 operatorButtons.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -138,22 +153,15 @@ operatorButtons.forEach(btn => {
         if (previousValue !== null && operator !== null) {
             const result = calculate(
                 Number(previousValue),
-                Number(currentValue),
-                operator
+                operator,
+                Number(currentValue)
             )
+
+            //manda pro historico ANTES de sobrescrever o currentValue, senao a conta sai errada
+            addToHistory(previousValue, operator, currentValue, result)
 
             //transformar em string pq na hora do innerText parece que fica certo assim
             currentValue = String(result)
-
-            //essa parte manda pro history
-            history.unshift(
-                `${previousValue} ${formatOperator(operator)} ${currentValue} = ${result}`
-            )
-
-            //mantem no maximo 2 historicos
-            if (history.length > 2) {
-                history.pop()
-            }
         }
 
         //guarda o primeiro numero e o operador, e prepara a tela pra digitar o segundo numero
@@ -172,7 +180,7 @@ operatorButtons.forEach(btn => {
 //quando clica ele mostra o resultado
 equalsButton.addEventListener("click", calculateResult)
 
-//isso faz parte de um bloco todo de botoes que fazem acoes, o AC eh um caso diferente, mas ainda esta nessa lista, se fosse fazer de outra forma, teria que fazer de cada um dos botoes... ate onde eu entendi ne
+//bloco de botoes de acao. o AC eh um caso especial, mas ta nessa lista junto
 actionButtons.forEach(btn => {
     btn.addEventListener("click", () => {
         const action = btn.innerText
@@ -190,5 +198,5 @@ actionButtons.forEach(btn => {
     })
 })
 
-//apaga tudo pra comecar novo calculo
+//mostra o estado inicial assim que carrega
 updateDisplay()

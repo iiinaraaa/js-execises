@@ -1,10 +1,11 @@
 # exercicios
 - [001-alert](/ex/001-alert/index.html) popup-alert
 - [002-interactive-system](ex/002-interactive-system/index.html) interactive-system
+- [003-adding-values](ex/003-adding-values/index.html) adding-values
 - [004-calculator](ex/004-calculator/index.html) calculator
 - [005-digital-wallet](ex/005-digital-wallet/index.html) digital-wallet
-
-- [003-adding-values](ex/003-adding-values/index.html) adding-values
+- [006-day-time](ex/006-day-time/index.html) day-time
+- [weather](weather/index.html) weather
 
 ## GIT FLOW
 
@@ -66,5 +67,58 @@ https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Working_with_objec
 e quero adicionar informacoes dentro dele, eu preciso por push!
 tipo, por data, e outras coisas
 
+| Tipo           | Dura quanto?     |
+| -------------- | ---------------- |
+| Array normal   | até recarregar   |
+| sessionStorage | até fechar a aba |
+| localStorage   | permanente       |
+
+# const x let
+
+| Conceito        | const            | let              |
+|-----------------|------------------|------------------|
+| Reatribuir      | ❌ não pode      | ✔ pode           |
+| Mudar conteúdo  | ✔ pode (array)   | ✔ pode           |
+| Uso             | valor fixo       | valor que muda   |
+| Boa prática     | usar por padrão  | usar se precisar |
+
+# =>
+essa bonitinha se chama ARROW FUNCTION
 
 
+function soma(a, b) {
+  return a + b
+}
+
+pode ser escrito assim:
+
+const soma = (a, b) => {
+  return a + b
+}
+
+so eh uma forma mais curta pra nao usar function toda hora.....
+
+
+
+## why use eval is a problem? 
+Using eval() in JavaScript is generally considered bad practice because it introduces security, performance, and maintainability problems.
+
+Here’s why:
+
+1. Security Risks (Code Injection)
+eval() executes any string as JavaScript code.
+If that string contains user-provided input, attackers can inject malicious code.
+Example of a dangerous case:
+Javascript
+
+Copy code
+const userInput = "alert('Hacked!')";
+eval(userInput); // Executes arbitrary code
+This can lead to XSS (Cross-Site Scripting) attacks in browsers or remote code execution in Node.js.
+2. Performance Issues
+JavaScript engines cannot optimize code inside eval() effectively because the code is determined at runtime.
+This forces the engine to recompile and deoptimize execution, making it slower.
+3. Debugging and Maintainability Problems
+Code inside eval() is harder to read, debug, and maintain.
+Static analysis tools (like ESLint) can’t easily detect errors inside eval() strings.
+Refactoring becomes risky because the code is hidden inside strings.

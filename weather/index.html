@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/img/favicon.svg" type="image/png">
+    <title>Weather</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <div class="weather" id="weatherBackground">
+        <header class="weather__header">
+            <div class="weather__location">
+                <img src="assets/img/icons/localization.svg" alt="">
+                
+                <div class="weather__searchWrapper">
+                    <input type="text" id="citySearch" class="weather__searchInput" placeholder="Search city...">
+                    <div class="weather__suggestions" id="suggestions"></div>
+                </div>
+            </div>
+            
+            <img class="weather__headerProfile" src="assets/img/profile.svg" alt="">
+        </header>
+
+        <div class="weather__main">
+            <div class="weather__hero">
+                <p class="weather__status" id="status">Cloudy</p>
+                <img class="weather__icon" id="mainIcon" src="assets/img/icons/weatherIcons/cloudy.svg" alt="">
+                <p class="weather__temperature" id="temperature">26 °C</p>
+                <p class="weather__date" id="date">Sunday | 12 Dec 2023</p>
+            </div>
+
+            <div class="weather__carousel">
+                <img class="weather__carouselArrow" id="mobileLeft" src="assets/img/icons/leftArrow.svg" alt="">
+                <div class="weather__carouselTrack" id="mobileForecast"></div>
+                <img class="weather__carouselArrow" id="mobileRight" src="assets/img/icons/rightArrow.svg" alt="">
+            </div>
+        </div>
+
+        <div class="weather__mainWrapper">
+            <div class="weather__sideBar">
+                <div class="weather__profile">
+                    <img class="weather__profileImage" src="assets/img/profile.svg" alt="">
+                </div>
+                <div class="weather__profileIcons">
+                    <img class="weather__sideBarIcon" src="assets/img/icons/weather.svg" alt="">
+                    <img class="weather__sideBarIcon" src="assets/img/icons/explore.svg" alt="">
+                    <img class="weather__sideBarIcon" src="assets/img/icons/localization.svg" alt="">
+                    <img class="weather__sideBarIcon" src="assets/img/icons/settings.svg" alt="">
+                </div>
+            </div>
+
+            <div class="weather__locations">
+                <p class="weather__locationsTitle">
+                    <img class="weather__locationsTitleIcon" src="assets/img/icons/heart.svg" alt="">
+                    Local Photos
+                </p>
+
+                <div class="weather__locationsCards">
+                    <div class="weather__locationsCard"></div>
+                    <div class="weather__locationsCard"></div>
+                    <div class="weather__locationsCard"></div>
+                    <div class="weather__locationsCard"></div>
+                </div>
+            </div>
+
+            <div class="weather__weeklyForecast">
+                <div class="weather__weeklyForecastCarousel">
+                    <img class="weather__weeklyForecastCarouselArrow" id="desktopLeft" src="assets/img/icons/leftArrow.svg" alt="">
+                    <div class="weather__weeklyForecastTrack" id="forecast"></div>
+                    <img class="weather__weeklyForecastCarouselArrow" id="desktopRight" src="assets/img/icons/rightArrow.svg" alt="">
+                </div>
+                
+                <p class="weather__weeklyForecastTime" id="time">
+                    <img class="weather__weeklyForecastTimeIcon" src="assets/img/icons/hour.svg" alt=""> 8:00PM GMT
+                </p>
+                
+                <div class="weather__weeklyForecastAirConditions">
+                    <p class="weather__weeklyForecastAirConditionsTitle">AIR CONDITIONS</p>
+                    
+                    <div class="weather__weeklyForecastAirCondition">
+                        <img class="weather__weeklyForecastAirConditionIcon" src="assets/img/icons/thermometer.svg" alt="">
+                        <div class="weather__weeklyForecastAirConditionInfo">
+                            <p class="weather__weeklyForecastAirConditionTitle">Real Feel</p>
+                            <p class="weather__weeklyForecastAirConditionValue" id="feelsLike">30°</p>
+                        </div>
+                    </div>
+
+                    <div class="weather__weeklyForecastAirCondition">
+                        <img class="weather__weeklyForecastAirConditionIcon" src="assets/img/icons/wind.svg" alt="">
+                        <div class="weather__weeklyForecastAirConditionInfo">
+                            <p class="weather__weeklyForecastAirConditionTitle">Wind</p>
+                            <p class="weather__weeklyForecastAirConditionValue" id="wind">0.8 km/hr</p>
+                        </div>
+                    </div>
+
+                    <div class="weather__weeklyForecastAirCondition">
+                        <img class="weather__weeklyForecastAirConditionIcon" src="assets/img/icons/rain.svg" alt="">
+                        <div class="weather__weeklyForecastAirConditionInfo">
+                            <p class="weather__weeklyForecastAirConditionTitle">Humidity</p>
+                            <p class="weather__weeklyForecastAirConditionValue" id="humidity">2%</p>
+                        </div>
+                    </div>
+
+                    <div class="weather__weeklyForecastAirCondition">
+                        <img class="weather__weeklyForecastAirConditionIcon" src="assets/img/icons/sun.svg" alt="">
+                        <div class="weather__weeklyForecastAirConditionInfo">
+                            <p class="weather__weeklyForecastAirConditionTitle">UV Index</p>
+                            <p class="weather__weeklyForecastAirConditionValue" id="uv">4</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+## elementos
+weather (pega todo mundo)
+
+weather__header (pega a parte com input do local)
+
+weather__hero (pega so a parte onde mostra o tempo o icone)
+
+weather__main (pega toda a parte onde vai o grid com as infos do tempo mais detalhadas mobile com as coisas display none, desktop display grid pra aparecer)
+
+
+## Imagens do BG
+
+elas mudam em cada clima e horario?????
+
+
+## API
+
+# O que é fetch API?
+
+fetch() é uma função nativa do JavaScript pra fazer requisições HTTP.
+
+# Template String
+
+const cidade = "Florianopolis"
+
+const url = `
+https://api.com?q=${cidade}
+
+# DOM + API
+
+A API só busca dados.
+
+Quem mostra na tela é o DOM.
+
+document.querySelector("#temp").innerHTML = dados.main.temp
+
+# Async/Await 
+
+espera internet responder
+
+# Separação de responsabilidades
+
+buscar dados → função 1
+mostrar dados → função 2
+mostrar erro → função 3
+
+# SOBRE CHAMAR A API:
+
+chama a API UMA vez
+recebe TODOS os dados
+distribui esses dados no DOM
+
+--------------------------------------------------------------
+
+Usuário digita cidade
+↓
+JavaScript pega valor do input
+↓
+fetch() faz requisição pra API
+↓
+Servidor recebe pedido
+↓
+Servidor responde JSON
+↓
+JavaScript lê JSON
+↓
+Você mostra na tela
+
+----------------------------------------------------------
+
+## try e catch são tipo um plano A / plano B
+
+try {
+   tenta fazer isso
+}
+catch {
+   se der erro, faz isso
+}
+
+# exemplo
+
+async function getWeather()
+
+→ "vou buscar clima"
+
+try
+→ tenta pegar da API
+
+await fetch()
+→ espera chegar
+
+await response.json()
+→ transforma resposta em objeto
+
+updateWeather()
+→ mostra na tela
+
+catch
+→ se internet cair, API falhar ou explodir:
+   mostra erro
+
+---------------------------------------------------------
+
+if / else → decide baseado num valor que tu já tem
+try / catch → pega um erro que interromperia o código (tipo API)
