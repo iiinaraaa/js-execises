@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  font-family: 'Inter', sans-serif;
+}
+
+.calculator {
+  width: 320px;
+  background: #000;
+  border-radius: 30px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .calculator__top {
+    display: flex;
+    justify-content: flex-start;
+    cursor: pointer;
+  }
+
+  .calculator__menu-img {
+    width: 24px;
+    height: 24px;
+    /* controla como a imagem se encaixa no tamanho que eu coloquei */
+    object-fit: contain;
+  }
+
+  .calculator__display {
+    text-align: right;
+    color: #fff;
+    min-height: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    .calculator__display-history {
+      color: #888;
+      font-size: 14px;
+      min-height: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      width: 100%;
+      max-height: 120px;
+      overflow-y: auto;
+
+      /* faz o texto quebrar quando ele eh grande demais */
+      word-break: break-word;
+      margin-bottom: 10px;
+    }
+
+    .history-item {
+      text-align: right;
+      width: 100%;
+    }
+
+    .calculator__display-result {
+      font-size: 48px;
+      font-weight: 300;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      /* isso aqui n deixa quebrar linha */
+      white-space: nowrap;
+    }
+
+    .calculator__display-result::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .calculator__buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .calculator__btn {
+    width: 100%;
+    /* largura igual altura */
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:active {
+      transform: scale(0.95);
+      /* isso deixa o botao mais claro, ele deixa tudo mais claro, nao so o background */
+      filter: brightness(1.2);
+    }
+  }
+
+  .btn-number {
+    background: #333;
+    color: #fff;
+
+    &:hover {
+      background: #555;
+    }
+  }
+
+  .btn-operator {
+    background: #ff9f0a;
+    color: #fff;
+
+    &:hover {
+      background: #ffb340;
+    }
+  }
+
+  .btn-action {
+    background: #a5a5a5;
+    color: #000;
+
+    &:hover {
+      background: #cfcfcf;
+    }
+  }
+
+  .btn-equals {
+    background: #ff9f0a;
+    color: #fff;
+
+    &:hover {
+      background: #ffb340;
+    }
+  }
+
+  .calculator__btn--wide {
+    grid-column: span 2;
+    aspect-ratio: auto;
+    height: 65px;
+    border-radius: 40px;
+    justify-content: flex-start;
+    padding-left: 26px;
+  }
+}
