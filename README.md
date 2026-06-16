@@ -1,10 +1,11 @@
 # exercicios
 - [001-alert](/ex/001-alert/index.html) popup-alert
 - [002-interactive-system](ex/002-interactive-system/index.html) interactive-system
+- [003-adding-values](ex/003-adding-values/index.html) adding-values
 - [004-calculator](ex/004-calculator/index.html) calculator
 - [005-digital-wallet](ex/005-digital-wallet/index.html) digital-wallet
-
-- [003-adding-values](ex/003-adding-values/index.html) adding-values
+- [006-day-time](ex/006-day-time/index.html) day-time
+- [weather](weather/index.html) weather
 
 ## GIT FLOW
 
