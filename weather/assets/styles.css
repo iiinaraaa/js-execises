@@ -237,16 +237,89 @@ body {
         backdrop-filter: blur(15px);
         border: 1px solid rgba(255, 255, 255, 0.2);
         width: 100%;
-        height: 244px;
         border-radius: 40px;
         padding: 20px 54.72px 34px 35px;
         box-sizing: border-box;
+        height: auto;
     }
 
-    .weather__locationsTitle { font-size: 24px; font-weight: 500; }
-    .weather__locationsImage { width: 178.85px; height: 108px; border-radius: 15px; object-fit: cover;}
-    .weather__locationsDistance { color: rgba(255, 255, 255, 0.8); font-size: 12px; margin: 0; }
-    .weather__locationsCards { display: flex; gap: 21.29px; }
+    .weather__locationsTitle {
+        font-size: 24px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 16px 0;
+    }
+
+    .weather__locationsCards {
+        display: flex;
+        gap: 21.29px;
+    }
+
+    .weather__locationsCard {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .weather__locationsImage {
+        width: 178.85px;
+        height: 108px;
+        border-radius: 15px;
+        object-fit: cover;
+        display: block;
+        transition: opacity 0.25s ease;
+    }
+
+    .weather__locationsImage:hover {
+        opacity: 0.85;
+    }
+
+    .weather__locationsInfo {
+        padding: 0 2px;
+    }
+
+    .weather__locationsPhotographer {
+        font-size: 12px;
+        font-weight: 600;
+        margin: 0;
+        color: white;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 178px;
+    }
+
+    .weather__locationsHandle {
+        font-size: 11px;
+        margin: 2px 0 0 0;
+        color: rgba(255, 255, 255, 0.65);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 178px;
+    }
+
+    .weather__locationsFallback {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 178.85px;
+        height: 108px;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.15);
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 36px;
+        font-weight: 300;
+        text-decoration: none;
+        transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .weather__locationsFallback:hover {
+        background: rgba(255, 255, 255, 0.25);
+        color: white;
+    }
 
     .weather__weeklyForecast {
         display: flex;
@@ -325,7 +398,7 @@ body {
         }
         .weather__sideBar, .weather__locations, .weather__weeklyForecast { display: flex; margin-top: 70px; }
         .weather__sideBar { grid-area: sidebar; }
-        .weather__locations { grid-area: locations; display: block; }
+        .weather__locations { grid-area: locations; display: block; align-self: start; width: 850px; }
         .weather__weeklyForecast { grid-area: weekly; }
     }
 }

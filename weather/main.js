@@ -14,11 +14,6 @@ const weatherBackground = document.getElementById("weatherBackground");
 const citySearch = document.getElementById("citySearch");
 const suggestions = document.getElementById("suggestions");
 
-const placeImg1 = document.getElementById("placeImg1");
-const placeImg2 = document.getElementById("placeImg2");
-const placeImg3 = document.getElementById("placeImg3");
-const placeImg4 = document.getElementById("placeImg4");
-
 const forecastContainers = [
     document.getElementById("forecast"),
     document.getElementById("mobileForecast")
@@ -30,8 +25,16 @@ const desktopLeft = document.getElementById("desktopLeft");
 const desktopRight = document.getElementById("desktopRight");
 
 let currentCity = "Florianopolis";
+let currentCityLabel = currentCity;
 let currentForecastIndex = 0;
 let forecastDays = [];
+
+function formatLocation(location) {
+    const parts = [location.name];
+    if (location.region && location.region !== location.name) parts.push(location.region);
+    if (location.country) parts.push(location.country);
+    return parts.join(", ");
+}
 
 const weatherIcons = {
     day: { 1000: "sun.svg", 1003: "cloudy.svg", 1006: "cloudy.svg", 1009: "cloudy.svg", 1030: "cloudy.svg", 1063: "rainyCloudyDay.svg", 1180: "rainCloud.svg", 1183: "rainCloud.svg", 1186: "rainCloud.svg", 1189: "rainCloud.svg", 1192: "rainCloud.svg", 1195: "rainCloud.svg", 1210: "snow.svg", 1213: "snow.svg", 1273: "thunderCloud.svg", 1276: "thunderCloud.svg" },
@@ -54,28 +57,73 @@ async function getWeather(latLon) {
     }
 }
 
-async function updateCityImages(latLon) {
+async function updateCityImages(cityName) {
     try {
         const response = await fetch(
-            `https://api.unsplash.com/search/photos?query=${encodeURIComponent(latLon + " city")}&per_page=4&orientation=landscape&client_id=${UNSPLASH_KEY}`
+            `https://api.unsplash.com/search/photos?query=${encodeURIComponent(cityName + " city")}&per_page=4&orientation=landscape&client_id=${UNSPLASH_KEY}`
         );
-
         const data = await response.json();
 
-        if (!data.results || data.results.length < 4) {
-            return;
-        }
+        const cardsContainer = document.querySelector(".weather__locationsCards");
+        cardsContainer.innerHTML = "";
 
-        const imageElements = [
-            placeImg1,
-            placeImg2,
-            placeImg3,
-            placeImg4
-        ];
+        // mostra no máximo 4 fotos
+        const photos = (data.results || []).slice(0, 4);
 
-        data.results.slice(0, 4).forEach(function (photo, index) {
-            imageElements[index].src = photo.urls.regular;
+        photos.forEach(function (photo) {
+            const card = document.createElement("div");
+            card.className = "weather__locationsCard";
+
+            // imagem clicável
+            const link = document.createElement("a");
+            link.href = photo.links.html;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+
+            const image = document.createElement("img");
+            image.src = photo.urls.regular;
+            image.className = "weather__locationsImage";
+            image.alt = photo.alt_description || cityName;
+
+            link.appendChild(image);
+            card.appendChild(link);
+
+            // info do fotógrafo
+            const info = document.createElement("div");
+            info.className = "weather__locationsInfo";
+
+            const name = document.createElement("p");
+            name.className = "weather__locationsPhotographer";
+            name.textContent = photo.user.name;
+
+            const handle = document.createElement("p");
+            handle.className = "weather__locationsHandle";
+            handle.textContent = photo.user.instagram_username
+                ? `@${photo.user.instagram_username}`
+                : `@${photo.user.username}`;
+
+            info.appendChild(name);
+            info.appendChild(handle);
+            card.appendChild(info);
+
+            cardsContainer.appendChild(card);
         });
+
+        // adiciona um único quadrado com "+" enquanto não chegar a 4 cards
+        if (photos.length < 4) {
+            const card = document.createElement("div");
+            card.className = "weather__locationsCard";
+
+            const fallback = document.createElement("a");
+            fallback.href = `https://unsplash.com/s/photos/${encodeURIComponent(cityName)}`;
+            fallback.target = "_blank";
+            fallback.rel = "noopener noreferrer";
+            fallback.className = "weather__locationsFallback";
+            fallback.textContent = "+";
+
+            card.appendChild(fallback);
+            cardsContainer.appendChild(card);
+        }
 
     } catch (error) {
         console.error("Erro ao buscar imagens:", error);
@@ -97,6 +145,11 @@ function updateWeather(data) {
     const bg = weatherBackgrounds[period][code] || (data.current.is_day ? "sunnyDay.jpg" : "night.jpg");
 
     weatherBackground.style.backgroundImage = `url('assets/img/bg/${bg}')`;
+
+    currentCityLabel = formatLocation(data.location);
+    if (document.activeElement !== citySearch) {
+        citySearch.value = currentCityLabel;
+    }
 
     const localTime = new Date(data.location.localtime);
     const dateStr = localTime.toLocaleDateString("pt-BR");
@@ -129,7 +182,6 @@ function updateAirConditions(dayData) {
         ${dateText}
     `;
 }
-
 
 function renderForecast() {
     if (forecastDays.length === 0) return;
@@ -176,7 +228,6 @@ function nextForecast() {
 function prevForecast() {
     if (forecastDays.length === 0) return;
     currentForecastIndex = (currentForecastIndex - 1 + forecastDays.length) % forecastDays.length;
-    // % faz o loop infinito
     renderForecast();
 }
 
@@ -193,7 +244,6 @@ function configurarBotoes() {
     });
 }
 
-// em javaScript, definir uma função não significa executá-la, por isso tem q por ela aqui fora
 configurarBotoes();
 
 async function searchCities(query) {
@@ -210,13 +260,14 @@ async function searchCities(query) {
         data.forEach(function (city) {
             const div = document.createElement("div");
             div.className = "weather__option";
-            div.textContent = `${city.name}, ${city.country}`;
+
+            // cidade, estado e país
+            const parts = [city.name, city.region, city.country].filter(Boolean);
+            div.textContent = parts.join(", ");
 
             div.addEventListener("click", function () {
                 currentCity = city.name;
                 citySearch.value = city.name;
-
-                console.log("aqui eu cliquei numa cidade", city);
 
                 getWeather(`${city.lat},${city.lon}`);
                 updateCityImages(city.name);
@@ -243,14 +294,14 @@ citySearch.addEventListener("keydown", function (event) {
 });
 
 citySearch.addEventListener("focus", function () {
-    if (citySearch.value === currentCity) {
+    if (citySearch.value === currentCityLabel) {
         citySearch.value = "";
     }
 });
 
 citySearch.addEventListener("blur", function () {
     if (citySearch.value.trim() === "") {
-        citySearch.value = currentCity;
+        citySearch.value = currentCityLabel;
     }
 });
 
