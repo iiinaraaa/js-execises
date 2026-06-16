@@ -382,7 +382,16 @@ body {
     .weather__weeklyForecastAirCondition { display: flex; gap: 15px; }
     .weather__weeklyForecastAirConditionIcon { width: 25px; }
 
-    .weather__mainWrapper { display: none; }
+    /* no mobile aparece so o card de previsao/condicoes, centralizado */
+    .weather__mainWrapper {
+        display: flex;
+        justify-content: center;
+        padding: 32px 16px 40px;
+    }
+
+    /* esconde a sidebar e as fotos no mobile, deixa so o card */
+    .weather__sideBar,
+    .weather__locations { display: none; }
 
     @media (min-width: 1200px) {
         .weather__mainWrapper {

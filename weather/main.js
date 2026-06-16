@@ -15,12 +15,9 @@ const citySearch = document.getElementById("citySearch");
 const suggestions = document.getElementById("suggestions");
 
 const forecastContainers = [
-    document.getElementById("forecast"),
-    document.getElementById("mobileForecast")
+    document.getElementById("forecast")
 ];
 
-const mobileLeft = document.getElementById("mobileLeft");
-const mobileRight = document.getElementById("mobileRight");
 const desktopLeft = document.getElementById("desktopLeft");
 const desktopRight = document.getElementById("desktopRight");
 
@@ -232,8 +229,8 @@ function prevForecast() {
 }
 
 function configurarBotoes() {
-    const botoesDireita = [mobileRight, desktopRight];
-    const botoesEsquerda = [mobileLeft, desktopLeft];
+    const botoesDireita = [desktopRight];
+    const botoesEsquerda = [desktopLeft];
 
     botoesDireita.forEach(function (btn) {
         if (btn) btn.addEventListener("click", nextForecast);
