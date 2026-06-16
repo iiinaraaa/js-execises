@@ -12,6 +12,10 @@ let currentValue = "0"
 let operator = null
 let history = []
 
+let expression = ""
+
+let shouldResetScreen = false
+
 // essa parte guarda a conta visual que aparece conforme vai digitando
 let expression = ""
 
@@ -33,6 +37,14 @@ const OperatorSymbol = Object.freeze({
     MULTIPLY: "×",
     DIVIDE: "÷"
 })
+
+function updateDisplay() {
+    resultElement.innerText = expression || currentValue
+
+    historyElement.innerHTML = history
+        .map(item => `<div class="history-item">${item}</div>`)
+        .join("")
+}
 
 //funcao que atualiza a tela pra fzr novas continhas
 function updateDisplay() {
@@ -63,6 +75,9 @@ function formatOperator(op) {
     if (op === Operator.SUBTRACT) return OperatorSymbol.SUBTRACT
 
     return op
+
+}
+
 }
 
 //joga a conta feita pro historico
@@ -131,6 +146,7 @@ numberButtons.forEach(btn => {
             }
         }
 
+        if (previousValue !== null && operator !== null) {
         //monta a conta visualmente enquanto digita
         if (previousValue !== null && operator !== null) {
             // expression eh oq guarda visualmente o numero, ai nesse caso ele printa essas coisas aqui
@@ -142,6 +158,10 @@ numberButtons.forEach(btn => {
         updateDisplay()
     })
 })
+
+operatorButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        const op = mapOperator(btn.innerText)
 
 //essa parte eh a mesma coisa de cima, mas eh com os operadores
 operatorButtons.forEach(btn => {
@@ -156,6 +176,14 @@ operatorButtons.forEach(btn => {
                 operator,
                 Number(currentValue)
             )
+
+            currentValue = String(result)
+
+            addToHistory(previousValue, operator, currentValue, result)
+        }
+
+        previousValue = currentValue
+        operator = op
 
             //manda pro historico ANTES de sobrescrever o currentValue, senao a conta sai errada
             addToHistory(previousValue, operator, currentValue, result)
@@ -176,6 +204,8 @@ operatorButtons.forEach(btn => {
         updateDisplay()
     })
 })
+
+equalsButton.addEventListener("click", calculateResult)
 
 //quando clica ele mostra o resultado
 equalsButton.addEventListener("click", calculateResult)
